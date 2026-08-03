@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ziq Mac — Photography</title>
+<meta name="description" content="Portfolio of Ziq Mac, photographer. Portraits, landscapes and editorial work.">
+<link rel="canonical" href="https://example.com/">
+
+<style>
+  :root {
+    --ink: #14110f;
+    --paper: #faf8f5;
+    --muted: #6b6560;
+    --measure: 68ch;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+  header { padding: 22vh 0 14vh; }
+  h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.05; margin: 0 0 .4em; letter-spacing: -0.02em; }
+  .lede { max-width: var(--measure); color: var(--muted); font-size: 1.15rem; margin: 0; }
+
+  section { padding: 8vh 0; }
+  h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); margin: 0 0 1rem; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+  }
+
+  /* Reserving the box up front is what keeps CLS at zero. The real <img> below
+     does the same job via its width/height attributes. */
+  figure { margin: 0; }
+  .shot {
+    aspect-ratio: 4 / 3;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #cfc6bb, #8f857a);
+  }
+  figcaption { color: var(--muted); font-size: .875rem; padding-top: .5rem; }
+
+  /* Sections far below the fold skip layout/paint until they're near the
+     viewport. contain-intrinsic-size supplies a placeholder height so the
+     scrollbar doesn't jump. */
+  .deferred {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+
+  /* ---------------------------------------------------------------------
+     The falling camera.
+
+     Rules that keep this free:
+       - position: fixed        -> outside normal flow, so it can never shift
+                                   the page content or cause layout shift
+       - pointer-events: none   -> never intercepts a click on a photo
+       - only transform/opacity -> compositor-only, no layout, no repaint
+       - aria-hidden in markup  -> decorative, invisible to screen readers
+                                   and to a crawler reading the page
+     --------------------------------------------------------------------- */
+  .camera {
+    position: fixed;
+    top: 0;
+    right: clamp(12px, 6vw, 90px);
+    width: clamp(48px, 7vw, 96px);
+    z-index: 1;
+    pointer-events: none;
+    opacity: .5;
+    transform: translate3d(0, -25vh, 0);
+  }
+
+  @keyframes camera-fall {
+    from { transform: translate3d(0, -25vh, 0) rotate(-12deg); }
+    to   { transform: translate3d(0, 100vh, 0) rotate(700deg); }
+  }
+
+  /* Gate the CSS animation behind @supports. Without the gate, a browser that
+     ignores animation-timeline would run camera-fall on the normal document
+     timeline at its default 0s duration and snap straight to the end frame. */
+  @supports (animation-timeline: scroll()) {
+    .camera {
+      animation: camera-fall linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+
+  /* Not optional. Some people get motion sick; others just turned it off. */
+  @media (prefers-reduced-motion: reduce) {
+    .camera { display: none; }
+  }
+
+  /* Phones: least headroom, smallest screen, and the camera would drift right
+     over the photos. Drop it. */
+  @media (max-width: 640px) {
+    .camera { display: none; }
+  }
+
+  footer { padding: 10vh 0 6vh; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<!-- Decorative only: aria-hidden + focusable="false" keep it out of the
+     accessibility tree, and it carries no text a crawler could index. -->
+<svg class="camera" data-camera aria-hidden="true" focusable="false"
+     viewBox="0 0 64 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="1" y="9" width="62" height="38" rx="6" fill="#14110f"/>
+  <path d="M20 9l4-6h16l4 6z" fill="#14110f"/>
+  <circle cx="32" cy="28" r="13" fill="#faf8f5"/>
+  <circle cx="32" cy="28" r="9" fill="#14110f"/>
+  <circle cx="32" cy="28" r="4.5" fill="#3d5a80"/>
+  <circle cx="28.5" cy="24.5" r="1.8" fill="#faf8f5" opacity=".8"/>
+  <rect x="50" y="14" width="8" height="4" rx="2" fill="#faf8f5" opacity=".75"/>
+</svg>
+
+<div class="wrap">
+
+  <header>
+    <h1>Ziq Mac</h1>
+    <p class="lede">
+      Portrait and landscape photography, shot on location across the Pacific
+      Northwest. Available for editorial and commercial commissions.
+    </p>
+  </header>
+
+  <!-- Real content lives in the HTML, visible by default. Nothing here depends
+       on JavaScript running or on a scroll event firing. -->
+  <main>
+    <section>
+      <h2>Selected work</h2>
+      <div class="grid">
+        <figure><div class="shot"></div><figcaption>Cannon Beach, 2025</figcaption></figure>
+        <figure><div class="shot"></div><figcaption>Studio portrait, 2025</figcaption></figure>
+        <figure><div class="shot"></div><figcaption>Columbia Gorge, 2024</figcaption></figure>
+      </div>
+
+      <!-- How the placeholders above would look as real photos.
+           - width/height  : reserves the box, prevents layout shift
+           - fetchpriority : only on the one hero image, never more
+           - loading=lazy  : everything below the fold
+           - AVIF -> WebP -> JPEG so old browsers still get something
+
+      <picture>
+        <source srcset="/img/beach-800.avif 800w, /img/beach-1600.avif 1600w"
+                sizes="(max-width: 700px) 100vw, 33vw" type="image/avif">
+        <source srcset="/img/beach-800.webp 800w, /img/beach-1600.webp 1600w"
+                sizes="(max-width: 700px) 100vw, 33vw" type="image/webp">
+        <img src="/img/beach-800.jpg" width="1600" height="1200"
+             loading="lazy" decoding="async"
+             alt="Sea stacks at low tide, Cannon Beach, at sunrise">
+      </picture>
+      -->
+    </section>
+
+    <section class="deferred">
+      <h2>Landscapes</h2>
+      <div class="grid">
+        <figure><div class="shot"></div><figcaption>Mount Hood, 2024</figcaption></figure>
+        <figure><div class="shot"></div><figcaption>Painted Hills, 2024</figcaption></figure>
+        <figure><div class="shot"></div><figcaption>Smith Rock, 2023</figcaption></figure>
+        <figure><div class="shot"></div><figcaption>Crater Lake, 2023</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="deferred">
+      <h2>Portraits</h2>
+      <div class="grid">
+        <figure><div class="shot"></div><figcaption>Ana, 2025</figcaption></figure>
+        <figure><div class="shot"></div><figcaption>Desmond, 2024</figcaption></figure>
+        <figure><div class="shot"></div><figcaption>Yui, 2024</figcaption></figure>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>hello@example.com</p>
+  </footer>
+
+</div>
+
+<script>
+/* Fallback for browsers without scroll-driven CSS animations.
+   Everything above already works without this file loading at all — the camera
+   simply sits still. That is the point: the animation is an enhancement. */
+(function () {
+  var camera = document.querySelector('[data-camera]');
+  if (!camera) return;
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var native = window.CSS && CSS.supports && CSS.supports('animation-timeline: scroll()');
+  if (reduced || native) return;
+
+  var ticking = false;
+
+  function paint() {
+    ticking = false;
+    // scrollY and innerHeight are cheap. Reading offsetTop or
+    // getBoundingClientRect() here instead would force a synchronous layout on
+    // every frame — that is the classic scroll-jank bug.
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var p = max > 0 ? Math.min(1, window.scrollY / max) : 0;
+    camera.style.transform =
+      'translate3d(0, ' + (-25 + p * 125) + 'vh, 0) rotate(' + (-12 + p * 712) + 'deg)';
+  }
+
+  // Coalesce a burst of scroll events into one write per animation frame.
+  function onScroll() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(paint);
+    }
+  }
+
+  addEventListener('scroll', onScroll, { passive: true });
+  addEventListener('resize', onScroll, { passive: true });
+  paint();
+})();
+</script>
+
+</body>
+</html>
