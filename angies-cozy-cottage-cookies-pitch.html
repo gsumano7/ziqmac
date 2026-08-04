@@ -1,0 +1,930 @@
+<title>Brand Board — Angie's Cozy Cottage Cookies</title>
+
+<style>
+  :root{
+    /* Brand palette — drawn from the existing wordmark and her cookie work */
+    --cocoa:#8B5A24;
+    --sugar:#D8A574;
+    --blush:#F8E5D8;
+    --plum:#E9B6C0;
+    --sage:#A7BD9E;
+    --ink:#3A2415;
+
+    /* Page chrome (theme-aware) */
+    --page:#EFE2D6;
+    --page-2:#E4D3C4;
+    --text:#3A2415;
+    --text-soft:#7A5A3F;
+    --rule:rgba(58,36,21,.18);
+    --card:#FBF3EC;
+    --shadow:0 18px 44px -22px rgba(58,36,21,.5);
+
+    --display:"Didot","Bodoni 72","Bodoni MT","Hoefler Text","Playfair Display",Georgia,"Times New Roman",serif;
+    --body:"Iowan Old Style","Palatino Linotype",Charter,Palatino,Georgia,serif;
+    --util:"Avenir Next",Avenir,Futura,"Century Gothic","Gill Sans","Gill Sans MT",system-ui,sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark){
+    :root{
+      --page:#191310;
+      --page-2:#221913;
+      --text:#F0E1D3;
+      --text-soft:#B9977C;
+      --rule:rgba(240,225,211,.16);
+      --card:#241A14;
+      --shadow:0 18px 44px -20px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"]{
+    --page:#191310;
+    --page-2:#221913;
+    --text:#F0E1D3;
+    --text-soft:#B9977C;
+    --rule:rgba(240,225,211,.16);
+    --card:#241A14;
+    --shadow:0 18px 44px -20px rgba(0,0,0,.8);
+  }
+  :root[data-theme="light"]{
+    --page:#EFE2D6;
+    --page-2:#E4D3C4;
+    --text:#3A2415;
+    --text-soft:#7A5A3F;
+    --rule:rgba(58,36,21,.18);
+    --card:#FBF3EC;
+    --shadow:0 18px 44px -22px rgba(58,36,21,.5);
+  }
+
+  *{box-sizing:border-box}
+
+  body{
+    margin:0;
+    background:
+      radial-gradient(1100px 620px at 50% -8%, var(--page-2), transparent 70%),
+      var(--page);
+    color:var(--text);
+    font-family:var(--body);
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:1180px;margin:0 auto;padding:clamp(32px,6vw,76px) clamp(18px,4vw,40px) 90px}
+
+  /* ---------- masthead ---------- */
+  .eyebrow{
+    font-family:var(--util);
+    font-size:11px;
+    letter-spacing:.26em;
+    text-transform:uppercase;
+    color:var(--text-soft);
+    margin:0 0 20px;
+  }
+  .masthead h1{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(38px,6.4vw,68px);
+    line-height:1.02;
+    letter-spacing:-.01em;
+    text-wrap:balance;
+    margin:0 0 18px;
+  }
+  .masthead h1 em{font-style:italic;color:var(--cocoa)}
+  :root[data-theme="dark"] .masthead h1 em{color:var(--sugar)}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .masthead h1 em{color:var(--sugar)}}
+
+  .standfirst{
+    max-width:62ch;
+    font-size:clamp(17px,2vw,19px);
+    color:var(--text);
+    margin:0 0 34px;
+  }
+
+  .meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0 44px;
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    padding:16px 0;
+    margin-bottom:clamp(34px,5vw,58px);
+  }
+  .meta div{padding:6px 0}
+  .meta dt{
+    font-family:var(--util);
+    font-size:10px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--text-soft);
+    margin:0 0 4px;
+  }
+  .meta dd{margin:0;font-size:16px}
+  .fill{
+    border-bottom:1px dashed var(--text-soft);
+    padding-bottom:1px;
+    color:var(--text-soft);
+    font-style:italic;
+  }
+
+  /* ---------- the board ---------- */
+  .board{
+    background:var(--blush);
+    border-radius:14px;
+    padding:clamp(12px,1.8vw,20px);
+    display:flex;
+    flex-direction:column;
+    gap:clamp(9px,1.3vw,14px);
+    box-shadow:var(--shadow);
+  }
+
+  .row{display:grid;gap:clamp(9px,1.3vw,14px)}
+  .row-swatch{grid-template-columns:repeat(5,1fr)}
+  .row-hero{grid-template-columns:1.06fr .94fr}
+  .row-mid{grid-template-columns:.72fr 1fr}
+  .row-foot{grid-template-columns:repeat(3,1fr)}
+  .stack{display:grid;grid-template-rows:.86fr 1.14fr;gap:clamp(9px,1.3vw,14px)}
+
+  .tile{
+    position:relative;
+    border:1px solid rgba(139,90,36,.42);
+    border-radius:10px;
+    background:var(--blush);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+  }
+  .tile-label{
+    font-family:var(--util);
+    font-size:9px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:rgba(139,90,36,.72);
+    padding:10px 12px 0;
+    flex:none;
+  }
+  .tile-body{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:14px;
+    min-height:0;
+  }
+
+  /* ---------- swatches ---------- */
+  .swatch{border:none;padding:0}
+  .swatch .chip{flex:1;min-height:84px}
+  .swatch .cap{
+    padding:9px 10px 11px;
+    background:var(--blush);
+    border:1px solid rgba(139,90,36,.42);
+    border-top:none;
+    border-radius:0 0 10px 10px;
+  }
+  .swatch{border-radius:10px;overflow:hidden}
+  .swatch .chip{border-radius:10px 10px 0 0}
+  .cap b{
+    display:block;
+    font-family:var(--util);
+    font-weight:600;
+    font-size:10.5px;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    color:var(--ink);
+  }
+  .cap span{
+    display:block;
+    font-family:var(--util);
+    font-size:10px;
+    letter-spacing:.1em;
+    color:rgba(58,36,21,.6);
+    font-variant-numeric:tabular-nums;
+    margin-top:2px;
+  }
+
+  /* ---------- the wordmark ---------- */
+  .mark{
+    font-family:var(--display);
+    color:var(--cocoa);
+    text-align:center;
+    line-height:1;
+    font-size:var(--mk,40px);
+  }
+  .mark .nm{
+    font-variant:small-caps;
+    letter-spacing:.015em;
+    font-size:1em;
+  }
+  .mark .nm i{font-style:normal;font-size:1.34em;letter-spacing:0}
+  .mark .s1,.mark .s2{
+    font-family:var(--display);
+    text-transform:uppercase;
+    letter-spacing:.34em;
+    text-indent:.34em;
+    font-size:.245em;
+    line-height:1.4;
+  }
+  .mark .s1{margin-top:.34em}
+  .mark .rule{
+    height:1px;
+    background:var(--cocoa);
+    margin:.16em auto;
+    width:78%;
+  }
+  .mark.on-dark{color:var(--blush)}
+  .mark.on-dark .rule{background:var(--blush)}
+
+  /* logo tile */
+  .logo-tile .tile-body{flex-direction:column;gap:26px;padding:26px 18px}
+  .submark{
+    width:74px;height:74px;
+    border:1px solid rgba(139,90,36,.55);
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    color:var(--cocoa);
+  }
+  .submark .mono{
+    font-family:var(--display);
+    font-size:27px;
+    line-height:1;
+    letter-spacing:.02em;
+  }
+  .caption{
+    font-family:var(--util);
+    font-size:9.5px;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:rgba(139,90,36,.62);
+    text-align:center;
+  }
+
+  /* ---------- mockup staging ---------- */
+  .stage{
+    flex:1;
+    margin:0 0 0;
+    border-radius:0 0 9px 9px;
+    background:linear-gradient(168deg,#F1DDCE,#E8CFBD);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    min-height:0;
+  }
+  .obj{box-shadow:0 12px 26px -14px rgba(58,36,21,.62)}
+
+  /* box lid */
+  .lid{
+    width:min(80%,300px);
+    aspect-ratio:16/9;
+    background:var(--blush);
+    border-radius:5px;
+    position:relative;
+    display:grid;
+    place-items:center;
+  }
+  .lid .ribbon{
+    position:absolute;
+    top:0;bottom:0;left:50%;
+    transform:translateX(-50%);
+    width:26px;
+    background:var(--sage);
+    opacity:.9;
+  }
+  .lid .mark{position:relative;z-index:1;background:var(--blush);padding:7px 13px;border-radius:3px}
+
+  /* cellophane bag */
+  .bag{
+    width:min(62%,150px);
+    aspect-ratio:3/4.2;
+    background:linear-gradient(104deg,rgba(255,255,255,.82),rgba(255,255,255,.42));
+    border:1px solid rgba(255,255,255,.85);
+    border-radius:3px;
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding-top:6px;
+  }
+  .bag .topper{
+    width:calc(100% + 10px);
+    background:var(--cocoa);
+    border-radius:3px;
+    padding:9px 6px 10px;
+    margin-top:-16px;
+    display:grid;
+    place-items:center;
+  }
+  .bag .cookies{
+    flex:1;
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    align-content:center;
+    justify-content:center;
+    gap:7px;
+    padding:12px 10px;
+  }
+  .bag .ck{width:26px;height:26px;border-radius:50%;box-shadow:inset 0 -3px 0 rgba(58,36,21,.07)}
+
+  /* seals */
+  .seals{position:relative;width:min(78%,190px);aspect-ratio:1/.8}
+  .seal{
+    position:absolute;
+    width:58%;
+    aspect-ratio:1;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    box-shadow:0 8px 18px -10px rgba(58,36,21,.6);
+  }
+  .seal .inner{
+    width:82%;height:82%;
+    border:1px solid currentColor;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+  }
+  .seal-a{left:0;top:0;background:var(--cocoa);color:var(--blush)}
+  .seal-b{right:0;top:11%;background:var(--plum);color:var(--ink)}
+  .seal-c{left:22%;bottom:0;background:var(--blush);color:var(--cocoa);border:1px solid rgba(139,90,36,.4)}
+  .seal .txt{
+    font-family:var(--display);
+    font-size:13px;
+    line-height:1.05;
+    text-align:center;
+    font-variant:small-caps;
+  }
+  .seal .txt small{
+    display:block;
+    font-family:var(--util);
+    font-size:5.4px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    margin-top:2px;
+  }
+
+  /* care card */
+  .care{
+    width:min(80%,215px);
+    background:#fff;
+    border-radius:3px;
+    padding:16px 17px;
+    color:var(--ink);
+  }
+  .care h4{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:15px;
+    margin:0 0 9px;
+    color:var(--cocoa);
+  }
+  .care ul{
+    list-style:none;
+    margin:0;padding:0;
+    font-family:var(--util);
+    font-size:8.4px;
+    letter-spacing:.055em;
+    line-height:1.85;
+    color:rgba(58,36,21,.78);
+  }
+  .care li{padding-left:11px;position:relative}
+  .care li::before{
+    content:"";
+    position:absolute;left:0;top:7px;
+    width:4px;height:4px;border-radius:50%;
+    background:var(--plum);
+  }
+
+  /* hang tag */
+  .tag{
+    width:min(62%,135px);
+    aspect-ratio:3/4.4;
+    background:var(--sugar);
+    border-radius:4px;
+    position:relative;
+    display:grid;
+    place-items:center;
+    padding:14px 10px;
+  }
+  .tag::before{
+    content:"";
+    position:absolute;top:11px;left:50%;
+    transform:translateX(-50%);
+    width:11px;height:11px;
+    border:1.4px solid rgba(58,36,21,.4);
+    border-radius:50%;
+  }
+  .twine{
+    position:absolute;
+    top:-42px;left:50%;
+    width:2px;height:56px;
+    background:rgba(58,36,21,.32);
+    transform:translateX(-50%) rotate(9deg);
+    transform-origin:top center;
+  }
+
+  /* ---------- illustrations ---------- */
+  .ills{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:6px 4px;
+    width:100%;
+    color:var(--cocoa);
+  }
+  .ill{display:grid;place-items:center;padding:6px 2px}
+  .ill svg{width:100%;max-width:60px;height:auto;display:block}
+
+  /* ---------- business card ---------- */
+  .cards{
+    position:relative;
+    width:100%;
+    max-width:340px;
+    aspect-ratio:1/.62;
+  }
+  .bc{
+    position:absolute;
+    width:70%;
+    aspect-ratio:1.75/1;
+    border-radius:4px;
+    display:grid;
+    place-items:center;
+    padding:14px;
+    box-shadow:0 14px 28px -16px rgba(58,36,21,.62);
+  }
+  .bc-back{
+    right:0;top:0;
+    background:var(--cocoa);
+    color:var(--blush);
+    transform:rotate(3.5deg);
+  }
+  .bc-front{
+    left:0;bottom:0;
+    background:var(--blush);
+    border:1px solid rgba(139,90,36,.3);
+    transform:rotate(-2.5deg);
+  }
+  .bc-back .lines{
+    text-align:center;
+    font-family:var(--util);
+    font-size:8px;
+    letter-spacing:.17em;
+    text-transform:uppercase;
+    line-height:2.1;
+  }
+  .bc-back .lines .who{
+    font-family:var(--display);
+    font-size:17px;
+    letter-spacing:.02em;
+    text-transform:none;
+    display:block;
+    margin-bottom:6px;
+    font-variant:small-caps;
+  }
+
+  /* ---------- reading section below the board ---------- */
+  .below{
+    margin-top:clamp(46px,7vw,84px);
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:clamp(30px,5vw,64px);
+    align-items:start;
+  }
+  h2{
+    font-family:var(--display);
+    font-weight:400;
+    font-size:clamp(24px,3vw,31px);
+    line-height:1.15;
+    margin:0 0 18px;
+    text-wrap:balance;
+  }
+  .below p{margin:0 0 16px;max-width:60ch}
+
+  .deliverables{list-style:none;margin:20px 0 0;padding:0}
+  .deliverables li{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:16px;
+    align-items:baseline;
+    padding:13px 0;
+    border-top:1px solid var(--rule);
+  }
+  .deliverables li:last-child{border-bottom:1px solid var(--rule)}
+  .deliverables b{font-weight:400;font-size:17px}
+  .deliverables span{
+    font-family:var(--util);
+    font-size:10px;
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    color:var(--text-soft);
+    text-align:right;
+  }
+
+  .aside{
+    background:var(--card);
+    border:1px solid var(--rule);
+    border-radius:10px;
+    padding:clamp(22px,3vw,30px);
+  }
+  .aside h3{
+    font-family:var(--util);
+    font-size:10px;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    color:var(--text-soft);
+    margin:0 0 18px;
+    font-weight:600;
+  }
+  .steps{list-style:none;margin:0;padding:0;counter-reset:s}
+  .steps li{
+    counter-increment:s;
+    position:relative;
+    padding:0 0 20px 40px;
+    font-size:16px;
+  }
+  .steps li:last-child{padding-bottom:0}
+  .steps li::before{
+    content:counter(s);
+    position:absolute;left:0;top:1px;
+    width:25px;height:25px;
+    border:1px solid var(--rule);
+    border-radius:50%;
+    display:grid;place-items:center;
+    font-family:var(--util);
+    font-size:11px;
+    color:var(--text-soft);
+    font-variant-numeric:tabular-nums;
+  }
+  .steps b{display:block;font-weight:400;font-family:var(--display);font-size:18px;margin-bottom:2px}
+  .steps small{font-size:14.5px;color:var(--text-soft);line-height:1.5;display:block}
+
+  .closer{
+    margin-top:clamp(40px,6vw,70px);
+    border-top:1px solid var(--rule);
+    padding-top:clamp(26px,4vw,40px);
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-between;
+    gap:22px;
+  }
+  .closer p{
+    font-family:var(--display);
+    font-size:clamp(20px,3vw,27px);
+    line-height:1.3;
+    margin:0;
+    max-width:26ch;
+    text-wrap:balance;
+  }
+  .cta{
+    font-family:var(--util);
+    font-size:11px;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--text-soft);
+    text-align:right;
+    line-height:2;
+  }
+  .cta b{display:block;color:var(--text);font-weight:600}
+
+  .footnote{
+    margin-top:34px;
+    font-family:var(--util);
+    font-size:11px;
+    letter-spacing:.05em;
+    color:var(--text-soft);
+    max-width:70ch;
+  }
+
+  /* ---------- entrance ---------- */
+  .tile,.swatch{opacity:0;transform:translateY(10px);animation:rise .62s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:var(--d,0ms)}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){
+    .tile,.swatch{animation:none;opacity:1;transform:none}
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:900px){
+    .below{grid-template-columns:1fr}
+  }
+  @media (max-width:760px){
+    .row-hero,.row-mid{grid-template-columns:1fr}
+    .row-foot{grid-template-columns:1fr 1fr}
+    .stack{grid-template-rows:auto auto}
+    .tile{min-height:210px}
+    .swatch{min-height:0}
+    .row-swatch{grid-template-columns:repeat(auto-fit,minmax(92px,1fr))}
+  }
+  @media (max-width:460px){
+    .row-foot{grid-template-columns:1fr}
+    .meta{gap:0 26px}
+  }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="eyebrow">Brand identity proposal · Concept board</p>
+    <h1>A whole brand, built around the <em>mark you already love</em>.</h1>
+    <p class="standfirst">
+      Angie, your logo is doing real work already — that warm brown wordmark is
+      elegant, readable, and unmistakably yours. What it doesn't have yet is the rest
+      of the system around it: the colors, the packaging, the little card that goes in
+      the box. This board shows what that looks like.
+    </p>
+    <dl class="meta">
+      <div>
+        <dt>Prepared for</dt>
+        <dd>Angie's Cozy Cottage Cookies</dd>
+      </div>
+      <div>
+        <dt>Prepared by</dt>
+        <dd><span class="fill">your name here</span></dd>
+      </div>
+      <div>
+        <dt>Scope</dt>
+        <dd>Identity system &amp; packaging</dd>
+      </div>
+      <div>
+        <dt>Status</dt>
+        <dd>Concept — not final artwork</dd>
+      </div>
+    </dl>
+  </header>
+
+  <main class="board">
+
+    <!-- COLOR -->
+    <section class="row row-swatch" aria-label="Color palette">
+      <article class="tile swatch" style="--d:0ms">
+        <div class="chip" style="background:#8B5A24"></div>
+        <div class="cap"><b>Cocoa Ochre</b><span>#8B5A24</span></div>
+      </article>
+      <article class="tile swatch" style="--d:60ms">
+        <div class="chip" style="background:#D8A574"></div>
+        <div class="cap"><b>Toasted Sugar</b><span>#D8A574</span></div>
+      </article>
+      <article class="tile swatch" style="--d:120ms">
+        <div class="chip" style="background:#F8E5D8"></div>
+        <div class="cap"><b>Icing Blush</b><span>#F8E5D8</span></div>
+      </article>
+      <article class="tile swatch" style="--d:180ms">
+        <div class="chip" style="background:#E9B6C0"></div>
+        <div class="cap"><b>Sugarplum</b><span>#E9B6C0</span></div>
+      </article>
+      <article class="tile swatch" style="--d:240ms">
+        <div class="chip" style="background:#A7BD9E"></div>
+        <div class="cap"><b>Cottage Sage</b><span>#A7BD9E</span></div>
+      </article>
+    </section>
+
+    <!-- LOGO + TWO MOCKUPS -->
+    <section class="row row-hero">
+      <article class="tile logo-tile" style="--d:300ms">
+        <p class="tile-label">Primary logo</p>
+        <div class="tile-body">
+          <div class="mark" style="--mk:clamp(40px,6vw,62px)">
+            <div class="nm"><i>A</i>ngie's</div>
+            <div class="s1">Cozy Cottage</div>
+            <div class="rule"></div>
+            <div class="s2">Cookies</div>
+          </div>
+          <div class="submark" aria-label="Secondary submark">
+            <span class="mono">ACC</span>
+          </div>
+          <p class="caption">Full lockup &amp; submark for small spaces</p>
+        </div>
+      </article>
+
+      <div class="stack">
+        <article class="tile" style="--d:360ms">
+          <p class="tile-label">Mockup — dozen box</p>
+          <div class="stage">
+            <div class="lid obj">
+              <div class="ribbon"></div>
+              <div class="mark" style="--mk:20px">
+                <div class="nm"><i>A</i>ngie's</div>
+                <div class="s1">Cozy Cottage</div>
+                <div class="rule"></div>
+                <div class="s2">Cookies</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="tile" style="--d:420ms">
+          <p class="tile-label">Mockup — favor bag &amp; topper</p>
+          <div class="stage">
+            <div class="bag obj">
+              <div class="topper">
+                <div class="mark on-dark" style="--mk:14px">
+                  <div class="nm"><i>A</i>ngie's</div>
+                  <div class="s1">Cozy Cottage</div>
+                </div>
+              </div>
+              <div class="cookies">
+                <span class="ck" style="background:#E9B6C0"></span>
+                <span class="ck" style="background:#FBF3EC"></span>
+                <span class="ck" style="background:#A7BD9E"></span>
+                <span class="ck" style="background:#FBF3EC"></span>
+                <span class="ck" style="background:#D8A574"></span>
+                <span class="ck" style="background:#E9B6C0"></span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ILLUSTRATIONS + BUSINESS CARD -->
+    <section class="row row-mid">
+      <article class="tile" style="--d:480ms">
+        <p class="tile-label">Brand illustrations</p>
+        <div class="tile-body">
+          <div class="ills">
+            <div class="ill" title="Cottage">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M8 22 24 9l16 13"/>
+                <path d="M11 21v17h26V21"/>
+                <path d="M20 38v-9h8v9"/>
+                <path d="M15 25h5v5h-5z"/>
+                <path d="M33 12h4v5"/>
+              </svg>
+            </div>
+            <div class="ill" title="Rolling pin">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="13" y="18" width="22" height="12" rx="5"/>
+                <path d="M13 24H6m36 0h-7"/>
+                <path d="M6 21v6m36-6v6"/>
+              </svg>
+            </div>
+            <div class="ill" title="Piping bag">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M14 10h20l-8 20h-6z"/>
+                <path d="M23 30h4l1 6h-6z"/>
+                <path d="M25 39c0 2-2 3-2 3"/>
+              </svg>
+            </div>
+            <div class="ill" title="Decorated cookie">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="24" cy="24" r="14"/>
+                <circle cx="24" cy="24" r="9.5"/>
+                <path d="M20 21c2-2 5-1 5 1.5S21 27 21 27"/>
+              </svg>
+            </div>
+            <div class="ill" title="Wheat sprig">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M24 40V14"/>
+                <path d="M24 18c0-4 3-6 3-6s1 4-3 6zm0 0c0-4-3-6-3-6s-1 4 3 6z"/>
+                <path d="M24 26c0-4 3-6 3-6s1 4-3 6zm0 0c0-4-3-6-3-6s-1 4 3 6z"/>
+                <path d="M24 34c0-4 3-6 3-6s1 4-3 6zm0 0c0-4-3-6-3-6s-1 4 3 6z"/>
+              </svg>
+            </div>
+            <div class="ill" title="Ribbon bow">
+              <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M24 24c-4-6-13-7-13-1s9 5 13 1zm0 0c4-6 13-7 13-1s-9 5-13 1z"/>
+                <circle cx="24" cy="24" r="2.6"/>
+                <path d="M22 27l-4 10 6-4 6 4-4-10"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile" style="--d:540ms">
+        <p class="tile-label">Business card</p>
+        <div class="stage">
+          <div class="cards">
+            <div class="bc bc-back">
+              <div class="lines">
+                <span class="who">Angie</span>
+                Custom decorated cookies<br>
+                Orders by DM<br>
+                @angiescozycottagecookies
+              </div>
+            </div>
+            <div class="bc bc-front">
+              <div class="mark" style="--mk:23px">
+                <div class="nm"><i>A</i>ngie's</div>
+                <div class="s1">Cozy Cottage</div>
+                <div class="rule"></div>
+                <div class="s2">Cookies</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- THREE MOCKUPS -->
+    <section class="row row-foot">
+      <article class="tile" style="--d:600ms">
+        <p class="tile-label">Mockup — box seals</p>
+        <div class="stage">
+          <div class="seals">
+            <div class="seal seal-a">
+              <div class="inner"><span class="txt">Baked with love<small>Angie's</small></span></div>
+            </div>
+            <div class="seal seal-b">
+              <div class="inner"><span class="txt">ACC</span></div>
+            </div>
+            <div class="seal seal-c">
+              <div class="inner"><span class="txt">Fresh<small>This week</small></span></div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile" style="--d:660ms">
+        <p class="tile-label">Mockup — cookie care card</p>
+        <div class="stage">
+          <div class="care obj">
+            <h4>Keeping them lovely</h4>
+            <ul>
+              <li>Best within 10 days, sealed</li>
+              <li>Room temperature, out of sun</li>
+              <li>Freeze up to 3 months</li>
+              <li>Thaw sealed, then unwrap</li>
+            </ul>
+          </div>
+        </div>
+      </article>
+
+      <article class="tile" style="--d:720ms">
+        <p class="tile-label">Mockup — gift tag</p>
+        <div class="stage">
+          <div class="tag obj">
+            <div class="twine"></div>
+            <div class="mark" style="--mk:15px">
+              <div class="nm"><i>A</i>ngie's</div>
+              <div class="s1">Cozy Cottage</div>
+              <div class="rule"></div>
+              <div class="s2">Cookies</div>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+  </main>
+
+  <section class="below">
+    <div>
+      <h2>Why this matters for a cookie business</h2>
+      <p>
+        Most of your orders arrive by DM, get photographed on a countertop, and leave
+        in a box. Those three moments — the feed, the photo, the box — are the whole
+        brand experience. Right now the logo carries all of it alone.
+      </p>
+      <p>
+        A defined palette makes every set you post look like it came from the same
+        kitchen, even when the cookies themselves are Paw Patrol one week and a
+        christening the next. Packaging turns a delivery into something the customer
+        photographs and tags. That's how a 168-follower account becomes a booked-out one.
+      </p>
+      <ul class="deliverables">
+        <li><b>Logo files, every format</b><span>PNG · SVG · PDF</span></li>
+        <li><b>Secondary submark &amp; stacked lockup</b><span>3 variants</span></li>
+        <li><b>Color palette with hex codes</b><span>5 colors</span></li>
+        <li><b>Illustration set</b><span>6 marks</span></li>
+        <li><b>Business card, print-ready</b><span>Front &amp; back</span></li>
+        <li><b>Packaging: box, bag topper, seals, tags</b><span>4 pieces</span></li>
+        <li><b>Cookie care card</b><span>Insert size</span></li>
+        <li><b>One-page brand guide</b><span>PDF</span></li>
+      </ul>
+    </div>
+
+    <aside class="aside">
+      <h3>How it works</h3>
+      <ol class="steps">
+        <li>
+          <b>A short call</b>
+          <small>Twenty minutes. What you bake most, who orders it, what you wish looked better.</small>
+        </li>
+        <li>
+          <b>This board, made real</b>
+          <small>You approve the direction, then everything above gets built as final artwork.</small>
+        </li>
+        <li>
+          <b>Files in your hands</b>
+          <small>One folder, print-ready, plus a guide so you never have to guess a color again.</small>
+        </li>
+      </ol>
+    </aside>
+  </section>
+
+  <div class="closer">
+    <p>Your cookies already look like this. Everything around them should too.</p>
+    <div class="cta">
+      Reply to this and we'll book the call
+      <b><span class="fill">your contact here</span></b>
+    </div>
+  </div>
+
+  <p class="footnote">
+    Concept board prepared for Angie's Cozy Cottage Cookies. Packaging and print pieces
+    shown are illustrative mockups, not final production artwork. The wordmark shown is
+    the business's existing logo, presented here in a proposed system.
+  </p>
+
+</div>
