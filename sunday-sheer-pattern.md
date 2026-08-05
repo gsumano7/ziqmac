@@ -62,7 +62,7 @@ Work twisted 1×1 rib for 6 rounds, or approx. ¾".
 
 Switch to 4 mm needles. The round is divided into four sections: first sleeve, front, second sleeve, back.
 
-**Round 1 (set-up):** [Mesh repeat] 4 times, k2tog, pm; [mesh repeat] 8 times, pm; [mesh repeat] 4 times, pm; [mesh repeat] 8 times to end of round.
+**Round 1 (set-up):** [Mesh repeat] 4 times, k2tog, pm; [mesh repeat] 8 times, k2tog, pm; [mesh repeat] 4 times, k2tog, pm; [mesh repeat] 8 times, k2tog to end of round. Every section begins with the mesh repeat (a slipped stitch, then a knit) and ends with a k2tog just before its marker.
 
 **Round 2:** \*K1, (p1, k2) to marker, sm; repeat from \* to end of round.
 
