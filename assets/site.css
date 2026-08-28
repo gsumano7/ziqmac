@@ -1,0 +1,89 @@
+/* Shared styles for the interior pages. The homepage is deliberately not
+   included here — it is a full-bleed picture with its own layout. */
+
+:root {
+  --ink: #14110f;
+  --paper: #faf8f5;
+  --muted: #6b6560;
+  --measure: 68ch;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* Interior pages get a plain text nav. The picture-with-hotspots idea belongs
+   to the homepage; repeating it here would cost people a click to get
+   anywhere. */
+.sitebar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: rgb(250 248 245 / .88);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgb(20 17 15 / .08);
+}
+
+.sitebar .wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.sitebar a { color: inherit; text-decoration: none; }
+.sitebar a:hover { text-decoration: underline; }
+
+.home {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-right: auto;
+}
+
+.sitebar nav { display: flex; gap: 20px; }
+.sitebar [aria-current="page"] { color: var(--muted); text-decoration: none; }
+
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+header.page { padding: 12vh 0 8vh; }
+h1 { font-size: clamp(2.5rem, 8vw, 5rem); line-height: 1.05; margin: 0 0 .4em; letter-spacing: -0.02em; }
+.lede { max-width: var(--measure); color: var(--muted); font-size: 1.15rem; margin: 0; }
+
+section { padding: 6vh 0; }
+h2 { font-size: clamp(1.5rem, 3vw, 2.25rem); margin: 0 0 1rem; }
+p { max-width: var(--measure); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+/* Reserving the box up front is what keeps CLS at zero. A real <img> does the
+   same job via its width/height attributes. */
+figure { margin: 0; }
+.shot {
+  aspect-ratio: 4 / 3;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #cfc6bb, #8f857a);
+}
+figcaption { color: var(--muted); font-size: .875rem; padding-top: .5rem; }
+
+/* Sections far below the fold skip layout/paint until they are near the
+   viewport. contain-intrinsic-size supplies a placeholder height so the
+   scrollbar does not jump. */
+.deferred {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+footer { padding: 10vh 0 6vh; color: var(--muted); }
+footer a { color: inherit; }
