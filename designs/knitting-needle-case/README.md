@@ -10,7 +10,7 @@ client's reference photos. Rev B, 2026-10-01.
 | File | What it is |
 | --- | --- |
 | `knitting-needle-case-drawings.pdf` | The drawing set, 8 sheets, A3 landscape. Sheets 3–6 are full size (1:1) and can be printed at 100 % and used as pattern pieces. |
-| `index.html` | Same seven sheets as a print-ready web page (File → Print, A3 landscape, no margins). |
+| `index.html` | Same eight sheets as a print-ready web page (File → Print, A3 landscape, no margins). |
 | `sheets/sheet1.svg` … `sheet8.svg` | Each sheet as a vector SVG, editable in Inkscape / Illustrator. |
 | `preview/sheet*.png` | Quick-look raster previews. |
 | `generate_drawings.py` | Generator. Every dimension lives in this script; change a value, re-run, and all sheets update. |
