@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160mm" height="110mm" viewBox="0 0 160 110"><style>
+.bg{fill:#f3efe8}
+.lth{fill:url(#lth);stroke:#5a4634;stroke-width:0.35}
+.lth2{fill:url(#lth2);stroke:#5a4634;stroke-width:0.35}
+.lth3{fill:url(#lth3);stroke:#5a4634;stroke-width:0.35}
+.edge{fill:none;stroke:#efe2c8;stroke-width:0.45;stroke-dasharray:1.1,0.7}
+.strap{fill:url(#strap);stroke:#2a1a10;stroke-width:0.35}
+.strapedge{fill:none;stroke:#c8905a;stroke-width:0.35;stroke-dasharray:1,0.7}
+.brass{fill:url(#brass);stroke:#6b4f1f;stroke-width:0.3}
+.needle{fill:url(#metal);stroke:#4a4a4a;stroke-width:0.15}
+.elastic{fill:url(#elastic);stroke:#7a6a52;stroke-width:0.3}
+.slit{stroke:#3a2d20;stroke-width:0.8}
+.tack{stroke:#efe2c8;stroke-width:0.4;stroke-dasharray:0.6,0.5}
+.shadow{fill:#000;opacity:0.18;filter:url(#blur)}
+.lab{font-family:Liberation Sans, Arial, Helvetica, sans-serif;font-size:2.2px;fill:#4a3b2c;text-anchor:middle}
+.lab2{font-family:Liberation Sans, Arial, Helvetica, sans-serif;font-size:1.7px;fill:#4a3b2c;text-anchor:middle}
+.cap{font-family:Liberation Sans, Arial, Helvetica, sans-serif;font-size:3.6px;fill:#3a3028;letter-spacing:0.5px;text-anchor:middle}
+.hole{fill:#3a2415}
+</style>
+<defs>
+ <linearGradient id="lth" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#dcc7a6"/><stop offset="0.55" stop-color="#cbb08a"/><stop offset="1" stop-color="#b8996f"/>
+ </linearGradient>
+ <linearGradient id="lth2" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#c9ad86"/><stop offset="1" stop-color="#ad8f68"/>
+ </linearGradient>
+ <linearGradient id="lth3" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#b3936a"/><stop offset="1" stop-color="#9c7d57"/>
+ </linearGradient>
+ <linearGradient id="strap" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#4a2e1c"/><stop offset="0.5" stop-color="#5e3b24"/><stop offset="1" stop-color="#3b2314"/>
+ </linearGradient>
+ <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#e3c77a"/><stop offset="0.5" stop-color="#b8923f"/><stop offset="1" stop-color="#d9b85d"/>
+ </linearGradient>
+ <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#7d8186"/><stop offset="0.35" stop-color="#eef0f2"/><stop offset="0.6" stop-color="#b9bec4"/><stop offset="1" stop-color="#676b70"/>
+ </linearGradient>
+ <linearGradient id="elastic" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#d9c7a8"/><stop offset="1" stop-color="#bfa988"/>
+ </linearGradient>
+ <pattern id="weave" patternUnits="userSpaceOnUse" width="0.6" height="0.6">
+  <rect width="0.6" height="0.6" fill="none"/><line x1="0" y1="0.3" x2="0.6" y2="0.3" stroke="#a08d6e" stroke-width="0.12"/>
+ </pattern>
+ <filter id="blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs>
+<rect width="160" height="110" class="bg"/><rect x="19.200" y="17.480" width="128.000" height="80.000" rx="4" class="shadow"/>
+<path d="M22.400,13.000 L137.600,13.000 A6.400,6.400 0 0 1 144.000,19.400 L144.000,93.000 L16.000,93.000 L16.000,19.400 A6.400,6.400 0 0 1 22.400,13.000 Z" class="lth"/>
+<path d="M22.400,14.920 L137.600,14.920 A4.480,4.480 0 0 1 142.080,19.400 L142.080,91.080 L17.920,91.080 L17.920,19.400 A4.480,4.480 0 0 1 22.400,14.920 Z" class="edge"/>
+<path d="M54.05,22.60 L55.81,32.84 L55.81,86.60 L52.29,86.60 L52.29,32.84 Z" class="needle"/>
+<line x1="52.288" y1="80.840" x2="55.808" y2="80.840" class="slit"/>
+<path d="M57.95,22.60 L59.71,32.84 L59.71,86.60 L56.19,86.60 L56.19,32.84 Z" class="needle"/>
+<line x1="56.192" y1="80.840" x2="59.712" y2="80.840" class="slit"/>
+<path d="M68.29,22.60 L70.21,32.84 L70.21,86.60 L66.37,86.60 L66.37,32.84 Z" class="needle"/>
+<line x1="66.368" y1="80.840" x2="70.208" y2="80.840" class="slit"/>
+<path d="M72.51,22.60 L74.43,32.84 L74.43,86.60 L70.59,86.60 L70.59,32.84 Z" class="needle"/>
+<line x1="70.592" y1="80.840" x2="74.432" y2="80.840" class="slit"/>
+<path d="M83.01,22.60 L85.25,32.84 L85.25,86.60 L80.77,86.60 L80.77,32.84 Z" class="needle"/>
+<line x1="80.768" y1="80.840" x2="85.248" y2="80.840" class="slit"/>
+<path d="M87.87,22.60 L90.11,32.84 L90.11,86.60 L85.63,86.60 L85.63,32.84 Z" class="needle"/>
+<line x1="85.632" y1="80.840" x2="90.112" y2="80.840" class="slit"/>
+<path d="M98.37,22.60 L100.93,32.84 L100.93,86.60 L95.81,86.60 L95.81,32.84 Z" class="needle"/>
+<line x1="95.808" y1="80.840" x2="100.928" y2="80.840" class="slit"/>
+<path d="M103.87,22.60 L106.43,32.84 L106.43,86.60 L101.31,86.60 L101.31,32.84 Z" class="needle"/>
+<line x1="101.312" y1="80.840" x2="106.432" y2="80.840" class="slit"/>
+<path d="M114.37,22.60 L117.25,32.84 L117.25,86.60 L111.49,86.60 L111.49,32.84 Z" class="needle"/>
+<line x1="111.488" y1="80.840" x2="117.248" y2="80.840" class="slit"/>
+<path d="M120.51,22.60 L123.39,32.84 L123.39,86.60 L117.63,86.60 L117.63,32.84 Z" class="needle"/>
+<line x1="117.632" y1="80.840" x2="123.392" y2="80.840" class="slit"/>
+<path d="M131.01,22.60 L134.21,32.84 L134.21,86.60 L127.81,86.60 L127.81,32.84 Z" class="needle"/>
+<line x1="127.808" y1="80.840" x2="134.208" y2="80.840" class="slit"/>
+<path d="M137.79,22.60 L140.99,32.84 L140.99,86.60 L134.59,86.60 L134.59,32.84 Z" class="needle"/>
+<line x1="134.592" y1="80.840" x2="140.992" y2="80.840" class="slit"/>
+<rect x="50.560" y="49.800" width="10.880" height="9.600" rx="0.3" class="elastic"/>
+<rect x="50.56" y="49.80" width="10.88" height="9.60" fill="url(#weave)"/>
+<line x1="50.560" y1="49.480" x2="50.560" y2="59.720" class="slit"/>
+<line x1="50.560" y1="48.480" x2="50.560" y2="60.720" class="tack"/>
+<line x1="61.440" y1="49.480" x2="61.440" y2="59.720" class="slit"/>
+<line x1="61.440" y1="48.480" x2="61.440" y2="60.720" class="tack"/>
+<rect x="64.640" y="49.800" width="11.520" height="9.600" rx="0.3" class="elastic"/>
+<rect x="64.64" y="49.80" width="11.52" height="9.60" fill="url(#weave)"/>
+<line x1="64.640" y1="49.480" x2="64.640" y2="59.720" class="slit"/>
+<line x1="64.640" y1="48.480" x2="64.640" y2="60.720" class="tack"/>
+<line x1="76.160" y1="49.480" x2="76.160" y2="59.720" class="slit"/>
+<line x1="76.160" y1="48.480" x2="76.160" y2="60.720" class="tack"/>
+<rect x="79.360" y="49.800" width="12.160" height="9.600" rx="0.3" class="elastic"/>
+<rect x="79.36" y="49.80" width="12.16" height="9.60" fill="url(#weave)"/>
+<line x1="79.360" y1="49.480" x2="79.360" y2="59.720" class="slit"/>
+<line x1="79.360" y1="48.480" x2="79.360" y2="60.720" class="tack"/>
+<line x1="91.520" y1="49.480" x2="91.520" y2="59.720" class="slit"/>
+<line x1="91.520" y1="48.480" x2="91.520" y2="60.720" class="tack"/>
+<rect x="94.720" y="49.800" width="12.800" height="9.600" rx="0.3" class="elastic"/>
+<rect x="94.72" y="49.80" width="12.80" height="9.60" fill="url(#weave)"/>
+<line x1="94.720" y1="49.480" x2="94.720" y2="59.720" class="slit"/>
+<line x1="94.720" y1="48.480" x2="94.720" y2="60.720" class="tack"/>
+<line x1="107.520" y1="49.480" x2="107.520" y2="59.720" class="slit"/>
+<line x1="107.520" y1="48.480" x2="107.520" y2="60.720" class="tack"/>
+<rect x="110.720" y="49.800" width="13.440" height="9.600" rx="0.3" class="elastic"/>
+<rect x="110.72" y="49.80" width="13.44" height="9.60" fill="url(#weave)"/>
+<line x1="110.720" y1="49.480" x2="110.720" y2="59.720" class="slit"/>
+<line x1="110.720" y1="48.480" x2="110.720" y2="60.720" class="tack"/>
+<line x1="124.160" y1="49.480" x2="124.160" y2="59.720" class="slit"/>
+<line x1="124.160" y1="48.480" x2="124.160" y2="60.720" class="tack"/>
+<rect x="127.360" y="49.800" width="14.080" height="9.600" rx="0.3" class="elastic"/>
+<rect x="127.36" y="49.80" width="14.08" height="9.60" fill="url(#weave)"/>
+<line x1="127.360" y1="49.480" x2="127.360" y2="59.720" class="slit"/>
+<line x1="127.360" y1="48.480" x2="127.360" y2="60.720" class="tack"/>
+<line x1="141.440" y1="49.480" x2="141.440" y2="59.720" class="slit"/>
+<line x1="141.440" y1="48.480" x2="141.440" y2="60.720" class="tack"/>
+<text x="56.000" y="16.200" class="lab">5.5</text>
+<text x="56.000" y="18.200" class="lab2">mm</text>
+<line x1="56.00" y1="18.80" x2="56.00" y2="22.00" stroke="#6b5a48" stroke-width="0.2"/>
+<text x="70.400" y="16.200" class="lab">6.0</text>
+<text x="70.400" y="18.200" class="lab2">mm</text>
+<line x1="70.40" y1="18.80" x2="70.40" y2="22.00" stroke="#6b5a48" stroke-width="0.2"/>
+<text x="85.440" y="16.200" class="lab">7.0</text>
+<text x="85.440" y="18.200" class="lab2">mm</text>
+<line x1="85.44" y1="18.80" x2="85.44" y2="22.00" stroke="#6b5a48" stroke-width="0.2"/>
+<text x="101.120" y="16.200" class="lab">8.0</text>
+<text x="101.120" y="18.200" class="lab2">mm</text>
+<line x1="101.12" y1="18.80" x2="101.12" y2="22.00" stroke="#6b5a48" stroke-width="0.2"/>
+<text x="117.440" y="16.200" class="lab">9.0</text>
+<text x="117.440" y="18.200" class="lab2">mm</text>
+<line x1="117.44" y1="18.80" x2="117.44" y2="22.00" stroke="#6b5a48" stroke-width="0.2"/>
+<text x="134.400" y="16.200" class="lab">10.0</text>
+<text x="134.400" y="18.200" class="lab2">mm</text>
+<line x1="134.40" y1="18.80" x2="134.40" y2="22.00" stroke="#6b5a48" stroke-width="0.2"/>
+<path d="M19.200,23.240 L44.160,23.240 L44.160,48.840 A3.840,3.840 0 0 1 40.320,52.680 L23.040,52.680 A3.840,3.840 0 0 1 19.200,48.840 L19.200,23.240 Z" class="lth2"/>
+<path d="M21.120,25.160 L42.240,25.160 L42.240,48.200 A2.560,2.560 0 0 1 39.680,50.760 L23.680,50.760 A2.560,2.560 0 0 1 21.120,48.200 L21.120,25.160 Z" class="edge"/>
+<path d="M23.040,16.200 L40.320,16.200 A3.840,3.840 0 0 1 44.160,20.040 L44.160,27.720 A3.840,3.840 0 0 1 40.320,31.560 L23.040,31.560 A3.840,3.840 0 0 1 19.200,27.720 L19.200,20.040 A3.840,3.840 0 0 1 23.040,16.200 Z" class="lth"/>
+<path d="M23.680,18.120 L39.680,18.120 A2.560,2.560 0 0 1 42.240,20.680 L42.240,27.080 A2.560,2.560 0 0 1 39.680,29.640 L23.680,29.640 A2.560,2.560 0 0 1 21.120,27.080 L21.120,20.680 A2.560,2.560 0 0 1 23.680,18.120 Z" class="edge"/>
+<circle cx="31.680" cy="24.520" r="1.600" class="brass"/>
+<circle cx="31.680" cy="24.520" r="0.640" class="lth3"/>
+<path d="M19.200,61.000 L44.160,61.000 L44.160,86.600 A3.840,3.840 0 0 1 40.320,90.440 L23.040,90.440 A3.840,3.840 0 0 1 19.200,86.600 L19.200,61.000 Z" class="lth2"/>
+<path d="M21.120,62.920 L42.240,62.920 L42.240,85.960 A2.560,2.560 0 0 1 39.680,88.520 L23.680,88.520 A2.560,2.560 0 0 1 21.120,85.960 L21.120,62.920 Z" class="edge"/>
+<path d="M23.040,53.960 L40.320,53.960 A3.840,3.840 0 0 1 44.160,57.800 L44.160,65.480 A3.840,3.840 0 0 1 40.320,69.320 L23.040,69.320 A3.840,3.840 0 0 1 19.200,65.480 L19.200,57.800 A3.840,3.840 0 0 1 23.040,53.960 Z" class="lth"/>
+<path d="M23.680,55.880 L39.680,55.880 A2.560,2.560 0 0 1 42.240,58.440 L42.240,64.840 A2.560,2.560 0 0 1 39.680,67.400 L23.680,67.400 A2.560,2.560 0 0 1 21.120,64.840 L21.120,58.440 A2.560,2.560 0 0 1 23.680,55.880 Z" class="edge"/>
+<circle cx="31.680" cy="62.280" r="1.600" class="brass"/>
+<circle cx="31.680" cy="62.280" r="0.640" class="lth3"/>
+<text x="80.000" y="105.000" class="cap">PANEL 2  -  10 cm tips 5.5-10 mm + pockets</text></svg>

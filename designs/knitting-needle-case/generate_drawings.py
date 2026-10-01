@@ -160,9 +160,38 @@ class Sheet:
         d = "M" + " L".join(f"{x:.3f},{y:.3f}" for x, y in pts) + (" Z" if close else "")
         self.add(f'<path d="{d}" class="{cls}"/>')
 
+    SIZES = {"t": 3.0, "ts": 2.4, "tb": 3.0, "tt": 5.0, "tx": 2.1}
+
     def text(self, x, y, s, cls="t", anchor="start", rot=0):
         tr = f' transform="rotate({rot} {x:.3f} {y:.3f})"' if rot else ""
         self.add(f'<text x="{x:.3f}" y="{y:.3f}" class="{cls}" text-anchor="{anchor}"{tr}>{esc(s)}</text>')
+        if not hasattr(self, "texts"):
+            self.texts = []
+        self.texts.append((x, y, str(s), cls, anchor, rot))
+
+    def overlaps(self):
+        """Approximate text-vs-text overlap check (Liberation Sans ~0.52 em per char)."""
+        boxes = []
+        for x, y, s, cls, anchor, rot in getattr(self, "texts", []):
+            size = self.SIZES.get(cls, 3.0)
+            w = len(s) * size * (0.56 if cls == "tb" else 0.52)
+            h = size
+            if rot == 0:
+                x0 = x - (w / 2 if anchor == "middle" else (w if anchor == "end" else 0))
+                boxes.append((x0, y - h * 0.8, x0 + w, y + h * 0.2, s))
+            else:  # -90: text runs upward from (x, y)
+                y0 = y - (w / 2 if anchor == "middle" else (0 if anchor == "end" else w))
+                y0 = y - w if anchor == "start" else (y - w / 2 if anchor == "middle" else y)
+                boxes.append((x - h * 0.8, y0, x + h * 0.2, y0 + w, s))
+        out = []
+        for i in range(len(boxes)):
+            for j in range(i + 1, len(boxes)):
+                a, b = boxes[i], boxes[j]
+                ox = min(a[2], b[2]) - max(a[0], b[0])
+                oy = min(a[3], b[3]) - max(a[1], b[1])
+                if ox > 0.4 and oy > 0.4:
+                    out.append((a[4][:38], b[4][:38], round(ox, 1), round(oy, 1)))
+        return out
 
     def lines(self, x, y, items, cls="t", lh=4.2):
         for i, s in enumerate(items):
@@ -492,10 +521,10 @@ def panel_notes():
 # ==========================================================================
 # SHEET 1 - cover: design brief, references, index
 # ==========================================================================
-def img_data(fn):
+def img_data(fn, folder="reference"):
     import base64
     mime = "image/png" if fn.lower().endswith(".png") else "image/jpeg"
-    with open(os.path.join(HERE, "reference", fn), "rb") as f:
+    with open(os.path.join(HERE, folder, fn), "rb") as f:
         return f"data:{mime};base64," + base64.b64encode(f.read()).decode()
 
 
@@ -507,7 +536,7 @@ def logo(sh, cx, cy, size, rot=0):
 
 
 def sheet1():
-    sh = Sheet(1, "Cover - design brief, construction summary, reference photos, sheet index", "-")
+    sh = Sheet(1, "Cover - design brief, design views, sheet index", "-")
     sh.frame()
     x0, y0 = 14, 22
     sh.lines(x0, y0, [
@@ -566,33 +595,36 @@ def sheet1():
         "8  Details: strap, elastic threading, page hinge, pockets",
         "9  Contents checklist, bill of materials, construction",
     ], "ts", 3.75)
-    logo(sh, 178, 160, 26)
-    sh.rect(163, 145, 30, 30, "thin")
+    logo(sh, 178, 150, 26)
+    sh.rect(163, 135, 30, 30, "thin")
+    sh.text(178, 170, "upright as shown when the case is closed", "tx", "middle")
     # reference photos, 2 x 3 grid
     gx, gy = 218, 22
-    sh.text(gx, gy, "REFERENCE PHOTOS (client-supplied; construction and appearance target)", "tb")
-    refs = [("R1-exterior-closed.jpg", "R1  Exterior closed - strap, buckle, keeper, snap, logo", 800, 533),
-            ("R3-front-and-open.jpg", "R3  Closed front / open with pages", 800, 1362),
-            ("R2-open-handheld.jpg", "R2  Pages fanned from the bottom gusset", 800, 1066),
-            ("R4-panel1-2.0-5.0.jpg", "R4  Panel 1 - 2.0-5.0 mm, elastic loops, labels", 800, 666),
-            ("R5-panel2-5.5-10-pockets.jpg", "R5  Panel 2 - 5.5-10 mm + two small snap pockets", 800, 533),
-            ("R6-backwall-5.5-8-pocket.jpg", "R6  Back wall - 5.5-8 mm + large snap pocket", 800, 640)]
+    sh.text(gx, gy, "DESIGN VIEWS - generated from these drawings (render_views.py); not photographs", "tb")
+    refs = [("closed-front.jpg", "V1  Closed, front: strap, snap, logo on flap", 900, 619),
+            ("closed-iso.jpg", "V2  Closed: strap wraps over the top", 900, 619),
+            ("open-flat.jpg", "V3  Open: pages 1-3 over the back wall", 900, 619),
+            ("panel1.jpg", "V4  Panel 1: 10 cm tips 2.0-5.0 mm", 900, 619),
+            ("panel2.jpg", "V5  Panel 2: 10 cm 5.5-10 mm + pockets", 900, 619),
+            ("backwall.jpg", "V6  Panel 4, back wall: 5 cm 5.5-8 + cables", 900, 619)]
     cw, ch = 60.0, 60.0
     for i, (fn, cap, w, h) in enumerate(refs):
         col, row = i % 3, i // 3
-        cx0, cy0 = gx + col * 64, gy + 4 + row * 72
+        cx0, cy0 = gx + col * 64, gy + 4 + row * 56
         scale = min(cw / w, ch / h)
         iw, ih = w * scale, h * scale
-        ix, iy = cx0 + (cw - iw) / 2, cy0 + (ch - ih) / 2
-        sh.add(f'<image x="{ix:.2f}" y="{iy:.2f}" width="{iw:.2f}" height="{ih:.2f}" href="{img_data(fn)}" preserveAspectRatio="xMidYMid meet"/>')
+        ix, iy = cx0 + (cw - iw) / 2, cy0 + (ch - ih) / 2 - 8
+        sh.add(f'<image x="{ix:.2f}" y="{iy:.2f}" width="{iw:.2f}" height="{ih:.2f}" href="{img_data(fn, "renders")}" preserveAspectRatio="xMidYMid meet"/>')
         sh.rect(ix, iy, iw, ih, "thin")
-        sh.text(cx0, cy0 + ch + 3.5, cap, "tx")
-    sh.lines(gx, gy + 4 + 2 * 72 + 4, [
+        sh.text(cx0, iy + ih + 3.5, cap[:62], "tx")
+    sh.lines(gx, gy + 4 + 2 * 56 + 2, [
         "**HOW THE DRAWINGS RELATE TO THE BRIEF",
         "- Dimensions come from the client's cardboard prototype (21.0 x 13.0 base, 6.0",
         "  gussets, 8.0 side flaps, loop widths 0.6-2.2) - see the record on sheet 9.",
-        "- Construction follows the reference photos R1-R6. Where the photos and the",
-        "  prototype differed (top flap depth) the client chose the photo value, 10.0.",
+        "- Construction follows the client's reference photos (kept in reference/) and",
+        "  brief; where photos and prototype differed (flap depth) the client chose 10.0.",
+        "- The views above are drawn from the same geometry as sheets 2-8, so they show",
+        "  the case as specified: logo upright on the closed flap, pockets at final size.",
         "- Sheets 4-7 are full size (1:1): print at 100 % for slit-cutting templates.",
         "- Open questions for the factory / client are listed on sheet 3.",
     ], "ts", 3.75)
@@ -603,10 +635,10 @@ def sheet1():
 # SHEET 2 - outer shell flat pattern (outer face up)
 # ==========================================================================
 def sheet2():
-    sh = Sheet(2, "Outer shell - flat pattern, outer face (die line)", "1:2")
+    sh = Sheet(2, "Outer shell - flat pattern, outer face (die line)", "1:2.2 (not to scale - use dims)")
     sh.frame()
-    s = 5.0
-    v = View(28, 38, s)
+    s = 4.5
+    v = View(30, 36, s)
     X, Y, L = v.X, v.Y, v.L
     xa = END_FLAP
     xb = END_FLAP + SIDE_WALL
@@ -638,7 +670,7 @@ def sheet2():
     # strap stitched on back wall + top gusset + top flap; tongue continues beyond the flap edge
     sh.rect(X(cx - STRAP_W / 2), Y(0), L(STRAP_W), L(yc), "strap")
     sh.rect(X(cx - STRAP_W / 2 + 0.3), Y(0.3), L(STRAP_W - 0.6), L(yc - 0.6), "stitch")
-    sh.text(X(cx) + 10, Y(yb + 10.5), "STRAP 3.0 wide, dark brown, stitched 0.3 from edges", "ts", "middle", rot=-90)
+    sh.text(X(cx) + 10, Y(yb + 12.3), "STRAP 3.0 wide, dark brown", "ts", "start", rot=-90)
     # The flap folds over the top and down the front, so everything on it is drawn
     # rotated 180 deg here: positions are measured from the fold line (= top of the closed case).
     yfold = REAR_FLAP
@@ -658,8 +690,8 @@ def sheet2():
     xm = (cx + STRAP_W / 2 + xc - 4.4) / 2
     sh.text(X(xm), Y(yl_) + 7, "LOGO emboss 2.5 sq", "tx", "middle")
     sh.text(X(xm), Y(yl_) + 10, "rotated 180 deg, see note 2", "tx", "middle")
-    sh.dim_v(Y(yl_), Y(yfold), X(xc - 3.0), X(xc) + 15, fmt(LOGO_FROM_TOP) + " logo, from fold")
-    sh.dim_v(Y(yb_), Y(yfold), X(cx + STRAP_W / 2), X(xc) + 8, fmt(BUCKLE_ON_FLAP) + " buckle, from fold")
+    sh.dim_v(Y(yl_), Y(yfold), X(xc - 3.0), X(xc) + 20, fmt(LOGO_FROM_TOP) + " logo, from fold")
+    sh.dim_v(Y(yb_), Y(yfold), X(cx + STRAP_W / 2), X(xc) + 8, fmt(BUCKLE_ON_FLAP) + " buckle")
     sh.dim_h(X(xc - 3.0), X(xc), Y(yl_), Y(yl_) + 26, "3.0", ext=False)
     # strap stud on the front panel outer face
     st_y = PATTERN_H - STRAP_STUD_FROM_TOP
@@ -938,7 +970,7 @@ def sheet4():
 
 
 def sheet5():
-    sh = Sheet(5, "Panel 2 (page): 10 cm tips 5.5-10 mm (6 pairs) + two accessory snap pockets", "1:1")
+    sh = Sheet(5, "Panel 2 (page): 10 cm tips 5.5-10 mm + accessory pockets", "1:1")
     sh.frame()
     v = View(32, 48, 10.0)
     X, Y, L = v.X, v.Y, v.L
@@ -998,7 +1030,7 @@ def sheet6():
 
 
 def sheet7():
-    sh = Sheet(7, "Panel 4 (back wall): 5 cm tips 5.5-8 mm (4 pairs) + large cable snap pocket", "1:1")
+    sh = Sheet(7, "Panel 4 (back wall): 5 cm tips 5.5-8 mm + cable pocket", "1:1")
     sh.frame()
     v = View(30, 48, 10.0)
     X, Y, L = v.X, v.Y, v.L
@@ -1111,7 +1143,7 @@ def sheet8():
     for hx in (sock - 4.0, sock - 5.2):
         sh.circle(X(hx), Y(STRAP_W / 2), L(0.2), "cut")
     sh.text(X(sock), Y(0) - 7, "snap socket, inner face", "tx", "middle")
-    sh.text(X(sock - 4.6), Y(0) - 7, "2 holes 0.4, decorative", "tx", "middle")
+    sh.text(X(sock - 7.5), Y(0) - 7, "2 holes 0.4, decorative", "tx", "middle")
     buckle(sh, X(20.5 + BUCKLE_ON_FLAP), Y(STRAP_W / 2), L(STRAP_W + 0.6))
     sh.rect(X(20.5 + KEEPER_ON_FLAP - 0.35), Y(-0.2), L(0.7), L(STRAP_W + 0.4), "strap")
     yd = Y(STRAP_W) + 10
@@ -1209,7 +1241,7 @@ def sheet9():
     sh = Sheet(9, "Contents checklist, bill of materials, construction & cutting list", "-")
     sh.frame()
     x0, y0 = 14, 26
-    sh.text(x0, y0, "CONTENTS CHECKLIST - 64 tips (32 pairs), 5 cables, 14 accessories: where each item lives", "tb")
+    sh.text(x0, y0, "CONTENTS CHECKLIST - where each item lives", "tb")
     rows = []
     for i, (lab, w) in enumerate(SIZES_SMALL):
         rows.append([f"{lab} mm", "2 x 10 cm", "Panel 1", str(i + 1), fmt(w), "2 x 5 cm", "Panel 3", str(i + 1), fmt(w)])
@@ -1218,8 +1250,12 @@ def sheet9():
         rows.append([f"{lab} mm", "2 x 10 cm", "Panel 2", str(i + 1), fmt(w), "2 x 5 cm" if i < 4 else "-", *c])
     end = sh.table(x0, y0 + 3, ["Size", "10 cm tips", "Panel", "Loop", "w", "5 cm tips", "Panel", "Loop", "w"],
                    rows, [16, 18, 16, 10, 10, 18, 16, 10, 10], rh=4.0)
-    sh.text(x0, end + 4, "Totals: 17 pairs x 10 cm (34 tips) on panels 1 + 2;  15 pairs x 5 cm (30 tips) on panels 3 + 4;  32 pairs / 64 tips.", "ts")
-    sh.text(x0, end + 8, "Accessories: 6 caps + 4 keys -> panel 2 pocket A;  3 connectors + grip patch -> pocket B;  5 cables -> panel 4 (back wall) pocket.", "ts")
+    sh.lines(x0, end + 4, [
+        "Totals: 17 pairs x 10 cm (34 tips) on panels 1 + 2;",
+        "15 pairs x 5 cm (30 tips) on panels 3 + 4;  32 pairs / 64 tips.",
+        "Accessories: 6 caps + 4 keys -> panel 2 pocket A;",
+        "3 connectors + grip patch -> pocket B;  5 cables -> panel 4 pocket.",
+    ], "ts", 3.8)
 
     bx, by = 150, 26
     sh.text(bx, by, "BILL OF MATERIALS (per case)", "tb")
@@ -1284,6 +1320,9 @@ def main():
     sheets = [sheet1(), sheet2(), sheet3(), sheet4(), sheet5(), sheet6(), sheet7(), sheet8(), sheet9()]
     names = []
     for sh in sheets:
+        if os.environ.get("CHECK"):
+            for o in sh.overlaps():
+                print(f"sheet {sh.n}: {o}")
         fn = f"sheet{sh.n}.svg"
         with open(os.path.join(OUT, fn), "w") as f:
             f.write(sh.svg())

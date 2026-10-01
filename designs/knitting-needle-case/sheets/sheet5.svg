@@ -45,7 +45,7 @@
 <text x="332.000" y="260.200" class="tx" text-anchor="start">CLIENT</text>
 <text x="332.000" y="264.800" class="t" text-anchor="start">gsumano7 / ziqmac</text>
 <text x="212.000" y="270.200" class="tx" text-anchor="start">SHEET TITLE</text>
-<text x="212.000" y="274.800" class="tb" text-anchor="start">Panel 2 (page): 10 cm tips 5.5-10 mm (6 pairs) + two accessory snap pockets</text>
+<text x="212.000" y="274.800" class="tb" text-anchor="start">Panel 2 (page): 10 cm tips 5.5-10 mm + accessory pockets</text>
 <text x="332.000" y="270.200" class="tx" text-anchor="start">SCALE</text>
 <text x="332.000" y="274.800" class="t" text-anchor="start">1:1</text>
 <text x="372.000" y="270.200" class="tx" text-anchor="start">UNITS</text>
@@ -56,7 +56,7 @@
 <text x="332.000" y="284.800" class="t" text-anchor="start">2026-10-01   Rev E</text>
 <text x="372.000" y="280.200" class="tx" text-anchor="start">SHEET</text>
 <text x="372.000" y="284.800" class="tb" text-anchor="start">5 of 9</text>
-<text x="13.000" y="17.000" class="tt" text-anchor="start">SHEET 5  -  PANEL 2 (PAGE): 10 CM TIPS 5.5-10 MM (6 PAIRS) + TWO ACCESSORY SNAP POCKETS</text>
+<text x="13.000" y="17.000" class="tt" text-anchor="start">SHEET 5  -  PANEL 2 (PAGE): 10 CM TIPS 5.5-10 MM + ACCESSORY POCKETS</text>
 <path d="M42.000,48.000 L222.000,48.000 A10.000,10.000 0 0 1 232.000,58.000 L232.000,173.000 L32.000,173.000 L32.000,58.000 A10.000,10.000 0 0 1 42.000,48.000 Z" class="leather"/>
 <rect x="42.000" y="173.000" width="180.000" height="15.000" rx="0" class="hatch"/>
 <rect x="42.000" y="173.000" width="180.000" height="15.000" rx="0" class="thin"/>

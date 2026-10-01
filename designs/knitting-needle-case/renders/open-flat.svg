@@ -1,0 +1,406 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160mm" height="110mm" viewBox="0 0 160 110"><style>
+.bg{fill:#f3efe8}
+.lth{fill:url(#lth);stroke:#5a4634;stroke-width:0.35}
+.lth2{fill:url(#lth2);stroke:#5a4634;stroke-width:0.35}
+.lth3{fill:url(#lth3);stroke:#5a4634;stroke-width:0.35}
+.edge{fill:none;stroke:#efe2c8;stroke-width:0.45;stroke-dasharray:1.1,0.7}
+.strap{fill:url(#strap);stroke:#2a1a10;stroke-width:0.35}
+.strapedge{fill:none;stroke:#c8905a;stroke-width:0.35;stroke-dasharray:1,0.7}
+.brass{fill:url(#brass);stroke:#6b4f1f;stroke-width:0.3}
+.needle{fill:url(#metal);stroke:#4a4a4a;stroke-width:0.15}
+.elastic{fill:url(#elastic);stroke:#7a6a52;stroke-width:0.3}
+.slit{stroke:#3a2d20;stroke-width:0.8}
+.tack{stroke:#efe2c8;stroke-width:0.4;stroke-dasharray:0.6,0.5}
+.shadow{fill:#000;opacity:0.18;filter:url(#blur)}
+.lab{font-family:Liberation Sans, Arial, Helvetica, sans-serif;font-size:2.2px;fill:#4a3b2c;text-anchor:middle}
+.lab2{font-family:Liberation Sans, Arial, Helvetica, sans-serif;font-size:1.7px;fill:#4a3b2c;text-anchor:middle}
+.cap{font-family:Liberation Sans, Arial, Helvetica, sans-serif;font-size:3.6px;fill:#3a3028;letter-spacing:0.5px;text-anchor:middle}
+.hole{fill:#3a2415}
+</style>
+<defs>
+ <linearGradient id="lth" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#dcc7a6"/><stop offset="0.55" stop-color="#cbb08a"/><stop offset="1" stop-color="#b8996f"/>
+ </linearGradient>
+ <linearGradient id="lth2" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#c9ad86"/><stop offset="1" stop-color="#ad8f68"/>
+ </linearGradient>
+ <linearGradient id="lth3" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#b3936a"/><stop offset="1" stop-color="#9c7d57"/>
+ </linearGradient>
+ <linearGradient id="strap" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#4a2e1c"/><stop offset="0.5" stop-color="#5e3b24"/><stop offset="1" stop-color="#3b2314"/>
+ </linearGradient>
+ <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+  <stop offset="0" stop-color="#e3c77a"/><stop offset="0.5" stop-color="#b8923f"/><stop offset="1" stop-color="#d9b85d"/>
+ </linearGradient>
+ <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+  <stop offset="0" stop-color="#7d8186"/><stop offset="0.35" stop-color="#eef0f2"/><stop offset="0.6" stop-color="#b9bec4"/><stop offset="1" stop-color="#676b70"/>
+ </linearGradient>
+ <linearGradient id="elastic" x1="0" y1="0" x2="0" y2="1">
+  <stop offset="0" stop-color="#d9c7a8"/><stop offset="1" stop-color="#bfa988"/>
+ </linearGradient>
+ <pattern id="weave" patternUnits="userSpaceOnUse" width="0.6" height="0.6">
+  <rect width="0.6" height="0.6" fill="none"/><line x1="0" y1="0.3" x2="0.6" y2="0.3" stroke="#a08d6e" stroke-width="0.12"/>
+ </pattern>
+ <filter id="blur" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="2.2"/></filter>
+</defs>
+<rect width="160" height="110" class="bg"/><rect x="31.210" y="38.055" width="99.220" height="26.650" rx="3" class="shadow"/>
+<rect x="59.295" y="4.230" width="43.050" height="98.810" rx="3" class="shadow"/>
+<path d="M60.525,3.000 L99.475,3.000 A2.050,2.050 0 0 1 101.525,5.050 L101.525,99.760 A2.050,2.050 0 0 1 99.475,101.810 L60.525,101.810 A2.050,2.050 0 0 1 58.475,99.760 L58.475,5.050 A2.050,2.050 0 0 1 60.525,3.000 Z" class="lth2"/>
+<path d="M32.440,36.825 L127.560,36.825 A2.050,2.050 0 0 1 129.610,38.875 L129.610,61.425 A2.050,2.050 0 0 1 127.560,63.475 L32.440,63.475 A2.050,2.050 0 0 1 30.390,61.425 L30.390,38.875 A2.050,2.050 0 0 1 32.440,36.825 Z" class="lth2"/>
+<rect x="58.475" y="23.500" width="43.050" height="13.325" rx="0" class="lth3"/>
+<rect x="58.475" y="63.475" width="43.050" height="12.300" rx="0" class="lth3"/>
+<rect x="46.790" y="36.825" width="11.685" height="26.650" rx="0" class="lth3"/>
+<rect x="101.525" y="36.825" width="11.685" height="26.650" rx="0" class="lth3"/>
+<path d="M32.440,37.440 L127.560,37.440 A1.435,1.435 0 0 1 128.995,38.875 L128.995,61.425 A1.435,1.435 0 0 1 127.560,62.860 L32.440,62.860 A1.435,1.435 0 0 1 31.005,61.425 L31.005,38.875 A1.435,1.435 0 0 1 32.440,37.440 Z" class="edge"/>
+<path d="M60.525,3.615 L99.475,3.615 A1.435,1.435 0 0 1 100.910,5.050 L100.910,99.760 A1.435,1.435 0 0 1 99.475,101.195 L60.525,101.195 A1.435,1.435 0 0 1 59.090,99.760 L59.090,5.050 A1.435,1.435 0 0 1 60.525,3.615 Z" class="edge"/>
+<path d="M83.06,45.02 L83.63,48.10 L83.63,55.27 L82.50,55.27 L82.50,48.10 Z" class="needle"/>
+<line x1="82.501" y1="53.430" x2="83.629" y2="53.430" class="slit"/>
+<path d="M84.32,45.02 L84.88,48.10 L84.88,55.27 L83.75,55.27 L83.75,48.10 Z" class="needle"/>
+<line x1="83.751" y1="53.430" x2="84.879" y2="53.430" class="slit"/>
+<path d="M87.63,45.02 L88.24,48.10 L88.24,55.27 L87.01,55.27 L87.01,48.10 Z" class="needle"/>
+<line x1="87.011" y1="53.430" x2="88.241" y2="53.430" class="slit"/>
+<path d="M88.98,45.02 L89.59,48.10 L89.59,55.27 L88.36,55.27 L88.36,48.10 Z" class="needle"/>
+<line x1="88.364" y1="53.430" x2="89.594" y2="53.430" class="slit"/>
+<path d="M92.34,45.02 L93.06,48.10 L93.06,55.27 L91.62,55.27 L91.62,48.10 Z" class="needle"/>
+<line x1="91.623" y1="53.430" x2="93.058" y2="53.430" class="slit"/>
+<path d="M93.90,45.02 L94.62,48.10 L94.62,55.27 L93.18,55.27 L93.18,48.10 Z" class="needle"/>
+<line x1="93.181" y1="53.430" x2="94.616" y2="53.430" class="slit"/>
+<path d="M97.26,45.02 L98.08,48.10 L98.08,55.27 L96.44,55.27 L96.44,48.10 Z" class="needle"/>
+<line x1="96.441" y1="53.430" x2="98.081" y2="53.430" class="slit"/>
+<path d="M99.02,45.02 L99.84,48.10 L99.84,55.27 L98.20,55.27 L98.20,48.10 Z" class="needle"/>
+<line x1="98.204" y1="53.430" x2="99.844" y2="53.430" class="slit"/>
+<rect x="81.947" y="48.612" width="3.485" height="3.075" rx="0.3" class="elastic"/>
+<rect x="81.95" y="48.61" width="3.49" height="3.07" fill="url(#weave)"/>
+<line x1="81.947" y1="48.510" x2="81.947" y2="51.790" class="slit"/>
+<line x1="81.947" y1="47.510" x2="81.947" y2="52.790" class="tack"/>
+<line x1="85.432" y1="48.510" x2="85.432" y2="51.790" class="slit"/>
+<line x1="85.432" y1="47.510" x2="85.432" y2="52.790" class="tack"/>
+<rect x="86.457" y="48.612" width="3.690" height="3.075" rx="0.3" class="elastic"/>
+<rect x="86.46" y="48.61" width="3.69" height="3.07" fill="url(#weave)"/>
+<line x1="86.457" y1="48.510" x2="86.457" y2="51.790" class="slit"/>
+<line x1="86.457" y1="47.510" x2="86.457" y2="52.790" class="tack"/>
+<line x1="90.147" y1="48.510" x2="90.147" y2="51.790" class="slit"/>
+<line x1="90.147" y1="47.510" x2="90.147" y2="52.790" class="tack"/>
+<rect x="91.172" y="48.612" width="3.895" height="3.075" rx="0.3" class="elastic"/>
+<rect x="91.17" y="48.61" width="3.90" height="3.07" fill="url(#weave)"/>
+<line x1="91.172" y1="48.510" x2="91.172" y2="51.790" class="slit"/>
+<line x1="91.172" y1="47.510" x2="91.172" y2="52.790" class="tack"/>
+<line x1="95.067" y1="48.510" x2="95.067" y2="51.790" class="slit"/>
+<line x1="95.067" y1="47.510" x2="95.067" y2="52.790" class="tack"/>
+<rect x="96.093" y="48.612" width="4.100" height="3.075" rx="0.3" class="elastic"/>
+<rect x="96.09" y="48.61" width="4.10" height="3.07" fill="url(#weave)"/>
+<line x1="96.093" y1="48.510" x2="96.093" y2="51.790" class="slit"/>
+<line x1="96.093" y1="47.510" x2="96.093" y2="52.790" class="tack"/>
+<line x1="100.192" y1="48.510" x2="100.192" y2="51.790" class="slit"/>
+<line x1="100.192" y1="47.510" x2="100.192" y2="52.790" class="tack"/>
+<path d="M59.500,42.975 L79.385,42.975 L79.385,61.220 A1.230,1.230 0 0 1 78.155,62.450 L60.730,62.450 A1.230,1.230 0 0 1 59.500,61.220 L59.500,42.975 Z" class="lth2"/>
+<path d="M60.115,43.590 L78.770,43.590 L78.770,61.015 A0.820,0.820 0 0 1 77.950,61.835 L60.935,61.835 A0.820,0.820 0 0 1 60.115,61.015 L60.115,43.590 Z" class="edge"/>
+<path d="M60.730,37.850 L78.155,37.850 A1.230,1.230 0 0 1 79.385,39.080 L79.385,44.410 A1.230,1.230 0 0 1 78.155,45.640 L60.730,45.640 A1.230,1.230 0 0 1 59.500,44.410 L59.500,39.080 A1.230,1.230 0 0 1 60.730,37.850 Z" class="lth"/>
+<path d="M60.935,38.465 L77.950,38.465 A0.820,0.820 0 0 1 78.770,39.285 L78.770,44.205 A0.820,0.820 0 0 1 77.950,45.025 L60.935,45.025 A0.820,0.820 0 0 1 60.115,44.205 L60.115,39.285 A0.820,0.820 0 0 1 60.935,38.465 Z" class="edge"/>
+<circle cx="69.442" cy="43.385" r="1.200" class="brass"/>
+<circle cx="69.442" cy="43.385" r="0.480" class="lth3"/>
+<rect x="60.525" y="37.440" width="41.000" height="25.625" rx="4" class="shadow"/>
+<path d="M61.550,36.005 L98.450,36.005 A2.050,2.050 0 0 1 100.500,38.055 L100.500,61.630 L59.500,61.630 L59.500,38.055 A2.050,2.050 0 0 1 61.550,36.005 Z" class="lth"/>
+<path d="M61.550,36.620 L98.450,36.620 A1.435,1.435 0 0 1 99.885,38.055 L99.885,61.015 L60.115,61.015 L60.115,38.055 A1.435,1.435 0 0 1 61.550,36.620 Z" class="edge"/>
+<path d="M62.82,43.69 L63.03,46.77 L63.03,53.94 L62.62,53.94 L62.62,46.77 Z" class="needle"/>
+<line x1="62.616" y1="52.097" x2="63.026" y2="52.097" class="slit"/>
+<path d="M63.35,43.69 L63.56,46.77 L63.56,53.94 L63.15,53.94 L63.15,46.77 Z" class="needle"/>
+<line x1="63.149" y1="52.097" x2="63.559" y2="52.097" class="slit"/>
+<path d="M65.15,43.69 L65.38,46.77 L65.38,53.94 L64.92,53.94 L64.92,46.77 Z" class="needle"/>
+<line x1="64.922" y1="52.097" x2="65.383" y2="52.097" class="slit"/>
+<path d="M65.74,43.69 L65.97,46.77 L65.97,53.94 L65.51,53.94 L65.51,46.77 Z" class="needle"/>
+<line x1="65.507" y1="52.097" x2="65.968" y2="52.097" class="slit"/>
+<path d="M67.69,43.69 L67.95,46.77 L67.95,53.94 L67.43,53.94 L67.43,46.77 Z" class="needle"/>
+<line x1="67.433" y1="52.097" x2="67.946" y2="52.097" class="slit"/>
+<path d="M68.33,43.69 L68.58,46.77 L68.58,53.94 L68.07,53.94 L68.07,46.77 Z" class="needle"/>
+<line x1="68.069" y1="52.097" x2="68.581" y2="52.097" class="slit"/>
+<path d="M70.43,43.69 L70.71,46.77 L70.71,53.94 L70.15,53.94 L70.15,46.77 Z" class="needle"/>
+<line x1="70.150" y1="52.097" x2="70.713" y2="52.097" class="slit"/>
+<path d="M71.12,43.69 L71.40,46.77 L71.40,53.94 L70.84,53.94 L70.84,46.77 Z" class="needle"/>
+<line x1="70.837" y1="52.097" x2="71.400" y2="52.097" class="slit"/>
+<path d="M73.38,43.69 L73.69,46.77 L73.69,53.94 L73.07,53.94 L73.07,46.77 Z" class="needle"/>
+<line x1="73.071" y1="52.097" x2="73.686" y2="52.097" class="slit"/>
+<path d="M74.12,43.69 L74.42,46.77 L74.42,53.94 L73.81,53.94 L73.81,46.77 Z" class="needle"/>
+<line x1="73.809" y1="52.097" x2="74.424" y2="52.097" class="slit"/>
+<path d="M76.53,43.69 L76.86,46.77 L76.86,53.94 L76.20,53.94 L76.20,46.77 Z" class="needle"/>
+<line x1="76.197" y1="52.097" x2="76.863" y2="52.097" class="slit"/>
+<path d="M77.32,43.69 L77.65,46.77 L77.65,53.94 L76.99,53.94 L76.99,46.77 Z" class="needle"/>
+<line x1="76.987" y1="52.097" x2="77.653" y2="52.097" class="slit"/>
+<path d="M79.89,43.69 L80.25,46.77 L80.25,53.94 L79.53,53.94 L79.53,46.77 Z" class="needle"/>
+<line x1="79.528" y1="52.097" x2="80.246" y2="52.097" class="slit"/>
+<path d="M80.73,43.69 L81.09,46.77 L81.09,53.94 L80.37,53.94 L80.37,46.77 Z" class="needle"/>
+<line x1="80.369" y1="52.097" x2="81.087" y2="52.097" class="slit"/>
+<path d="M83.45,43.69 L83.83,46.77 L83.83,53.94 L83.06,53.94 L83.06,46.77 Z" class="needle"/>
+<line x1="83.065" y1="52.097" x2="83.834" y2="52.097" class="slit"/>
+<path d="M84.34,43.69 L84.73,46.77 L84.73,53.94 L83.96,53.94 L83.96,46.77 Z" class="needle"/>
+<line x1="83.956" y1="52.097" x2="84.725" y2="52.097" class="slit"/>
+<path d="M87.22,43.69 L87.63,46.77 L87.63,53.94 L86.81,53.94 L86.81,46.77 Z" class="needle"/>
+<line x1="86.806" y1="52.097" x2="87.626" y2="52.097" class="slit"/>
+<path d="M88.16,43.69 L88.57,46.77 L88.57,53.94 L87.75,53.94 L87.75,46.77 Z" class="needle"/>
+<line x1="87.749" y1="52.097" x2="88.569" y2="52.097" class="slit"/>
+<path d="M91.16,43.69 L91.62,46.77 L91.62,53.94 L90.70,53.94 L90.70,46.77 Z" class="needle"/>
+<line x1="90.701" y1="52.097" x2="91.623" y2="52.097" class="slit"/>
+<path d="M92.21,43.69 L92.67,46.77 L92.67,53.94 L91.75,53.94 L91.75,46.77 Z" class="needle"/>
+<line x1="91.746" y1="52.097" x2="92.669" y2="52.097" class="slit"/>
+<path d="M95.31,43.69 L95.83,46.77 L95.83,53.94 L94.80,53.94 L94.80,46.77 Z" class="needle"/>
+<line x1="94.801" y1="52.097" x2="95.826" y2="52.097" class="slit"/>
+<path d="M96.46,43.69 L96.97,46.77 L96.97,53.94 L95.95,53.94 L95.95,46.77 Z" class="needle"/>
+<line x1="95.949" y1="52.097" x2="96.974" y2="52.097" class="slit"/>
+<rect x="62.472" y="47.280" width="1.230" height="3.075" rx="0.3" class="elastic"/>
+<rect x="62.47" y="47.28" width="1.23" height="3.07" fill="url(#weave)"/>
+<line x1="62.472" y1="47.178" x2="62.472" y2="50.458" class="slit"/>
+<line x1="62.472" y1="46.178" x2="62.472" y2="51.458" class="tack"/>
+<line x1="63.703" y1="47.178" x2="63.703" y2="50.458" class="slit"/>
+<line x1="63.703" y1="46.178" x2="63.703" y2="51.458" class="tack"/>
+<rect x="64.727" y="47.280" width="1.435" height="3.075" rx="0.3" class="elastic"/>
+<rect x="64.73" y="47.28" width="1.43" height="3.07" fill="url(#weave)"/>
+<line x1="64.727" y1="47.178" x2="64.727" y2="50.458" class="slit"/>
+<line x1="64.727" y1="46.178" x2="64.727" y2="51.458" class="tack"/>
+<line x1="66.162" y1="47.178" x2="66.162" y2="50.458" class="slit"/>
+<line x1="66.162" y1="46.178" x2="66.162" y2="51.458" class="tack"/>
+<rect x="67.188" y="47.280" width="1.640" height="3.075" rx="0.3" class="elastic"/>
+<rect x="67.19" y="47.28" width="1.64" height="3.07" fill="url(#weave)"/>
+<line x1="67.188" y1="47.178" x2="67.188" y2="50.458" class="slit"/>
+<line x1="67.188" y1="46.178" x2="67.188" y2="51.458" class="tack"/>
+<line x1="68.828" y1="47.178" x2="68.828" y2="50.458" class="slit"/>
+<line x1="68.828" y1="46.178" x2="68.828" y2="51.458" class="tack"/>
+<rect x="69.852" y="47.280" width="1.845" height="3.075" rx="0.3" class="elastic"/>
+<rect x="69.85" y="47.28" width="1.85" height="3.07" fill="url(#weave)"/>
+<line x1="69.852" y1="47.178" x2="69.852" y2="50.458" class="slit"/>
+<line x1="69.852" y1="46.178" x2="69.852" y2="51.458" class="tack"/>
+<line x1="71.697" y1="47.178" x2="71.697" y2="50.458" class="slit"/>
+<line x1="71.697" y1="46.178" x2="71.697" y2="51.458" class="tack"/>
+<rect x="72.722" y="47.280" width="2.050" height="3.075" rx="0.3" class="elastic"/>
+<rect x="72.72" y="47.28" width="2.05" height="3.07" fill="url(#weave)"/>
+<line x1="72.722" y1="47.178" x2="72.722" y2="50.458" class="slit"/>
+<line x1="72.722" y1="46.178" x2="72.722" y2="51.458" class="tack"/>
+<line x1="74.772" y1="47.178" x2="74.772" y2="50.458" class="slit"/>
+<line x1="74.772" y1="46.178" x2="74.772" y2="51.458" class="tack"/>
+<rect x="75.797" y="47.280" width="2.255" height="3.075" rx="0.3" class="elastic"/>
+<rect x="75.80" y="47.28" width="2.25" height="3.07" fill="url(#weave)"/>
+<line x1="75.797" y1="47.178" x2="75.797" y2="50.458" class="slit"/>
+<line x1="75.797" y1="46.178" x2="75.797" y2="51.458" class="tack"/>
+<line x1="78.052" y1="47.178" x2="78.052" y2="50.458" class="slit"/>
+<line x1="78.052" y1="46.178" x2="78.052" y2="51.458" class="tack"/>
+<rect x="79.078" y="47.280" width="2.460" height="3.075" rx="0.3" class="elastic"/>
+<rect x="79.08" y="47.28" width="2.46" height="3.07" fill="url(#weave)"/>
+<line x1="79.078" y1="47.178" x2="79.078" y2="50.458" class="slit"/>
+<line x1="79.078" y1="46.178" x2="79.078" y2="51.458" class="tack"/>
+<line x1="81.537" y1="47.178" x2="81.537" y2="50.458" class="slit"/>
+<line x1="81.537" y1="46.178" x2="81.537" y2="51.458" class="tack"/>
+<rect x="82.562" y="47.280" width="2.665" height="3.075" rx="0.3" class="elastic"/>
+<rect x="82.56" y="47.28" width="2.67" height="3.07" fill="url(#weave)"/>
+<line x1="82.562" y1="47.178" x2="82.562" y2="50.458" class="slit"/>
+<line x1="82.562" y1="46.178" x2="82.562" y2="51.458" class="tack"/>
+<line x1="85.227" y1="47.178" x2="85.227" y2="50.458" class="slit"/>
+<line x1="85.227" y1="46.178" x2="85.227" y2="51.458" class="tack"/>
+<rect x="86.252" y="47.280" width="2.870" height="3.075" rx="0.3" class="elastic"/>
+<rect x="86.25" y="47.28" width="2.87" height="3.07" fill="url(#weave)"/>
+<line x1="86.252" y1="47.178" x2="86.252" y2="50.458" class="slit"/>
+<line x1="86.252" y1="46.178" x2="86.252" y2="51.458" class="tack"/>
+<line x1="89.123" y1="47.178" x2="89.123" y2="50.458" class="slit"/>
+<line x1="89.123" y1="46.178" x2="89.123" y2="51.458" class="tack"/>
+<rect x="90.147" y="47.280" width="3.075" height="3.075" rx="0.3" class="elastic"/>
+<rect x="90.15" y="47.28" width="3.07" height="3.07" fill="url(#weave)"/>
+<line x1="90.147" y1="47.178" x2="90.147" y2="50.458" class="slit"/>
+<line x1="90.147" y1="46.178" x2="90.147" y2="51.458" class="tack"/>
+<line x1="93.222" y1="47.178" x2="93.222" y2="50.458" class="slit"/>
+<line x1="93.222" y1="46.178" x2="93.222" y2="51.458" class="tack"/>
+<rect x="94.248" y="47.280" width="3.280" height="3.075" rx="0.3" class="elastic"/>
+<rect x="94.25" y="47.28" width="3.28" height="3.07" fill="url(#weave)"/>
+<line x1="94.248" y1="47.178" x2="94.248" y2="50.458" class="slit"/>
+<line x1="94.248" y1="46.178" x2="94.248" y2="51.458" class="tack"/>
+<line x1="97.528" y1="47.178" x2="97.528" y2="50.458" class="slit"/>
+<line x1="97.528" y1="46.178" x2="97.528" y2="51.458" class="tack"/>
+<rect x="60.525" y="38.363" width="41.000" height="25.625" rx="4" class="shadow"/>
+<path d="M61.550,36.928 L98.450,36.928 A2.050,2.050 0 0 1 100.500,38.977 L100.500,62.552 L59.500,62.552 L59.500,38.977 A2.050,2.050 0 0 1 61.550,36.928 Z" class="lth"/>
+<path d="M61.550,37.543 L98.450,37.543 A1.435,1.435 0 0 1 99.885,38.977 L99.885,61.938 L60.115,61.938 L60.115,38.977 A1.435,1.435 0 0 1 61.550,37.543 Z" class="edge"/>
+<path d="M71.69,40.00 L72.25,43.28 L72.25,60.50 L71.12,60.50 L71.12,43.28 Z" class="needle"/>
+<line x1="71.123" y1="58.657" x2="72.251" y2="58.657" class="slit"/>
+<path d="M72.94,40.00 L73.50,43.28 L73.50,60.50 L72.37,60.50 L72.37,43.28 Z" class="needle"/>
+<line x1="72.374" y1="58.657" x2="73.501" y2="58.657" class="slit"/>
+<path d="M76.25,40.00 L76.86,43.28 L76.86,60.50 L75.63,60.50 L75.63,43.28 Z" class="needle"/>
+<line x1="75.633" y1="58.657" x2="76.864" y2="58.657" class="slit"/>
+<path d="M77.60,40.00 L78.22,43.28 L78.22,60.50 L76.99,60.50 L76.99,43.28 Z" class="needle"/>
+<line x1="76.986" y1="58.657" x2="78.216" y2="58.657" class="slit"/>
+<path d="M80.96,40.00 L81.68,43.28 L81.68,60.50 L80.25,60.50 L80.25,43.28 Z" class="needle"/>
+<line x1="80.246" y1="58.657" x2="81.681" y2="58.657" class="slit"/>
+<path d="M82.52,40.00 L83.24,43.28 L83.24,60.50 L81.80,60.50 L81.80,43.28 Z" class="needle"/>
+<line x1="81.804" y1="58.657" x2="83.239" y2="58.657" class="slit"/>
+<path d="M85.88,40.00 L86.70,43.28 L86.70,60.50 L85.06,60.50 L85.06,43.28 Z" class="needle"/>
+<line x1="85.064" y1="58.657" x2="86.704" y2="58.657" class="slit"/>
+<path d="M87.65,40.00 L88.47,43.28 L88.47,60.50 L86.83,60.50 L86.83,43.28 Z" class="needle"/>
+<line x1="86.826" y1="58.657" x2="88.466" y2="58.657" class="slit"/>
+<path d="M91.01,40.00 L91.93,43.28 L91.93,60.50 L90.09,60.50 L90.09,43.28 Z" class="needle"/>
+<line x1="90.086" y1="58.657" x2="91.931" y2="58.657" class="slit"/>
+<path d="M92.98,40.00 L93.90,43.28 L93.90,60.50 L92.05,60.50 L92.05,43.28 Z" class="needle"/>
+<line x1="92.054" y1="58.657" x2="93.899" y2="58.657" class="slit"/>
+<path d="M96.34,40.00 L97.36,43.28 L97.36,60.50 L95.31,60.50 L95.31,43.28 Z" class="needle"/>
+<line x1="95.314" y1="58.657" x2="97.363" y2="58.657" class="slit"/>
+<path d="M98.51,40.00 L99.54,43.28 L99.54,60.50 L97.49,60.50 L97.49,43.28 Z" class="needle"/>
+<line x1="97.487" y1="58.657" x2="99.536" y2="58.657" class="slit"/>
+<rect x="70.570" y="48.715" width="3.485" height="3.075" rx="0.3" class="elastic"/>
+<rect x="70.57" y="48.72" width="3.48" height="3.07" fill="url(#weave)"/>
+<line x1="70.570" y1="48.612" x2="70.570" y2="51.892" class="slit"/>
+<line x1="70.570" y1="47.612" x2="70.570" y2="52.892" class="tack"/>
+<line x1="74.055" y1="48.612" x2="74.055" y2="51.892" class="slit"/>
+<line x1="74.055" y1="47.612" x2="74.055" y2="52.892" class="tack"/>
+<rect x="75.080" y="48.715" width="3.690" height="3.075" rx="0.3" class="elastic"/>
+<rect x="75.08" y="48.72" width="3.69" height="3.07" fill="url(#weave)"/>
+<line x1="75.080" y1="48.612" x2="75.080" y2="51.892" class="slit"/>
+<line x1="75.080" y1="47.612" x2="75.080" y2="52.892" class="tack"/>
+<line x1="78.770" y1="48.612" x2="78.770" y2="51.892" class="slit"/>
+<line x1="78.770" y1="47.612" x2="78.770" y2="52.892" class="tack"/>
+<rect x="79.795" y="48.715" width="3.895" height="3.075" rx="0.3" class="elastic"/>
+<rect x="79.80" y="48.72" width="3.90" height="3.07" fill="url(#weave)"/>
+<line x1="79.795" y1="48.612" x2="79.795" y2="51.892" class="slit"/>
+<line x1="79.795" y1="47.612" x2="79.795" y2="52.892" class="tack"/>
+<line x1="83.690" y1="48.612" x2="83.690" y2="51.892" class="slit"/>
+<line x1="83.690" y1="47.612" x2="83.690" y2="52.892" class="tack"/>
+<rect x="84.715" y="48.715" width="4.100" height="3.075" rx="0.3" class="elastic"/>
+<rect x="84.72" y="48.72" width="4.10" height="3.07" fill="url(#weave)"/>
+<line x1="84.715" y1="48.612" x2="84.715" y2="51.892" class="slit"/>
+<line x1="84.715" y1="47.612" x2="84.715" y2="52.892" class="tack"/>
+<line x1="88.815" y1="48.612" x2="88.815" y2="51.892" class="slit"/>
+<line x1="88.815" y1="47.612" x2="88.815" y2="52.892" class="tack"/>
+<rect x="89.840" y="48.715" width="4.305" height="3.075" rx="0.3" class="elastic"/>
+<rect x="89.84" y="48.72" width="4.30" height="3.07" fill="url(#weave)"/>
+<line x1="89.840" y1="48.612" x2="89.840" y2="51.892" class="slit"/>
+<line x1="89.840" y1="47.612" x2="89.840" y2="52.892" class="tack"/>
+<line x1="94.145" y1="48.612" x2="94.145" y2="51.892" class="slit"/>
+<line x1="94.145" y1="47.612" x2="94.145" y2="52.892" class="tack"/>
+<rect x="95.170" y="48.715" width="4.510" height="3.075" rx="0.3" class="elastic"/>
+<rect x="95.17" y="48.72" width="4.51" height="3.07" fill="url(#weave)"/>
+<line x1="95.170" y1="48.612" x2="95.170" y2="51.892" class="slit"/>
+<line x1="95.170" y1="47.612" x2="95.170" y2="52.892" class="tack"/>
+<line x1="99.680" y1="48.612" x2="99.680" y2="51.892" class="slit"/>
+<line x1="99.680" y1="47.612" x2="99.680" y2="52.892" class="tack"/>
+<path d="M60.525,40.208 L68.520,40.208 L68.520,48.407 A1.230,1.230 0 0 1 67.290,49.638 L61.755,49.638 A1.230,1.230 0 0 1 60.525,48.407 L60.525,40.208 Z" class="lth2"/>
+<path d="M61.140,40.823 L67.905,40.823 L67.905,48.203 A0.820,0.820 0 0 1 67.085,49.023 L61.960,49.023 A0.820,0.820 0 0 1 61.140,48.203 L61.140,40.823 Z" class="edge"/>
+<path d="M61.755,37.953 L67.290,37.953 A1.230,1.230 0 0 1 68.520,39.183 L68.520,41.642 A1.230,1.230 0 0 1 67.290,42.873 L61.755,42.873 A1.230,1.230 0 0 1 60.525,41.642 L60.525,39.183 A1.230,1.230 0 0 1 61.755,37.953 Z" class="lth"/>
+<path d="M61.960,38.568 L67.085,38.568 A0.820,0.820 0 0 1 67.905,39.388 L67.905,41.438 A0.820,0.820 0 0 1 67.085,42.258 L61.960,42.258 A0.820,0.820 0 0 1 61.140,41.438 L61.140,39.388 A0.820,0.820 0 0 1 61.960,38.568 Z" class="edge"/>
+<circle cx="64.522" cy="40.617" r="0.900" class="brass"/>
+<circle cx="64.522" cy="40.617" r="0.360" class="lth3"/>
+<path d="M60.525,52.303 L68.520,52.303 L68.520,60.502 A1.230,1.230 0 0 1 67.290,61.733 L61.755,61.733 A1.230,1.230 0 0 1 60.525,60.502 L60.525,52.303 Z" class="lth2"/>
+<path d="M61.140,52.918 L67.905,52.918 L67.905,60.297 A0.820,0.820 0 0 1 67.085,61.117 L61.960,61.117 A0.820,0.820 0 0 1 61.140,60.297 L61.140,52.918 Z" class="edge"/>
+<path d="M61.755,50.047 L67.290,50.047 A1.230,1.230 0 0 1 68.520,51.278 L68.520,53.738 A1.230,1.230 0 0 1 67.290,54.968 L61.755,54.968 A1.230,1.230 0 0 1 60.525,53.738 L60.525,51.278 A1.230,1.230 0 0 1 61.755,50.047 Z" class="lth"/>
+<path d="M61.960,50.663 L67.085,50.663 A0.820,0.820 0 0 1 67.905,51.483 L67.905,53.532 A0.820,0.820 0 0 1 67.085,54.352 L61.960,54.352 A0.820,0.820 0 0 1 61.140,53.532 L61.140,51.483 A0.820,0.820 0 0 1 61.960,50.663 Z" class="edge"/>
+<circle cx="64.522" cy="52.712" r="0.900" class="brass"/>
+<circle cx="64.522" cy="52.712" r="0.360" class="lth3"/>
+<rect x="60.525" y="39.285" width="41.000" height="25.625" rx="4" class="shadow"/>
+<path d="M61.550,37.850 L98.450,37.850 A2.050,2.050 0 0 1 100.500,39.900 L100.500,63.475 L59.500,63.475 L59.500,39.900 A2.050,2.050 0 0 1 61.550,37.850 Z" class="lth"/>
+<path d="M61.550,38.465 L98.450,38.465 A1.435,1.435 0 0 1 99.885,39.900 L99.885,62.860 L60.115,62.860 L60.115,39.900 A1.435,1.435 0 0 1 61.550,38.465 Z" class="edge"/>
+<path d="M62.82,40.92 L63.03,44.20 L63.03,61.42 L62.62,61.42 L62.62,44.20 Z" class="needle"/>
+<line x1="62.616" y1="59.580" x2="63.026" y2="59.580" class="slit"/>
+<path d="M63.35,40.92 L63.56,44.20 L63.56,61.42 L63.15,61.42 L63.15,44.20 Z" class="needle"/>
+<line x1="63.149" y1="59.580" x2="63.559" y2="59.580" class="slit"/>
+<path d="M65.15,40.92 L65.38,44.20 L65.38,61.42 L64.92,61.42 L64.92,44.20 Z" class="needle"/>
+<line x1="64.922" y1="59.580" x2="65.383" y2="59.580" class="slit"/>
+<path d="M65.74,40.92 L65.97,44.20 L65.97,61.42 L65.51,61.42 L65.51,44.20 Z" class="needle"/>
+<line x1="65.507" y1="59.580" x2="65.968" y2="59.580" class="slit"/>
+<path d="M67.69,40.92 L67.95,44.20 L67.95,61.42 L67.43,61.42 L67.43,44.20 Z" class="needle"/>
+<line x1="67.433" y1="59.580" x2="67.946" y2="59.580" class="slit"/>
+<path d="M68.33,40.92 L68.58,44.20 L68.58,61.42 L68.07,61.42 L68.07,44.20 Z" class="needle"/>
+<line x1="68.069" y1="59.580" x2="68.581" y2="59.580" class="slit"/>
+<path d="M70.43,40.92 L70.71,44.20 L70.71,61.42 L70.15,61.42 L70.15,44.20 Z" class="needle"/>
+<line x1="70.150" y1="59.580" x2="70.713" y2="59.580" class="slit"/>
+<path d="M71.12,40.92 L71.40,44.20 L71.40,61.42 L70.84,61.42 L70.84,44.20 Z" class="needle"/>
+<line x1="70.837" y1="59.580" x2="71.400" y2="59.580" class="slit"/>
+<path d="M73.38,40.92 L73.69,44.20 L73.69,61.42 L73.07,61.42 L73.07,44.20 Z" class="needle"/>
+<line x1="73.071" y1="59.580" x2="73.686" y2="59.580" class="slit"/>
+<path d="M74.12,40.92 L74.42,44.20 L74.42,61.42 L73.81,61.42 L73.81,44.20 Z" class="needle"/>
+<line x1="73.809" y1="59.580" x2="74.424" y2="59.580" class="slit"/>
+<path d="M76.53,40.92 L76.86,44.20 L76.86,61.42 L76.20,61.42 L76.20,44.20 Z" class="needle"/>
+<line x1="76.197" y1="59.580" x2="76.863" y2="59.580" class="slit"/>
+<path d="M77.32,40.92 L77.65,44.20 L77.65,61.42 L76.99,61.42 L76.99,44.20 Z" class="needle"/>
+<line x1="76.987" y1="59.580" x2="77.653" y2="59.580" class="slit"/>
+<path d="M79.89,40.92 L80.25,44.20 L80.25,61.42 L79.53,61.42 L79.53,44.20 Z" class="needle"/>
+<line x1="79.528" y1="59.580" x2="80.246" y2="59.580" class="slit"/>
+<path d="M80.73,40.92 L81.09,44.20 L81.09,61.42 L80.37,61.42 L80.37,44.20 Z" class="needle"/>
+<line x1="80.369" y1="59.580" x2="81.087" y2="59.580" class="slit"/>
+<path d="M83.45,40.92 L83.83,44.20 L83.83,61.42 L83.06,61.42 L83.06,44.20 Z" class="needle"/>
+<line x1="83.065" y1="59.580" x2="83.834" y2="59.580" class="slit"/>
+<path d="M84.34,40.92 L84.73,44.20 L84.73,61.42 L83.96,61.42 L83.96,44.20 Z" class="needle"/>
+<line x1="83.956" y1="59.580" x2="84.725" y2="59.580" class="slit"/>
+<path d="M87.22,40.92 L87.63,44.20 L87.63,61.42 L86.81,61.42 L86.81,44.20 Z" class="needle"/>
+<line x1="86.806" y1="59.580" x2="87.626" y2="59.580" class="slit"/>
+<path d="M88.16,40.92 L88.57,44.20 L88.57,61.42 L87.75,61.42 L87.75,44.20 Z" class="needle"/>
+<line x1="87.749" y1="59.580" x2="88.569" y2="59.580" class="slit"/>
+<path d="M91.16,40.92 L91.62,44.20 L91.62,61.42 L90.70,61.42 L90.70,44.20 Z" class="needle"/>
+<line x1="90.701" y1="59.580" x2="91.623" y2="59.580" class="slit"/>
+<path d="M92.21,40.92 L92.67,44.20 L92.67,61.42 L91.75,61.42 L91.75,44.20 Z" class="needle"/>
+<line x1="91.746" y1="59.580" x2="92.669" y2="59.580" class="slit"/>
+<path d="M95.31,40.92 L95.83,44.20 L95.83,61.42 L94.80,61.42 L94.80,44.20 Z" class="needle"/>
+<line x1="94.801" y1="59.580" x2="95.826" y2="59.580" class="slit"/>
+<path d="M96.46,40.92 L96.97,44.20 L96.97,61.42 L95.95,61.42 L95.95,44.20 Z" class="needle"/>
+<line x1="95.949" y1="59.580" x2="96.974" y2="59.580" class="slit"/>
+<rect x="62.472" y="49.637" width="1.230" height="3.075" rx="0.3" class="elastic"/>
+<rect x="62.47" y="49.64" width="1.23" height="3.07" fill="url(#weave)"/>
+<line x1="62.472" y1="49.535" x2="62.472" y2="52.815" class="slit"/>
+<line x1="62.472" y1="48.535" x2="62.472" y2="53.815" class="tack"/>
+<line x1="63.703" y1="49.535" x2="63.703" y2="52.815" class="slit"/>
+<line x1="63.703" y1="48.535" x2="63.703" y2="53.815" class="tack"/>
+<rect x="64.727" y="49.637" width="1.435" height="3.075" rx="0.3" class="elastic"/>
+<rect x="64.73" y="49.64" width="1.43" height="3.07" fill="url(#weave)"/>
+<line x1="64.727" y1="49.535" x2="64.727" y2="52.815" class="slit"/>
+<line x1="64.727" y1="48.535" x2="64.727" y2="53.815" class="tack"/>
+<line x1="66.162" y1="49.535" x2="66.162" y2="52.815" class="slit"/>
+<line x1="66.162" y1="48.535" x2="66.162" y2="53.815" class="tack"/>
+<rect x="67.188" y="49.637" width="1.640" height="3.075" rx="0.3" class="elastic"/>
+<rect x="67.19" y="49.64" width="1.64" height="3.07" fill="url(#weave)"/>
+<line x1="67.188" y1="49.535" x2="67.188" y2="52.815" class="slit"/>
+<line x1="67.188" y1="48.535" x2="67.188" y2="53.815" class="tack"/>
+<line x1="68.828" y1="49.535" x2="68.828" y2="52.815" class="slit"/>
+<line x1="68.828" y1="48.535" x2="68.828" y2="53.815" class="tack"/>
+<rect x="69.852" y="49.637" width="1.845" height="3.075" rx="0.3" class="elastic"/>
+<rect x="69.85" y="49.64" width="1.85" height="3.07" fill="url(#weave)"/>
+<line x1="69.852" y1="49.535" x2="69.852" y2="52.815" class="slit"/>
+<line x1="69.852" y1="48.535" x2="69.852" y2="53.815" class="tack"/>
+<line x1="71.697" y1="49.535" x2="71.697" y2="52.815" class="slit"/>
+<line x1="71.697" y1="48.535" x2="71.697" y2="53.815" class="tack"/>
+<rect x="72.722" y="49.637" width="2.050" height="3.075" rx="0.3" class="elastic"/>
+<rect x="72.72" y="49.64" width="2.05" height="3.07" fill="url(#weave)"/>
+<line x1="72.722" y1="49.535" x2="72.722" y2="52.815" class="slit"/>
+<line x1="72.722" y1="48.535" x2="72.722" y2="53.815" class="tack"/>
+<line x1="74.772" y1="49.535" x2="74.772" y2="52.815" class="slit"/>
+<line x1="74.772" y1="48.535" x2="74.772" y2="53.815" class="tack"/>
+<rect x="75.797" y="49.637" width="2.255" height="3.075" rx="0.3" class="elastic"/>
+<rect x="75.80" y="49.64" width="2.25" height="3.07" fill="url(#weave)"/>
+<line x1="75.797" y1="49.535" x2="75.797" y2="52.815" class="slit"/>
+<line x1="75.797" y1="48.535" x2="75.797" y2="53.815" class="tack"/>
+<line x1="78.052" y1="49.535" x2="78.052" y2="52.815" class="slit"/>
+<line x1="78.052" y1="48.535" x2="78.052" y2="53.815" class="tack"/>
+<rect x="79.078" y="49.637" width="2.460" height="3.075" rx="0.3" class="elastic"/>
+<rect x="79.08" y="49.64" width="2.46" height="3.07" fill="url(#weave)"/>
+<line x1="79.078" y1="49.535" x2="79.078" y2="52.815" class="slit"/>
+<line x1="79.078" y1="48.535" x2="79.078" y2="53.815" class="tack"/>
+<line x1="81.537" y1="49.535" x2="81.537" y2="52.815" class="slit"/>
+<line x1="81.537" y1="48.535" x2="81.537" y2="53.815" class="tack"/>
+<rect x="82.562" y="49.637" width="2.665" height="3.075" rx="0.3" class="elastic"/>
+<rect x="82.56" y="49.64" width="2.67" height="3.07" fill="url(#weave)"/>
+<line x1="82.562" y1="49.535" x2="82.562" y2="52.815" class="slit"/>
+<line x1="82.562" y1="48.535" x2="82.562" y2="53.815" class="tack"/>
+<line x1="85.227" y1="49.535" x2="85.227" y2="52.815" class="slit"/>
+<line x1="85.227" y1="48.535" x2="85.227" y2="53.815" class="tack"/>
+<rect x="86.252" y="49.637" width="2.870" height="3.075" rx="0.3" class="elastic"/>
+<rect x="86.25" y="49.64" width="2.87" height="3.07" fill="url(#weave)"/>
+<line x1="86.252" y1="49.535" x2="86.252" y2="52.815" class="slit"/>
+<line x1="86.252" y1="48.535" x2="86.252" y2="53.815" class="tack"/>
+<line x1="89.123" y1="49.535" x2="89.123" y2="52.815" class="slit"/>
+<line x1="89.123" y1="48.535" x2="89.123" y2="53.815" class="tack"/>
+<rect x="90.147" y="49.637" width="3.075" height="3.075" rx="0.3" class="elastic"/>
+<rect x="90.15" y="49.64" width="3.07" height="3.07" fill="url(#weave)"/>
+<line x1="90.147" y1="49.535" x2="90.147" y2="52.815" class="slit"/>
+<line x1="90.147" y1="48.535" x2="90.147" y2="53.815" class="tack"/>
+<line x1="93.222" y1="49.535" x2="93.222" y2="52.815" class="slit"/>
+<line x1="93.222" y1="48.535" x2="93.222" y2="53.815" class="tack"/>
+<rect x="94.248" y="49.637" width="3.280" height="3.075" rx="0.3" class="elastic"/>
+<rect x="94.25" y="49.64" width="3.28" height="3.07" fill="url(#weave)"/>
+<line x1="94.248" y1="49.535" x2="94.248" y2="52.815" class="slit"/>
+<line x1="94.248" y1="48.535" x2="94.248" y2="53.815" class="tack"/>
+<line x1="97.528" y1="49.535" x2="97.528" y2="52.815" class="slit"/>
+<line x1="97.528" y1="48.535" x2="97.528" y2="53.815" class="tack"/>
+<circle cx="68.725" cy="89.100" r="1.300" class="brass"/>
+<circle cx="91.275" cy="89.100" r="1.300" class="brass"/>
+<text x="80.000" y="105.000" class="cap">OPEN  -  pages 1-3 over the back wall</text></svg>

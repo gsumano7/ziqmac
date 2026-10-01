@@ -13,13 +13,15 @@ reference photos (R1–R6) and logo artwork. Rev E, 2026-10-01.
 | `index.html` | Same nine sheets as a print-ready web page (File → Print, A3 landscape, no margins). |
 | `sheets/sheet1.svg` … `sheet9.svg` | Each sheet as a vector SVG, editable in Inkscape / Illustrator. |
 | `preview/sheet*.png` | Quick-look raster previews. |
-| `reference/*.jpg`, `reference/logo.png` | Client reference photos (downscaled) and logo artwork, as embedded on the sheets. |
+| `renders/*.svg`, `*.png`, `*.jpg` | Design views generated from the drawing geometry (closed front, closed isometric, open, panels 1, 2 and 4). Shown on the cover sheet. |
+| `render_views.py` | Generator for the design views; imports the dimensions from the drawing generator. |
+| `reference/*.jpg`, `reference/logo.png` | Client reference photos (downscaled, kept for the record) and logo artwork. |
 | `generate_drawings.py` | Generator. Every dimension lives in this script; change a value, re-run, and all sheets update. |
 
 ## Sheet index
 
-1. Cover — design brief, construction summary, reference photos, sheet index
-2. Outer shell — flat pattern, outer face, with strap, decorative buckle, logo emboss and snap positions, 1:2
+1. Cover — design brief, construction summary, generated design views, sheet index
+2. Outer shell — flat pattern, outer face, with strap, decorative buckle, logo emboss and snap positions (flap features drawn rotated 180° so they read upright when closed)
 3. Assembly — front / back / end views closed, vertical section (front panel, pages 1–3, back wall), open layout, closing sequence, stack check, open questions
 4. Panel 1 (page): 10 cm tips 2.0–5.0 mm, 11 pairs, 1:1
 5. Panel 2 (page): 10 cm tips 5.5–10 mm, 6 pairs, plus two small snap pockets for accessories, 1:1
@@ -54,7 +56,9 @@ Sheet 3 lists the open questions (gusset depths, snap type, genuine vs faux leat
 
 ```bash
 cd designs/knitting-needle-case
+python3 render_views.py                           # writes renders/* (design views used on the cover)
 python3 generate_drawings.py                      # writes sheets/*.svg and index.html
+CHECK=1 python3 generate_drawings.py              # same, plus an approximate text-overlap report
 node pdf.js                                       # optional: print index.html to PDF with Chromium/Playwright
 ```
 

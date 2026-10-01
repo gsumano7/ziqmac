@@ -45,7 +45,7 @@
 <text x="332.000" y="260.200" class="tx" text-anchor="start">CLIENT</text>
 <text x="332.000" y="264.800" class="t" text-anchor="start">gsumano7 / ziqmac</text>
 <text x="212.000" y="270.200" class="tx" text-anchor="start">SHEET TITLE</text>
-<text x="212.000" y="274.800" class="tb" text-anchor="start">Panel 4 (back wall): 5 cm tips 5.5-8 mm (4 pairs) + large cable snap pocket</text>
+<text x="212.000" y="274.800" class="tb" text-anchor="start">Panel 4 (back wall): 5 cm tips 5.5-8 mm + cable pocket</text>
 <text x="332.000" y="270.200" class="tx" text-anchor="start">SCALE</text>
 <text x="332.000" y="274.800" class="t" text-anchor="start">1:1</text>
 <text x="372.000" y="270.200" class="tx" text-anchor="start">UNITS</text>
@@ -56,7 +56,7 @@
 <text x="332.000" y="284.800" class="t" text-anchor="start">2026-10-01   Rev E</text>
 <text x="372.000" y="280.200" class="tx" text-anchor="start">SHEET</text>
 <text x="372.000" y="284.800" class="tb" text-anchor="start">7 of 9</text>
-<text x="13.000" y="17.000" class="tt" text-anchor="start">SHEET 7  -  PANEL 4 (BACK WALL): 5 CM TIPS 5.5-8 MM (4 PAIRS) + LARGE CABLE SNAP POCKET</text>
+<text x="13.000" y="17.000" class="tt" text-anchor="start">SHEET 7  -  PANEL 4 (BACK WALL): 5 CM TIPS 5.5-8 MM + CABLE POCKET</text>
 <rect x="30.000" y="48.000" width="210.000" height="130.000" rx="0" class="leather"/>
 <rect x="33.000" y="51.000" width="204.000" height="124.000" rx="0" class="stitch"/>
 <path d="M149.950,88.000 L152.700,103.000 L152.700,138.000 L147.200,138.000 L147.200,103.000 Z" class="needle"/>

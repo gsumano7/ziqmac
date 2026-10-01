@@ -76,7 +76,7 @@
 <circle cx="159.500" cy="41.500" r="1.000" class="cut"/>
 <circle cx="153.500" cy="41.500" r="1.000" class="cut"/>
 <text x="179.500" y="27.000" class="tx" text-anchor="middle">snap socket, inner face</text>
-<text x="156.500" y="27.000" class="tx" text-anchor="middle">2 holes 0.4, decorative</text>
+<text x="142.000" y="27.000" class="tx" text-anchor="middle">2 holes 0.4, decorative</text>
 <rect x="139.000" y="37.720" width="18.000" height="7.560" rx="0.6" class="brass"/>
 <rect x="140.000" y="38.720" width="16.000" height="5.560" rx="0" class="thin"/>
 <line x1="148.000" y1="37.720" x2="148.000" y2="46.780" class="cut" />

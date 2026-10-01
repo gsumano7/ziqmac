@@ -57,7 +57,7 @@
 <text x="372.000" y="280.200" class="tx" text-anchor="start">SHEET</text>
 <text x="372.000" y="284.800" class="tb" text-anchor="start">9 of 9</text>
 <text x="13.000" y="17.000" class="tt" text-anchor="start">SHEET 9  -  CONTENTS CHECKLIST, BILL OF MATERIALS, CONSTRUCTION &amp; CUTTING LIST</text>
-<text x="14.000" y="26.000" class="tb" text-anchor="start">CONTENTS CHECKLIST - 64 tips (32 pairs), 5 cables, 14 accessories: where each item lives</text>
+<text x="14.000" y="26.000" class="tb" text-anchor="start">CONTENTS CHECKLIST - where each item lives</text>
 <rect x="14.000" y="29.000" width="124.000" height="72.000" rx="0" class="thin"/>
 <line x1="14.000" y1="33.000" x2="138.000" y2="33.000" class="thin" />
 <text x="15.200" y="31.880" class="tb" text-anchor="start">Size</text>
@@ -246,8 +246,10 @@
 <text x="103.200" y="99.880" class="ts" text-anchor="start">-</text>
 <text x="119.200" y="99.880" class="ts" text-anchor="start">-</text>
 <text x="129.200" y="99.880" class="ts" text-anchor="start">-</text>
-<text x="14.000" y="105.000" class="ts" text-anchor="start">Totals: 17 pairs x 10 cm (34 tips) on panels 1 + 2;  15 pairs x 5 cm (30 tips) on panels 3 + 4;  32 pairs / 64 tips.</text>
-<text x="14.000" y="109.000" class="ts" text-anchor="start">Accessories: 6 caps + 4 keys -&gt; panel 2 pocket A;  3 connectors + grip patch -&gt; pocket B;  5 cables -&gt; panel 4 (back wall) pocket.</text>
+<text x="14.000" y="105.000" class="ts" text-anchor="start">Totals: 17 pairs x 10 cm (34 tips) on panels 1 + 2;</text>
+<text x="14.000" y="108.800" class="ts" text-anchor="start">15 pairs x 5 cm (30 tips) on panels 3 + 4;  32 pairs / 64 tips.</text>
+<text x="14.000" y="112.600" class="ts" text-anchor="start">Accessories: 6 caps + 4 keys -&gt; panel 2 pocket A;</text>
+<text x="14.000" y="116.400" class="ts" text-anchor="start">3 connectors + grip patch -&gt; pocket B;  5 cables -&gt; panel 4 pocket.</text>
 <text x="150.000" y="26.000" class="tb" text-anchor="start">BILL OF MATERIALS (per case)</text>
 <rect x="150.000" y="29.000" width="208.000" height="68.000" rx="0" class="thin"/>
 <line x1="150.000" y1="33.000" x2="358.000" y2="33.000" class="thin" />
