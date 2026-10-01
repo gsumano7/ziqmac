@@ -68,7 +68,7 @@ KEEPER_ON_FLAP = 8.0         # keeper centre, below the top-flap top edge
 TONGUE_FREE = 3.0            # strap tongue beyond the top-flap edge
 SNAP_FROM_FLAP_EDGE = 1.0    # tongue snap socket, beyond the top-flap edge
 STRAP_STUD_FROM_TOP = 11.0   # strap stud on the front panel, below the case top when closed
-LOGO_FROM_TOP = 7.0          # logo centre below the top-flap top edge
+LOGO_FROM_TOP = 8.0          # logo centre below the top of the CLOSED case (= from the flap fold)
 
 
 def slot_layout(sizes, total_len, land=LAND, margin=None):
@@ -499,10 +499,11 @@ def img_data(fn):
         return f"data:{mime};base64," + base64.b64encode(f.read()).decode()
 
 
-def logo(sh, cx, cy, size):
-    """Client logo centred at page (cx, cy), 'size' mm square."""
+def logo(sh, cx, cy, size, rot=0):
+    """Client logo centred at page (cx, cy), 'size' mm square; rot=180 for the flat pattern."""
+    tr = f' transform="rotate({rot} {cx:.2f} {cy:.2f})"' if rot else ""
     sh.add(f'<image x="{cx - size / 2:.2f}" y="{cy - size / 2:.2f}" width="{size:.2f}" height="{size:.2f}" '
-           f'href="{img_data("logo.png")}" preserveAspectRatio="xMidYMid meet"/>')
+           f'href="{img_data("logo.png")}" preserveAspectRatio="xMidYMid meet"{tr}/>')
 
 
 def sheet1():
@@ -547,7 +548,7 @@ def sheet1():
         "Elastic: 15 mm knit, colour-matched. Thread: bonded polyester, contrast.",
         "",
         "**LOGO (client artwork, right)  blind / heat emboss 2.5 x 2.5 on the top flap,",
-        "centred 3.0 from the right edge and 7.0 from the flap top edge (sheet 2).",
+        "centred 3.0 from the right edge and 8.0 below the top of the closed case (sheet 2).",
         "Vector artwork to be supplied for the emboss die; raster shown for placement.",
         "",
         "**TOP FLAP 10.0 deep, as in the reference photos (client decision); the cardboard",
@@ -638,19 +639,28 @@ def sheet2():
     sh.rect(X(cx - STRAP_W / 2), Y(0), L(STRAP_W), L(yc), "strap")
     sh.rect(X(cx - STRAP_W / 2 + 0.3), Y(0.3), L(STRAP_W - 0.6), L(yc - 0.6), "stitch")
     sh.text(X(cx) + 10, Y(yb + 10.5), "STRAP 3.0 wide, dark brown, stitched 0.3 from edges", "ts", "middle", rot=-90)
-    # decorative buckle + keeper on the strap over the top flap
-    sh.rect(X(cx - STRAP_W / 2), Y(BUCKLE_ON_FLAP - 1.5), L(STRAP_W), L(4.5), "strap")
-    buckle(sh, X(cx), Y(BUCKLE_ON_FLAP), L(STRAP_W + 0.6))
-    sh.rect(X(cx - STRAP_W / 2 - 0.2), Y(KEEPER_ON_FLAP - 0.35), L(STRAP_W + 0.4), L(0.7), "strap")
-    sh.text(X(cx) - 11, Y(BUCKLE_ON_FLAP) + 1, "buckle 30 mm (decorative)", "tx", "end")
-    sh.text(X(cx) - 11, Y(KEEPER_ON_FLAP) + 1, "keeper", "tx", "end")
+    # The flap folds over the top and down the front, so everything on it is drawn
+    # rotated 180 deg here: positions are measured from the fold line (= top of the closed case).
+    yfold = REAR_FLAP
+    yb_ = yfold - BUCKLE_ON_FLAP          # buckle bar
+    yk_ = yfold - KEEPER_ON_FLAP          # keeper
+    yl_ = yfold - LOGO_FROM_TOP           # logo centre
+    sh.rect(X(cx - STRAP_W / 2), Y(yb_ - 3.0), L(STRAP_W), L(4.5), "strap")
+    sh.add(f'<g transform="rotate(180 {X(cx):.3f} {Y(yb_):.3f})">')
+    buckle(sh, X(cx), Y(yb_), L(STRAP_W + 0.6))
+    sh.add('</g>')
+    sh.rect(X(cx - STRAP_W / 2 - 0.2), Y(yk_ - 0.35), L(STRAP_W + 0.4), L(0.7), "strap")
+    sh.text(X(cx) - 11, Y(yb_) + 1, "buckle 30 mm (decorative)", "tx", "end")
+    sh.text(X(cx) - 11, Y(yk_) + 1, "keeper", "tx", "end")
     sh.text(X(cx), Y(0) - 1.5, "tongue continues 3.0 beyond this edge; snap socket 1.0 from the edge - sheet 8", "tx", "middle")
-    # logo on the top flap
-    logo(sh, X(xc - 3.0), Y(LOGO_FROM_TOP), L(2.5))
-    sh.rect(X(xc - 3.0 - 1.25), Y(LOGO_FROM_TOP - 1.25), L(2.5), L(2.5), "thin")
-    sh.text(X(xc - 3.0), Y(LOGO_FROM_TOP) + 10, "LOGO emboss 2.5 sq", "tx", "middle")
-    sh.dim_v(Y(0), Y(LOGO_FROM_TOP), X(xc - 3.0), X(xc) + 15, fmt(LOGO_FROM_TOP) + " logo")
-    sh.dim_h(X(xc - 3.0), X(xc), Y(LOGO_FROM_TOP), Y(LOGO_FROM_TOP) + 18, "3.0", ext=False)
+    logo(sh, X(xc - 3.0), Y(yl_), L(2.5), rot=180)
+    sh.rect(X(xc - 3.0 - 1.25), Y(yl_ - 1.25), L(2.5), L(2.5), "thin")
+    xm = (cx + STRAP_W / 2 + xc - 4.4) / 2
+    sh.text(X(xm), Y(yl_) + 7, "LOGO emboss 2.5 sq", "tx", "middle")
+    sh.text(X(xm), Y(yl_) + 10, "rotated 180 deg, see note 2", "tx", "middle")
+    sh.dim_v(Y(yl_), Y(yfold), X(xc - 3.0), X(xc) + 15, fmt(LOGO_FROM_TOP) + " logo, from fold")
+    sh.dim_v(Y(yb_), Y(yfold), X(cx + STRAP_W / 2), X(xc) + 8, fmt(BUCKLE_ON_FLAP) + " buckle, from fold")
+    sh.dim_h(X(xc - 3.0), X(xc), Y(yl_), Y(yl_) + 26, "3.0", ext=False)
     # strap stud on the front panel outer face
     st_y = PATTERN_H - STRAP_STUD_FROM_TOP
     sh.snap_cap(X(cx), Y(st_y), 3.0)
@@ -697,7 +707,6 @@ def sheet2():
     sh.dim_h(X(xc - SNAP_FROM_FOLD), X(xc), Y(sock_y), Y(PATTERN_H) + 5, "5.0")
     sh.dim_v(Y(yd), Y(sock_y), X(xb), X(xb) - 5, "6.5")
     sh.dim_v(Y(st_y), Y(PATTERN_H), X(cx), X(xc) + 3, fmt(STRAP_STUD_FROM_TOP) + " stud")
-    sh.dim_v(Y(0), Y(BUCKLE_ON_FLAP), X(cx + STRAP_W / 2), X(xc) + 8, fmt(BUCKLE_ON_FLAP))
     sh.dim_h(X(cx - STRAP_W / 2), X(cx + STRAP_W / 2), Y(yb + 1), Y(yb) - 4, "3.0", ext=False)
     gx, gy = X(xb) - 14, Y(yd + 2)
     sh.line(gx, gy + 30, gx, gy, "thin", 'marker-end="url(#ar)"')
@@ -722,6 +731,9 @@ def sheet2():
         "2. Drawn with the OUTER face up (strap, buckle, logo side).",
         "   Pattern assumed symmetrical about its vertical centre",
         "   line; left side measured equal to the right (5.7 / 8.0).",
+        "   The top flap folds over the top and down the front, so",
+        "   its buckle, keeper and logo are drawn rotated 180 deg and",
+        "   dimensioned from the fold line (= top of the closed case).",
         "3. Construction: trifold clutch (reference photos). Side",
         "   flaps fold in and tuck inside, front panel folds up over",
         "   them and snaps to the side flaps, top flap folds down,",
