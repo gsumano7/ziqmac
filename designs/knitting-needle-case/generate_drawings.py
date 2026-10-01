@@ -2,9 +2,12 @@
 """
 Technical drawing set for the interchangeable knitting-needle case.
 
-Every dimension comes from the cardboard prototype (photos 1-5) unless a
-note on the sheet says it is a proposal.  Units on the sheets are cm;
-page geometry is A3 landscape in mm.
+Rev B: trifold clutch construction taken from the client's reference
+photos (wrap-around strap with buckle and snap, interior pages sewn into
+the bottom gusset, 1.5 cm elastic needle bands).  Every dimension comes
+from the cardboard prototype (photos 1-5) unless a note on the sheet says
+it is a proposal.  Units on the sheets are cm; page geometry is A3
+landscape in mm.
 
 Run:  python3 generate_drawings.py
 Outputs sheets/*.svg and index.html (print-ready, A3 landscape).
@@ -20,10 +23,10 @@ W, H = 420.0, 297.0          # A3 landscape, mm
 M = 10.0                     # drawing border margin, mm
 FONT = "Liberation Sans, Arial, Helvetica, sans-serif"
 DATE = "2026-10-01"
-REV = "A"
+REV = "B"
 PROJECT = "INTERCHANGEABLE KNITTING NEEDLE CASE"
 CLIENT = "gsumano7 / ziqmac"
-TOTAL_SHEETS = 7
+TOTAL_SHEETS = 8
 
 # --------------------------------------------------------------------------
 # Design data (cm).  Slot widths are the prototype's values: 2.0 mm -> 0.6 cm
@@ -51,9 +54,14 @@ SNAP_FROM_TOP = 6.5          # end-flap snap, measured along the 13 cm edge
 PATTERN_W = END_FLAP + SIDE_WALL + BASE_W + SIDE_WALL + END_FLAP   # 48.4
 PATTERN_H = REAR_FLAP + REAR_WALL + BASE_H + FRONT_WALL + LID_H    # 43.2
 
-# Interior panels: 20.5 x 12.5 to clear the 21.0 x 13.0 interior
-PANEL_W, PANEL_H = 20.5, 12.5
-KEEPER_FLAP = 9.0            # photo 2: "9 cm"
+# Interior pages: 20.0 x 12.5 to clear the 21.0 x 13.0 back panel
+PAGE_W, PAGE_H = 20.0, 12.5
+HINGE_TAB = 1.5              # page hinge tab sewn into the bottom gusset
+ELASTIC = 1.5                # client: 1.5 cm elastic sewn into the pages
+STRAP_W = 3.0                # wrap-around strap (reference photos)
+TONGUE = 10.5                # strap tongue beyond the top-flap edge
+R = 1.0                      # corner radius on flaps and pages
+SEAMS = (1.0, 2.2, 3.4, 4.6) # page hinge seams, from the back-panel fold, across the 6.0 gusset
 
 
 def slot_layout(sizes, total_len, land=LAND, margin=None):
@@ -82,7 +90,9 @@ CSS = f"""
 .cl{{stroke:#000;stroke-width:0.2;stroke-dasharray:8,1.5,1.5,1.5;fill:none}}
 .leather{{fill:#efe6d6;stroke:#000;stroke-width:0.5}}
 .band{{fill:#d9c9a8;stroke:#000;stroke-width:0.35}}
-.elastic{{fill:#cfd6dc;stroke:#000;stroke-width:0.35}}
+.strap{{fill:#a9876a;stroke:#000;stroke-width:0.4}}
+.brass{{fill:#c9a85c;stroke:#000;stroke-width:0.3}}
+.elastic{{fill:#d8ccb4;stroke:#000;stroke-width:0.35}}
 .mesh{{fill:#e4e9ee;stroke:#000;stroke-width:0.35}}
 .needle{{fill:#9aa3ab;stroke:#000;stroke-width:0.15}}
 .hatch{{fill:url(#h45)}}
@@ -254,7 +264,7 @@ class Sheet:
         self.text(x0 + 162, y0 + 13.2, "UNITS", "tx")
         self.text(x0 + 162, y0 + 17.8, "cm (page A3)", "t")
         self.text(x0 + 2, y0 + 23.2, "SOURCE", "tx")
-        self.text(x0 + 2, y0 + 27.8, "Cardboard prototype, hand-measured (photos 1-5)", "t")
+        self.text(x0 + 2, y0 + 27.8, "Cardboard prototype (photos 1-5) + client reference photos (Rev B)", "t")
         self.text(x0 + 122, y0 + 23.2, "DATE / REV", "tx")
         self.text(x0 + 122, y0 + 27.8, f"{DATE}   Rev {REV}", "t")
         self.text(x0 + 162, y0 + 23.2, "SHEET", "tx")
@@ -314,340 +324,6 @@ def draw_slot_strip(sh, v, slots, y0, y1, labels=True, label_y=None, band_cls="b
             sh.text(v.X((a + b) / 2) + 0.8, ly, lab, "tx", "middle", rot=-90)
 
 
-# ==========================================================================
-# SHEET 1 - outer shell flat pattern
-# ==========================================================================
-def sheet1():
-    sh = Sheet(1, "Outer shell - flat pattern (die line)", "1:2")
-    sh.frame()
-    s = 5.0
-    v = View(28, 38, s)
-    X, Y, L = v.X, v.Y, v.L
-    xa = END_FLAP                       # left side wall
-    xb = END_FLAP + SIDE_WALL           # base left edge
-    xc = xb + BASE_W                    # base right edge
-    xd = xc + SIDE_WALL                 # right flap start
-    ya = REAR_FLAP
-    yb = ya + REAR_WALL                 # base top
-    yc = yb + BASE_H                    # base bottom
-    yd = yc + FRONT_WALL                # lid top
-
-    # fills
-    sh.rect(X(xb), Y(0), L(BASE_W), L(PATTERN_H), "leather")
-    sh.rect(X(0), Y(yb), L(PATTERN_W), L(BASE_H), "leather")
-    # perimeter (cut)
-    per = [(xb, 0), (xc, 0), (xc, yb), (PATTERN_W, yb), (PATTERN_W, yc), (xc, yc),
-           (xc, PATTERN_H), (xb, PATTERN_H), (xb, yc), (0, yc), (0, yb), (xb, yb)]
-    sh.poly([(X(x), Y(y)) for x, y in per], "cut")
-    # fold lines
-    for yy in (ya, yb, yc, yd):
-        sh.line(X(xb), Y(yy), X(xc), Y(yy), "fold")
-    for xx in (xa, xb, xc, xd):
-        sh.line(X(xx), Y(yb), X(xx), Y(yc), "fold")
-
-    # labels
-    def lab(x, y, a, b=None):
-        sh.text(X(x), Y(y), a, "tb", "middle")
-        if b:
-            sh.text(X(x), Y(y) + 4, b, "ts", "middle")
-    cx = xb + BASE_W / 2
-    lab(cx, REAR_FLAP / 2 + 0.3, "REAR FLAP", "21.0 x 5.0  (tuck / keeper flap)")
-    lab(cx, ya + REAR_WALL / 2 + 0.3, "REAR WALL", "21.0 x 6.5")
-    lab(cx, yb + BASE_H / 2 - 0.3, "BASE (inside: needle panel A)", "21.0 x 13.0")
-    lab(cx, yc + FRONT_WALL / 2 + 0.3, "FRONT WALL - lid hinge", "21.0 x 6.0")
-    lab(cx, yd + LID_H / 2 - 1.2, "LID (inside: needle panel B)", "21.0 x 12.7")
-    sh.text(X(xa + SIDE_WALL / 2) + 1.2, Y(yb + 1.2), "SIDE WALL 5.7 x 13.0", "ts", "end", rot=-90)
-    sh.text(X(xc + SIDE_WALL / 2) + 1.2, Y(yb + 1.2), "SIDE WALL 5.7 x 13.0", "ts", "end", rot=-90)
-    lab(END_FLAP / 2, yb + 2.2, "END FLAP (L)", "8.0 x 13.0 - snap cap")
-    lab(xd + END_FLAP / 2, yb + 2.2, "END FLAP (R)", "8.0 x 13.0 - snap cap")
-
-    # snaps on end flaps
-    sxl = xa - SNAP_FROM_FOLD
-    sxr = xd + SNAP_FROM_FOLD
-    sy = yb + SNAP_FROM_TOP
-    sh.snap_cap(X(sxl), Y(sy), 3.2)
-    sh.snap_cap(X(sxr), Y(sy), 3.2)
-    sh.text(X(sxl), Y(sy) + 7.5, "SNAP CAP+SOCKET", "tx", "middle")
-    sh.text(X(sxr), Y(sy) + 7.5, "SNAP CAP+SOCKET", "tx", "middle")
-    # mating studs on lid (outer face) - shown hidden
-    stud_y = PATTERN_H - SNAP_FROM_TOP
-    for sx in (xb + SNAP_FROM_FOLD, xc - SNAP_FROM_FOLD):
-        sh.snap_stud(X(sx), Y(stud_y), 3.2)
-    sh.text(X(cx), Y(stud_y) + 7.5, "SNAP STUD+POST x2 on OUTER face of lid (hidden) - mates with end-flap caps", "tx", "middle")
-
-    # dimensions: horizontal chain at top
-    yt = Y(0) - 7
-    segs = [(0, xa, "8.0"), (xa, xb, "5.7"), (xb, xc, "21.0"), (xc, xd, "5.7"), (xd, PATTERN_W, "8.0")]
-    for a, b, t in segs:
-        sh.dim_h(X(a), X(b), Y(yb) if (a < xb or b > xc) else Y(0), yt, t)
-    sh.dim_h(X(0), X(PATTERN_W), Y(yb), yt - 8, fmt(PATTERN_W) + "  OVERALL")
-    # vertical chain at right
-    xr = X(PATTERN_W) + 8
-    vsegs = [(0, ya, "5.0"), (ya, yb, "6.5"), (yb, yc, "13.0"), (yc, yd, "6.0"), (yd, PATTERN_H, "12.7")]
-    for a, b, t in vsegs:
-        sh.dim_v(Y(a), Y(b), X(PATTERN_W) if (a >= yb and b <= yc) else X(xc), xr, t)
-    sh.dim_v(Y(0), Y(PATTERN_H), X(PATTERN_W), xr + 8, fmt(PATTERN_H) + "  OVERALL")
-    # snap position dims (left flap)
-    sh.dim_h(X(sxl), X(xa), Y(sy), Y(yc) + 5, "5.0")
-    sh.dim_v(Y(yb), Y(sy), X(sxl), X(0) - 5, "6.5")
-    sh.text(X(0), Y(yc) + 12, "(R) end flap: snap position symmetrical", "tx")
-    # stud dims on lid
-    sh.dim_h(X(xb), X(xb + SNAP_FROM_FOLD), Y(stud_y), Y(PATTERN_H) + 5, "5.0")
-    sh.dim_h(X(xc - SNAP_FROM_FOLD), X(xc), Y(stud_y), Y(PATTERN_H) + 5, "5.0")
-    sh.dim_v(Y(stud_y), Y(PATTERN_H), X(xb), X(xb) - 5, "6.5")
-    # grain arrow
-    gx, gy = X(xb) - 14, Y(yd + 2)
-    sh.line(gx, gy + 30, gx, gy, "thin", 'marker-end="url(#ar)"')
-    sh.line(gx, gy, gx, gy + 30, "thin", 'marker-end="url(#ar)"')
-    sh.text(gx - 1.5, gy + 15, "GRAIN / NAP", "tx", "middle", rot=-90)
-
-    # legend + notes
-    nx, ny = 288, 22
-    sh.text(nx, ny, "LEGEND", "tb")
-    sh.line(nx, ny + 5, nx + 14, ny + 5, "cut"); sh.text(nx + 17, ny + 6, "Cut line (net finished size)", "ts")
-    sh.line(nx, ny + 10, nx + 14, ny + 10, "fold"); sh.text(nx + 17, ny + 11, "Fold / score line", "ts")
-    sh.line(nx, ny + 15, nx + 14, ny + 15, "hid"); sh.text(nx + 17, ny + 16, "Hidden (feature on far face)", "ts")
-    sh.line(nx, ny + 20, nx + 14, ny + 20, "stitch"); sh.text(nx + 17, ny + 21, "Stitch line", "ts")
-    sh.snap_cap(nx + 7, ny + 28, 2.2); sh.text(nx + 17, ny + 29, "Snap cap + socket (this face)", "ts")
-    sh.snap_stud(nx + 7, ny + 36, 2.2); sh.text(nx + 17, ny + 37, "Snap stud + post (far face)", "ts")
-
-    notes = [
-        "**NOTES",
-        "1. All dimensions in cm, finished (net) sizes as measured",
-        "   on the cardboard prototype. No seam allowance included:",
-        "   add 0.8 cm for turned seams, 0 for bound / edge-painted",
-        "   edges, or 1.0 cm wrap allowance if covering board.",
-        "2. Pattern assumed symmetrical about its vertical centre",
-        "   line. Left side wall / end flap not dimensioned on the",
-        "   prototype; drawn equal to the right side (5.7 / 8.0).",
-        "3. Wall heights are as measured: 5.7 (sides), 6.0 (front),",
-        "   6.5 (rear). For a square-cornered box equalise all four",
-        "   to 6.0 before cutting - see sheet 2, open question Q1.",
-        "4. Base 13.0 vs lid 12.7: the 0.3 cm difference lets the",
-        "   lid clear the rear flap when closed. Keep as measured.",
-        "5. Snaps: 12.5 mm (line 20) spring snaps, 2 sets on the",
-        "   end flaps + 2 sets on panel B keeper flap (sheet 4).",
-        "   Set snap studs on the lid after a dry fold of the first",
-        "   sample; the fold radius shifts them ~1 material thickness.",
-        "6. Outer: faux leather (PU) 1.0-1.2 mm. Stiffen base, lid",
-        "   and walls with 1.5 mm greyboard (optional for flaps).",
-        "   Lining and interior panels: sheets 3-6. BOM: sheet 7.",
-        "7. Rear flap (5.0) folds inward over the contents before the",
-        "   lid closes; end flaps fold over the lid and snap.",
-        "",
-        "**SHEET INDEX",
-        "1  Outer shell - flat pattern (this sheet)",
-        "2  Assembly - closed views, fold sequence, interior layout",
-        "3  Needle panel A (base): 10 cm tips 2.0-5.0 mm",
-        "4  Needle panel B (lid): 10 cm tips 5.5-10 mm + keeper flap",
-        "5  Hinged page face 1 - panel C: 5 cm tips 2.0-5.0 mm, caps, keys",
-        "6  Hinged page face 2 - panel D: 5 cm tips 5.5-8 mm, accessories",
-        "7  Contents checklist, bill of materials, construction",
-    ]
-    sh.lines(nx, ny + 46, notes, "ts", 3.9)
-    return sh
-
-
-# ==========================================================================
-# SHEET 2 - assembly / views / interior layout
-# ==========================================================================
-def sheet2():
-    sh = Sheet(2, "Assembly - closed views, fold sequence, interior layout", "1:2 (views)  1:4 (interior)")
-    sh.frame()
-    s = 5.0
-    D = 6.0   # nominal closed depth
-    # --- TOP VIEW (closed) ---
-    v = View(30, 40, s)
-    X, Y, L = v.X, v.Y, v.L
-    sh.text(X(0), Y(0) - 12, "TOP VIEW - closed (end flaps folded over lid)", "tb")
-    sh.rect(X(0), Y(0), L(BASE_W), L(BASE_H), "leather")
-    sh.rect(X(0), Y(0), L(END_FLAP), L(BASE_H), "hatch")
-    sh.rect(X(BASE_W - END_FLAP), Y(0), L(END_FLAP), L(BASE_H), "hatch")
-    sh.line(X(END_FLAP), Y(0), X(END_FLAP), Y(BASE_H), "cut")
-    sh.line(X(BASE_W - END_FLAP), Y(0), X(BASE_W - END_FLAP), Y(BASE_H), "cut")
-    sh.line(X(0), Y(BASE_H), X(BASE_W), Y(BASE_H), "fold")
-    sh.text(X(BASE_W / 2), Y(BASE_H) + 3.5, "lid hinge (front wall)", "tx", "middle")
-    sh.text(X(BASE_W / 2), Y(0) - 1.5, "rear", "tx", "middle")
-    sh.snap_cap(X(SNAP_FROM_FOLD), Y(SNAP_FROM_TOP), 3.0)
-    sh.snap_cap(X(BASE_W - SNAP_FROM_FOLD), Y(SNAP_FROM_TOP), 3.0)
-    sh.text(X(END_FLAP / 2), Y(BASE_H - 1.5), "END FLAP", "ts", "middle")
-    sh.text(X(BASE_W - END_FLAP / 2), Y(BASE_H - 1.5), "END FLAP", "ts", "middle")
-    sh.text(X(BASE_W / 2), Y(BASE_H / 2) + 1, "LID", "tb", "middle")
-    sh.dim_h(X(0), X(BASE_W), Y(0), Y(0) - 6, "21.0")
-    sh.dim_v(Y(0), Y(BASE_H), X(BASE_W), X(BASE_W) + 7, "13.0")
-    sh.dim_h(X(0), X(END_FLAP), Y(BASE_H), Y(BASE_H) + 8, "8.0")
-    sh.dim_h(X(BASE_W - SNAP_FROM_FOLD), X(BASE_W), Y(BASE_H), Y(BASE_H) + 8, "5.0")
-    sh.dim_v(Y(0), Y(SNAP_FROM_TOP), X(0), X(0) - 7, "6.5")
-    # --- FRONT VIEW ---
-    v2 = View(30, Y(BASE_H) + 26, s)
-    sh.text(v2.X(0), v2.Y(0) - 4, "FRONT VIEW - closed", "tb")
-    sh.rect(v2.X(0), v2.Y(0), v2.L(BASE_W), v2.L(D), "leather")
-    sh.line(v2.X(0), v2.Y(0.12), v2.X(BASE_W), v2.Y(0.12), "thin")
-    sh.dim_v(v2.Y(0), v2.Y(D), v2.X(BASE_W), v2.X(BASE_W) + 7, "6.0 nom.")
-    sh.text(v2.X(BASE_W / 2), v2.Y(D / 2) + 1, "front wall 6.0 (lid hinge along top edge)", "tx", "middle")
-    # --- END VIEW ---
-    v3 = View(185, v2.oy, s)
-    sh.text(v3.X(0), v3.Y(0) - 4, "END VIEW", "tb")
-    sh.rect(v3.X(0), v3.Y(0), v3.L(BASE_H), v3.L(D), "leather")
-    sh.line(v3.X(0), v3.Y(0.12), v3.X(BASE_H), v3.Y(0.12), "thin")
-    sh.text(v3.X(BASE_H / 2), v3.Y(D / 2) + 1, "side wall 5.7 + end flap over lid", "tx", "middle")
-    sh.dim_h(v3.X(0), v3.X(BASE_H), v3.Y(D), v3.Y(D) + 7, "13.0")
-
-    # --- ISOMETRIC closed ---
-    ox, oy = 325, 98
-    si = 3.5
-    c30, s30 = math.cos(math.radians(30)), math.sin(math.radians(30))
-
-    def P(x, y, z):
-        return (ox + (x - y) * c30 * si, oy + (x + y) * s30 * si - z * si)
-    Wb, Db, Hb = BASE_W, BASE_H, D
-    sh.text(ox - 42, oy - 32, "ISOMETRIC - closed", "tb")
-    sh.poly([P(0, 0, Hb), P(Wb, 0, Hb), P(Wb, Db, Hb), P(0, Db, Hb)], "leather")
-    sh.poly([P(0, Db, 0), P(Wb, Db, 0), P(Wb, Db, Hb), P(0, Db, Hb)], "leather")
-    sh.poly([P(Wb, 0, 0), P(Wb, Db, 0), P(Wb, Db, Hb), P(Wb, 0, Hb)], "leather")
-    for x0 in (0, Wb - END_FLAP):
-        sh.poly([P(x0, 0, Hb), P(x0 + END_FLAP, 0, Hb), P(x0 + END_FLAP, Db, Hb), P(x0, Db, Hb)], "hatch")
-        sh.poly([P(x0, 0, Hb), P(x0 + END_FLAP, 0, Hb), P(x0 + END_FLAP, Db, Hb), P(x0, Db, Hb)], "thin")
-    sh.line(*P(0, Db, Hb), *P(Wb, Db, Hb), "fold")
-    for sx in (SNAP_FROM_FOLD, Wb - SNAP_FROM_FOLD):
-        px, py = P(sx, SNAP_FROM_TOP, Hb)
-        sh.add(f'<ellipse cx="{px:.2f}" cy="{py:.2f}" rx="2.4" ry="1.4" class="thin"/>')
-        sh.add(f'<ellipse cx="{px:.2f}" cy="{py:.2f}" rx="1.2" ry="0.7" class="thin"/>')
-    a = P(Wb - END_FLAP / 2, Db * 0.5, Hb)
-    sh.leader(a[0], a[1], a[0] + 16, a[1] - 12, "end flap, snapped")
-    b = P(Wb * 0.5, Db, Hb)
-    sh.leader(b[0], b[1], b[0] - 24, b[1] + 34, "lid hinge (front wall fold)", anchor="end")
-    c = P(Wb * 0.5, 0, Hb)
-    sh.leader(c[0], c[1], c[0] + 6, c[1] - 14, "rear flap tucked inside")
-    sh.text(ox - 42, oy + 66, "Closed size 21.0 x 13.0 x 6.0 cm (W x D x H, nominal)", "t")
-
-    # --- FOLD SEQUENCE (between front view and isometric) ---
-    fx, fy = 185, 22
-    sh.lines(fx, fy, [
-        "**FOLD / ASSEMBLY SEQUENCE",
-        "1. Fold the four walls up 90 deg from the base",
-        "   (rear 6.5, front 6.0, sides 5.7).",
-        "2. Glue / stitch the corner tabs (not shown; add",
-        "   1.5 cm tabs on the side walls if a rigid box).",
-        "3. Fit interior: panel A to base (sheet 3), page",
-        "   hinge to front wall inner face (sheets 5-6),",
-        "   panel B to lid inner face (sheet 4).",
-        "4. Fold rear flap (5.0) inward over the contents.",
-        "5. Close lid over the front-wall hinge.",
-        "6. Fold both end flaps over the lid; snap.",
-    ], "ts", 3.9)
-
-    # --- INTERIOR LAYOUT (open) 1:4 ---
-    s4 = 2.5
-    vi = View(30, 178, s4)
-    sh.text(vi.X(0), vi.Y(0) - 5, "INTERIOR LAYOUT - open, lid folded flat, viewed from above (1:4)", "tb")
-    yl = 0
-    yf = LID_H
-    yb = LID_H + FRONT_WALL
-    sh.rect(vi.X(0), vi.Y(yl), vi.L(BASE_W), vi.L(LID_H), "leather")
-    sh.rect(vi.X(0), vi.Y(yf), vi.L(BASE_W), vi.L(FRONT_WALL), "leather")
-    sh.rect(vi.X(0), vi.Y(yb), vi.L(BASE_W), vi.L(BASE_H), "leather")
-    pm = (BASE_W - PANEL_W) / 2
-    sh.rect(vi.X(pm), vi.Y(yl + (LID_H - PANEL_H) / 2), vi.L(PANEL_W), vi.L(PANEL_H), "band")
-    sh.text(vi.X(BASE_W / 2), vi.Y(yl + LID_H / 2) + 1, "PANEL B", "ts", "middle")
-    sh.rect(vi.X(pm), vi.Y(yb + (BASE_H - PANEL_H) / 2), vi.L(PANEL_W), vi.L(PANEL_H), "band")
-    sh.text(vi.X(BASE_W / 2), vi.Y(yb + BASE_H / 2) + 1, "PANEL A  +  PAGE (dashed)", "ts", "middle")
-    sh.rect(vi.X(pm), vi.Y(yb + 0.25), vi.L(PANEL_W), vi.L(PANEL_H), "hid")
-    sh.line(vi.X(pm), vi.Y(yf + FRONT_WALL / 2), vi.X(pm + PANEL_W), vi.Y(yf + FRONT_WALL / 2), "fold")
-    sh.text(vi.X(BASE_W / 2), vi.Y(yf + FRONT_WALL / 2) - 1.2, "page hinge", "tx", "middle")
-    sh.dim_v(vi.Y(yl), vi.Y(yf), vi.X(BASE_W), vi.X(BASE_W) + 6, "12.7")
-    sh.dim_v(vi.Y(yf), vi.Y(yb), vi.X(BASE_W), vi.X(BASE_W) + 6, "6.0")
-    sh.dim_v(vi.Y(yb), vi.Y(yb + BASE_H), vi.X(BASE_W), vi.X(BASE_W) + 6, "13.0")
-    tx = vi.X(BASE_W) + 16
-    sh.lines(tx, vi.Y(2), [
-        "**LID - panel B (sheet 4)",
-        "10 cm tips 5.5-10 mm, 6 slots, keeper flap with 2 snaps.",
-    ], "ts", 3.8)
-    sh.lines(tx, vi.Y(yf + 1.5), [
-        "**FRONT WALL - page hinge",
-        "1.5 cm strip; the page flips from base to lid.",
-    ], "ts", 3.8)
-    sh.lines(tx, vi.Y(yb + 2), [
-        "**BASE - panel A (sheet 3) under the hinged page",
-        "Panel A: 10 cm tips 2.0-5.0 mm, 11 slots.",
-        "Page face 1 (sheet 5): 5 cm tips 2.0-5.0 mm, caps, keys.",
-        "Page face 2 (sheet 6): 5 cm tips 5.5-8 mm, connectors,",
-        "grip patch, zip cable pocket.",
-    ], "ts", 3.8)
-
-    # --- STACK HEIGHT CHECK ---
-    sx0, sy0 = 215, 178
-    sh.text(sx0, sy0 - 5, "STACK-HEIGHT CHECK (box depth 6.0 nominal)", "tb")
-    sh.table(sx0, sy0, ["Layer (bottom to top)", "Thickest item", "Height"], [
-        ["Panel A on base", "2 x 5.0 mm tips side by side + band", "0.8"],
-        ["Page face 1 (C)", "2 x 5.0 mm tips + elastic", "0.8"],
-        ["Page core", "1.5 mm board + 2 lining", "0.4"],
-        ["Page face 2 (D)", "2 x 8.0 mm tips / 5 coiled cables", "1.6"],
-        ["Panel B in lid", "2 x 10 mm tips + keeper flap", "1.4"],
-        ["Rear flap + clearance", "", "1.0"],
-        ["TOTAL", "", "6.0  (= depth, OK)"],
-    ], [42, 58, 30], rh=4.2)
-    sh.lines(sx0, sy0 + 38, [
-        "**OPEN QUESTIONS (confirm before cutting)",
-        "Q1  Keep measured wall heights 5.7 / 6.0 / 6.5 or equalise to 6.0?",
-        "Q2  Rear flap 5.0: tuck inside (drawn) or fold over the lid outside?",
-        "Q3  Soft case (faux leather + interfacing only) or board-stiffened box?",
-        "Q4  Slot bands: 25 mm knit elastic (drawn) or self faux-leather strips?",
-        "Q5  Cable pocket on the page (drawn) or a separate pouch?",
-        "Q6  Check real hardware sizes (caps, keys, connectors) against sheet 5-6 loops.",
-    ], "ts", 3.8)
-    return sh
-
-
-# ==========================================================================
-# Needle panel sheets (shared drawing routine)
-# ==========================================================================
-def draw_panel(sh, v, sizes, needle_len, tip_margin, butt_margin, band_y0, band_y1,
-               title, label_y=None):
-    """Panel PANEL_W x PANEL_H with a slot strip. Returns slots."""
-    X, Y, L = v.X, v.Y, v.L
-    margin, slots = slot_layout(sizes, PANEL_W)
-    sh.rect(X(0), Y(0), L(PANEL_W), L(PANEL_H), "leather")
-    # needles (drawn under band)
-    for lab, a, b in slots:
-        draw_needle_pair(sh, v, a, b, tip_margin, needle_len, float(lab) / 10.0)
-    draw_slot_strip(sh, v, slots, band_y0, band_y1, label_y=label_y)
-    if title:
-        sh.text(X(PANEL_W / 2), Y(PANEL_H) + 27, title, "tb", "middle")
-    return margin, slots
-
-
-def panel_dims(sh, v, slots, margin, needle_len, tip_margin, butt_margin, band_y0, band_y1, ydim_off=10):
-    X, Y, L = v.X, v.Y, v.L
-    # vertical dims (left of panel)
-    xl = X(0) - 7
-    sh.dim_v(Y(0), Y(tip_margin), X(0), xl, fmt(tip_margin))
-    sh.dim_v(Y(tip_margin), Y(tip_margin + needle_len), X(0), xl, f"{fmt(needle_len)} tip")
-    sh.dim_v(Y(tip_margin + needle_len), Y(PANEL_H), X(0), xl, fmt(butt_margin))
-    sh.dim_v(Y(0), Y(PANEL_H), X(0), xl - 8, fmt(PANEL_H))
-    # band position (right side)
-    xr = X(PANEL_W) + 7
-    sh.dim_v(Y(0), Y(band_y0), X(PANEL_W), xr, fmt(band_y0))
-    sh.dim_v(Y(band_y0), Y(band_y1), X(PANEL_W), xr, f"{fmt(band_y1 - band_y0)} band")
-    # horizontal: margins + overall + ordinate ticks at every stitch line
-    yb = Y(PANEL_H) + ydim_off
-    sh.dim_h(X(0), X(slots[0][1]), Y(PANEL_H), yb, fmt(margin))
-    sh.dim_h(X(slots[-1][2]), X(PANEL_W), Y(PANEL_H), yb, fmt(PANEL_W - slots[-1][2]))
-    sh.dim_h(X(slots[0][1]), X(slots[-1][2]), Y(PANEL_H), yb, f"{fmt(slots[-1][2] - slots[0][1])} slot strip")
-    sh.dim_h(X(0), X(PANEL_W), Y(PANEL_H), yb + 8, fmt(PANEL_W))
-    # ordinate (running) dimensions from left edge, above the panel
-    yo = Y(0) - 8
-    sh.line(X(0), yo, X(PANEL_W), yo, "dim")
-    sh.text(X(0), yo - 11, "ORDINATE: stitch-line positions from left edge (cm)", "tx")
-    sh.line(X(0), yo - 2.5, X(0), yo + 2.5, "dim")
-    sh.text(X(0), yo - 1.2, "0", "tx", "middle")
-    for lab, a, b in slots:
-        for x in (a, b):
-            sh.line(X(x), yo - 1.5, X(x), Y(0), "dim")
-            sh.text(X(x) + 0.7, yo - 2.2, fmt(x), "tx", "start", rot=-90)
-    sh.line(X(PANEL_W), yo - 2.5, X(PANEL_W), yo + 2.5, "dim")
-
-
 def band_detail(sh, x, y, label="DETAIL A - slot band section, 2:1"):
     """Section through band with two needles side by side."""
     v = View(x, y, 20.0)   # 2:1 (20 mm per cm)
@@ -684,8 +360,8 @@ def band_detail(sh, x, y, label="DETAIL A - slot band section, 2:1"):
     sh.dim_h(X(xa + slot), X(xa + slot + land), Y(1.45), Y(1.45) + 8, "0.5", ext=False)
     sh.text(X(xa + slot + land / 2), Y(1.45) + 11.5, "land", "tx", "middle")
     sh.dim_v(Y(1.2 - d), Y(1.2), X(xa + slot + 0.1), X(xa + slot) + 14, "d")
-    sh.leader(X(xa + slot / 2), Y(0.6), X(xa + slot / 2) + 10, Y(0.2), "2 tips side by side (1 pair)")
-    sh.leader(X(0.35), Y(1.33), X(0.35) - 1, Y(1.33) + 14, "panel: 1.5 mm board + lining", anchor="start")
+    sh.leader(X(xa + slot / 2), Y(0.6), X(xa + slot / 2) + 10, Y(0.2), "2 tips side by side (1 pair), under 15 mm elastic")
+    sh.leader(X(0.35), Y(1.33), X(0.35) - 1, Y(1.33) + 14, "page: 2 ply + 0.8 board", anchor="start")
     sh.leader(X(xa + slot + land / 2), Y(1.2), X(xa + slot + land / 2) + 6, Y(1.9) + 4, "double stitch line, 0.5 apart")
 
 
@@ -697,435 +373,737 @@ def slot_table(sh, x, y, slots, sizes, tips_len, extra_note=None):
     return end
 
 
-def panel_notes():
-    return [
-        "**CONSTRUCTION NOTES",
-        "1. Slot widths (w) are finished inside widths, taken",
-        "   straight from the prototype: 0.6 cm for 2.0 mm,",
-        "   +0.1 cm per size step, to 2.2 cm for 10 mm. Each",
-        "   slot holds one PAIR, the two tips side by side.",
-        "2. Band: 25 mm knit elastic (drawn) stitched flat to",
-        "   the panel on every stitch line; no ease needed.",
-        "   If a faux-leather strip is used instead, add ease",
-        "   of 2 x tip diameter to the strip length per slot.",
-        "3. Stitch lines in pairs 0.5 cm apart (the 'land');",
-        "   single line at the strip ends. Stitch 3 mm, 2 passes.",
-        "4. Panel = 1.5 mm greyboard wrapped in lining faux",
-        "   leather; finished 20.5 x 12.5 to drop into the",
-        "   21.0 x 13.0 interior. Glue + edge-stitch in place.",
-        "5. Size labels heat-stamped / printed on the band",
-        "   at each slot (shown on drawing). Order: smallest",
-        "   size nearest the edge shown, as on the prototype.",
-        "6. Tip points toward the top edge of the drawing;",
-        "   1.5 cm clear above the points (prototype).",
-    ]
-
 
 # ==========================================================================
-# SHEET 3 - panel A
+# Shared drawing pieces
 # ==========================================================================
-def sheet3():
-    sh = Sheet(3, "Needle panel A - base: 10 cm tips 2.0-5.0 mm (11 pairs)", "1:1  (detail 2:1)")
-    sh.frame()
-    v = View(32, 48, 10.0)
-    tip_m, nl = 1.5, 10.0
-    butt_m = PANEL_H - tip_m - nl
-    b0, b1 = 5.0, 8.0
-    margin, slots = draw_panel(sh, v, SIZES_SMALL, nl, tip_m, butt_m, b0, b1,
-                               "PANEL A - 20.5 x 12.5, fits BASE interior. Full size 1:1 - use as pattern.")
-    panel_dims(sh, v, slots, margin, nl, tip_m, butt_m, b0, b1)
-    # table + notes + detail
-    tx = 258
-    sh.text(tx, 22, "SLOT TABLE - panel A (positions from left edge, cm)", "tb")
-    end = slot_table(sh, tx, 25, slots, SIZES_SMALL, 10)
-    sh.lines(tx, end + 6, panel_notes(), "ts", 3.7)
-    band_detail(sh, 32, 215)
-    return sh
+def rounded_rect_path(X, Y, L, x, y, w, h, r, corners=(1, 1, 1, 1)):
+    """SVG path for a rect (model cm) with optional rounded corners (tl,tr,br,bl)."""
+    tl, tr, br, bl = corners
+    p = f"M{X(x + (r if tl else 0)):.3f},{Y(y):.3f} "
+    p += f"L{X(x + w - (r if tr else 0)):.3f},{Y(y):.3f} "
+    if tr:
+        p += f"A{L(r):.3f},{L(r):.3f} 0 0 1 {X(x + w):.3f},{Y(y + r):.3f} "
+    p += f"L{X(x + w):.3f},{Y(y + h - (r if br else 0)):.3f} "
+    if br:
+        p += f"A{L(r):.3f},{L(r):.3f} 0 0 1 {X(x + w - r):.3f},{Y(y + h):.3f} "
+    p += f"L{X(x + (r if bl else 0)):.3f},{Y(y + h):.3f} "
+    if bl:
+        p += f"A{L(r):.3f},{L(r):.3f} 0 0 1 {X(x):.3f},{Y(y + h - r):.3f} "
+    p += f"L{X(x):.3f},{Y(y + (r if tl else 0)):.3f} "
+    if tl:
+        p += f"A{L(r):.3f},{L(r):.3f} 0 0 1 {X(x + r):.3f},{Y(y):.3f} "
+    return p + "Z"
 
 
-# ==========================================================================
-# SHEET 4 - panel B with keeper flap
-# ==========================================================================
-def sheet4():
-    sh = Sheet(4, "Needle panel B - lid: 10 cm tips 5.5-10 mm (6 pairs) + keeper flap", "1:1  (flap 1:2)")
-    sh.frame()
-    v = View(32, 48, 10.0)
-    X, Y, L = v.X, v.Y, v.L
-    tip_m, nl = 1.5, 10.0
-    butt_m = PANEL_H - tip_m - nl
-    b0, b1 = 5.0, 8.0
-    margin, slots = draw_panel(sh, v, SIZES_LARGE10, nl, tip_m, butt_m, b0, b1,
-                               "PANEL B - 20.5 x 12.5, fits LID interior. Full size 1:1 - use as pattern. "
-                               "Keeper flap shown folded closed (dashed) and open at 1:2, right.")
-    snap_from_hinge = 8.0
-    snap_x = (1.6, PANEL_W - 1.6)
-    # keeper flap folded closed: dashed outline over the panel, hinge on the top edge
-    r = 1.0
-    sh.add(f'<path d="M{X(0):.3f},{Y(0):.3f} L{X(0):.3f},{Y(KEEPER_FLAP - r):.3f} '
-           f'A{L(r):.3f},{L(r):.3f} 0 0 0 {X(r):.3f},{Y(KEEPER_FLAP):.3f} L{X(PANEL_W - r):.3f},{Y(KEEPER_FLAP):.3f} '
-           f'A{L(r):.3f},{L(r):.3f} 0 0 0 {X(PANEL_W):.3f},{Y(KEEPER_FLAP - r):.3f} L{X(PANEL_W):.3f},{Y(0):.3f}" class="hid"/>')
-    sh.line(X(0), Y(0), X(PANEL_W), Y(0), "fold")
-    sh.text(X(PANEL_W / 2), Y(KEEPER_FLAP) + 3.2, "free edge of keeper flap when closed (9.0 from hinge)", "tx", "middle")
-    sh.text(X(PANEL_W / 2), Y(0) - 1.5, "keeper-flap hinge = top (tip) edge of panel B", "tx", "middle")
-    for sx in snap_x:
-        sh.snap_stud(X(sx), Y(snap_from_hinge), 3.0)
-    sh.text(X(snap_x[0]), Y(snap_from_hinge) + 6, "stud+post", "tx", "middle")
-    sh.text(X(snap_x[1]), Y(snap_from_hinge) + 6, "stud+post", "tx", "middle")
-    panel_dims(sh, v, slots, margin, nl, tip_m, butt_m, b0, b1)
-    sh.dim_v(Y(0), Y(snap_from_hinge), X(PANEL_W), X(PANEL_W) + 15, "8.0 snap")
-    sh.dim_h(X(0), X(snap_x[0]), Y(snap_from_hinge), Y(snap_from_hinge) + 17, "1.6", ext=False)
-    sh.dim_h(X(snap_x[1]), X(PANEL_W), Y(snap_from_hinge), Y(snap_from_hinge) + 17, "1.6", ext=False)
-
-    # keeper flap, open, 1:2
-    vf = View(276, 76, 5.0)
-    fx, fy = vf.X, vf.Y
-    sh.text(fx(0) - 12, fy(0) - 11, "KEEPER FLAP - open, 1:2 (20.5 x 9.0, R 1.0 free corners)", "tb")
-    sh.add(f'<path d="M{fx(0):.3f},{fy(KEEPER_FLAP):.3f} L{fx(0):.3f},{fy(r):.3f} '
-           f'A{vf.L(r):.3f},{vf.L(r):.3f} 0 0 1 {fx(r):.3f},{fy(0):.3f} L{fx(PANEL_W - r):.3f},{fy(0):.3f} '
-           f'A{vf.L(r):.3f},{vf.L(r):.3f} 0 0 1 {fx(PANEL_W):.3f},{fy(r):.3f} L{fx(PANEL_W):.3f},{fy(KEEPER_FLAP):.3f} Z" class="leather"/>')
-    sh.line(fx(0), fy(KEEPER_FLAP), fx(PANEL_W), fy(KEEPER_FLAP), "fold")
-    sh.text(fx(PANEL_W / 2), fy(KEEPER_FLAP) + 3.2, "hinge: stitched to tip edge of panel B", "tx", "middle")
-    sh.text(fx(PANEL_W / 2), fy(KEEPER_FLAP / 2) - 2, "inner face shown", "ts", "middle")
-    sh.text(fx(PANEL_W / 2), fy(KEEPER_FLAP / 2) + 2, "2 ply faux leather + interfacing, edge-stitched 0.3", "tx", "middle")
-    for sx in snap_x:
-        sh.snap_cap(fx(sx), fy(KEEPER_FLAP - snap_from_hinge), 2.2)
-    sh.text(fx(snap_x[0]) + 4, fy(KEEPER_FLAP - snap_from_hinge) - 3, "cap+socket x2", "tx")
-    sh.dim_h(fx(0), fx(PANEL_W), fy(0), fy(0) - 6, "20.5")
-    sh.dim_h(fx(0), fx(snap_x[0]), fy(KEEPER_FLAP), fy(KEEPER_FLAP) + 8, "1.6")
-    sh.dim_h(fx(snap_x[1]), fx(PANEL_W), fy(KEEPER_FLAP), fy(KEEPER_FLAP) + 8, "1.6")
-    sh.dim_v(fy(0), fy(KEEPER_FLAP), fx(PANEL_W), fx(PANEL_W) + 7, "9.0")
-    sh.dim_v(fy(KEEPER_FLAP - snap_from_hinge), fy(KEEPER_FLAP), fx(0), fx(0) - 7, "8.0")
-
-    # table + notes
-    tx = 258
-    sh.text(tx, 22, "SLOT TABLE - panel B (positions from left edge, cm)", "tb")
-    slot_table(sh, tx, 25, slots, SIZES_LARGE10, 10)
-    sh.lines(tx, 130, [
-        "**KEEPER FLAP (from prototype photos 2 and 4)",
-        "- The lid hangs open when the case is used, so the",
-        "  large tips need a flap: 9.0 deep (photo 2), two",
-        "  snaps (photo 4), hinged on the tip edge of panel B.",
-        "- Snaps sit in the 3.15 margins either side of the slot",
-        "  strip, 8.0 from the hinge and 1.6 from the side",
-        "  edges, so the studs on the panel clear the needles.",
-        "  Studs go through panel board + lining; back each",
-        "  with a 2 x 2 cm leather patch.",
-        "- Flap covers 9.0 of the 12.5 panel: the tip points",
-        "  (1.5-6.5 from the hinge) are fully covered.",
-        "- Check snap engagement after a dry fold; move the",
-        "  caps 0.1-0.2 toward the hinge if the flap pulls tight.",
-        "",
-    ] + panel_notes()[:10], "ts", 3.7)
-    return sh
+def buckle(sh, cx, cy, w, cls_scale=1.0):
+    """Simple buckle + prong symbol centred at page (cx, cy), frame width w mm."""
+    hgt = w * 0.42
+    sh.rect(cx - w / 2, cy - hgt / 2, w, hgt, "brass", rx=0.6)
+    sh.rect(cx - w / 2 + 1.0, cy - hgt / 2 + 1.0, w - 2.0, hgt - 2.0, "thin")
+    sh.line(cx, cy - hgt / 2, cx, cy + hgt / 2 + 1.5, "cut")       # prong
 
 
-# ==========================================================================
-# SHEET 5 - hinged page face 1 (panel C) + end caps / keys
-# ==========================================================================
-def acc_loops(sh, v, x_start, y0, y1, items, land=0.4):
-    """items: list of (label, width). Returns end x."""
-    X, Y, L = v.X, v.Y, v.L
-    x = x_start
-    total = sum(w for _, w in items) + land * (len(items) - 1)
-    sh.rect(X(x_start), Y(y0), L(total), L(y1 - y0), "elastic")
-    for lab, w in items:
-        for xx in (x, x + w):
-            sh.line(X(xx), Y(y0) - 0.6, X(xx), Y(y1) + 0.6, "stitch")
-        sh.text(X(x + w / 2) + 0.8, Y((y0 + y1) / 2), lab, "tx", "middle", rot=-90)
-        x += w + land
-    return x - land
-
-
-def sheet5():
-    sh = Sheet(5, "Hinged page, face 1 - panel C: 5 cm tips 2.0-5.0 mm (11 pairs) + caps & keys", "1:1")
-    sh.frame()
-    v = View(32, 48, 10.0)
-    X, Y, L = v.X, v.Y, v.L
-    tip_m, nl, butt_m = 1.5, 5.0, 1.5
-    b0, b1 = 3.0, 5.0
-    margin, slots = slot_layout(SIZES_SMALL, PANEL_W)
-    sh.rect(X(0), Y(0), L(PANEL_W), L(PANEL_H), "leather")
+def size_labels(sh, v, slots, y_text, y_tip):
+    """'2.0 / mm' label above each slot with a leader to the tip."""
     for lab, a, b in slots:
-        draw_needle_pair(sh, v, a, b, tip_m, nl, float(lab) / 10.0)
-    draw_slot_strip(sh, v, slots, b0, b1)
-    sh.text(X(PANEL_W / 2), Y(PANEL_H + 1.5) + 35, "PAGE FACE 1 - 20.5 x 12.5 (page hinge along the BOTTOM edge, 1.5 cm strip to front wall). Full size 1:1 - use as pattern.", "tb", "middle")
-    # needle zone dims
+        cx = (a + b) / 2
+        sh.text(v.X(cx), v.Y(y_text), lab, "tx", "middle")
+        sh.text(v.X(cx), v.Y(y_text) + 2.4, "mm", "tx", "middle")
+        sh.line(v.X(cx), v.Y(y_text) + 3.2, v.X(cx), v.Y(y_tip) - 0.8, "dim")
+
+
+def draw_page(sh, v, sizes, tip_len, tip_top, band_c, margin=None, x_offset=0.0, zone_w=None):
+    """Page outline + hinge tab + needles + 1.5 elastic.  Returns (margin, slots)."""
+    X, Y, L = v.X, v.Y, v.L
+    zone_w = PAGE_W if zone_w is None else zone_w
+    margin, slots = slot_layout(sizes, zone_w, margin=margin)
+    slots = [(lab, a + x_offset, b + x_offset) for lab, a, b in slots]
+    sh.add(f'<path d="{rounded_rect_path(X, Y, L, 0, 0, PAGE_W, PAGE_H, R, (1, 1, 0, 0))}" class="leather"/>')
+    # hinge tab below the page
+    sh.rect(X(1.0), Y(PAGE_H), L(PAGE_W - 2.0), L(HINGE_TAB), "hatch")
+    sh.rect(X(1.0), Y(PAGE_H), L(PAGE_W - 2.0), L(HINGE_TAB), "thin")
+    sh.line(X(0), Y(PAGE_H), X(PAGE_W), Y(PAGE_H), "fold")
+    # edge stitch 0.3 in
+    sh.add(f'<path d="{rounded_rect_path(X, Y, L, 0.3, 0.3, PAGE_W - 0.6, PAGE_H - 0.6, R - 0.3, (1, 1, 0, 0))}" class="stitch"/>')
+    for lab, a, b in slots:
+        draw_needle_pair(sh, v, a, b, tip_top, tip_len, float(lab) / 10.0)
+    y0, y1 = band_c - ELASTIC / 2, band_c + ELASTIC / 2
+    draw_slot_strip(sh, v, slots, y0, y1, labels=False, band_cls="elastic")
+    size_labels(sh, v, slots, tip_top - 1.0, tip_top)
+    return margin, slots
+
+
+def page_dims(sh, v, slots, margin, tip_len, tip_top, band_c, x_offset=0.0, zone_w=None, overall_off=8):
+    X, Y, L = v.X, v.Y, v.L
+    zone_w = PAGE_W if zone_w is None else zone_w
+    y0, y1 = band_c - ELASTIC / 2, band_c + ELASTIC / 2
     xl = X(0) - 7
-    sh.dim_v(Y(0), Y(tip_m), X(0), xl, "1.5")
-    sh.dim_v(Y(tip_m), Y(tip_m + nl), X(0), xl, "5.0 tip")
-    sh.dim_v(Y(tip_m + nl), Y(8.0), X(0), xl, "1.5")
-    sh.dim_v(Y(8.0), Y(PANEL_H), X(0), xl, "4.5 accessories")
-    sh.dim_v(Y(0), Y(PANEL_H), X(0), xl - 8, "12.5")
-    xr = X(PANEL_W) + 7
-    sh.dim_v(Y(0), Y(b0), X(PANEL_W), xr, "3.0")
-    sh.dim_v(Y(b0), Y(b1), X(PANEL_W), xr, "2.0 band")
-    # divider line between zones
-    sh.line(X(0), Y(8.0), X(PANEL_W), Y(8.0), "thin")
-    # accessory loops: 6 end caps (1.6) + 4 keys (1.4)
-    items = [(f"CAP {i + 1}", 1.6) for i in range(6)] + [(f"KEY {i + 1}", 1.4) for i in range(4)]
-    body = sum(w for _, w in items) + 0.4 * (len(items) - 1)
-    ax = (PANEL_W - body) / 2
-    ay0, ay1 = 9.0, 11.5
-    aend = acc_loops(sh, v, ax, ay0, ay1, items)
-    sh.dim_v(Y(8.0), Y(ay0), X(PANEL_W), xr, "1.0")
-    sh.dim_v(Y(ay0), Y(ay1), X(PANEL_W), xr, "2.5 elastic")
-    yb = Y(PANEL_H + 1.5) + 10
-    sh.dim_h(X(0), X(ax), Y(PANEL_H), yb, fmt(ax))
-    sh.dim_h(X(ax), X(ax + 1.6), Y(PANEL_H), yb, "1.6")
-    sh.dim_h(X(ax + 1.6), X(ax + 2.0), Y(PANEL_H), yb, "0.4", ext=False, textpos="below")
-    sh.dim_h(X(aend - 1.4), X(aend), Y(PANEL_H), yb, "1.4")
-    sh.dim_h(X(aend), X(PANEL_W), Y(PANEL_H), yb, fmt(PANEL_W - aend))
-    sh.dim_h(X(ax), X(aend), Y(PANEL_H), yb + 8, f"{fmt(body)} elastic loop strip: 6 cap loops 1.6 + 4 key loops 1.4, 0.4 lands")
-    sh.dim_h(X(0), X(PANEL_W), Y(PANEL_H), yb + 16, "20.5")
-    # ordinate for slots (above)
+    sh.dim_v(Y(0), Y(tip_top), X(0), xl, fmt(tip_top))
+    sh.dim_v(Y(tip_top), Y(tip_top + tip_len), X(0), xl, f"{fmt(tip_len)} tip")
+    sh.dim_v(Y(tip_top + tip_len), Y(PAGE_H), X(0), xl, fmt(PAGE_H - tip_top - tip_len))
+    sh.dim_v(Y(0), Y(PAGE_H), X(0), xl - overall_off, fmt(PAGE_H))
+    sh.dim_v(Y(PAGE_H), Y(PAGE_H + HINGE_TAB), X(0), xl, fmt(HINGE_TAB))
+    xr = X(PAGE_W) + 7
+    sh.dim_v(Y(0), Y(y0), X(PAGE_W), xr, fmt(y0))
+    sh.dim_v(Y(y0), Y(y1), X(PAGE_W), xr, f"{fmt(ELASTIC)} elastic")
+    yb = Y(PAGE_H + HINGE_TAB) + 8
+    sh.dim_h(X(x_offset), X(slots[0][1]), Y(PAGE_H + HINGE_TAB), yb, fmt(margin))
+    sh.dim_h(X(slots[-1][2]), X(x_offset + zone_w), Y(PAGE_H + HINGE_TAB), yb, fmt(x_offset + zone_w - slots[-1][2]))
+    sh.dim_h(X(slots[0][1]), X(slots[-1][2]), Y(PAGE_H + HINGE_TAB), yb, f"{fmt(slots[-1][2] - slots[0][1])} elastic strip")
+    sh.dim_h(X(0), X(PAGE_W), Y(PAGE_H + HINGE_TAB), yb + 8, fmt(PAGE_W))
+    # ordinate above the page
     yo = Y(0) - 8
-    sh.line(X(0), yo, X(PANEL_W), yo, "dim")
-    sh.text(X(0), yo - 11, "ORDINATE: slot stitch-line positions from left edge (cm) - identical to panel A", "tx")
+    sh.line(X(0), yo, X(PAGE_W), yo, "dim")
+    sh.text(X(0), yo - 11, "ORDINATE: elastic stitch-line positions from left page edge (cm)", "tx")
+    sh.line(X(0), yo - 2.5, X(0), yo + 2.5, "dim")
+    sh.text(X(0), yo - 1.2, "0", "tx", "middle")
     for lab, a, b in slots:
         for x in (a, b):
             sh.line(X(x), yo - 1.5, X(x), Y(0), "dim")
             sh.text(X(x) + 0.7, yo - 2.2, fmt(x), "tx", "start", rot=-90)
-    sh.line(X(0), yo - 2.5, X(0), yo + 2.5, "dim")
-    sh.text(X(0), yo - 1.2, "0", "tx", "middle")
-    # hinge strip at the bottom
-    sh.rect(X(0), Y(PANEL_H), L(PANEL_W), L(1.5), "hatch")
-    sh.rect(X(0), Y(PANEL_H), L(PANEL_W), L(1.5), "thin")
-    sh.text(X(PANEL_W / 2), Y(PANEL_H + 0.75) + 1, "HINGE STRIP 20.5 x 1.5 - faux leather, stitched to page edge and to front-wall inner face", "tx", "middle")
-    sh.dim_v(Y(PANEL_H), Y(PANEL_H + 1.5), X(PANEL_W), xr, "1.5")
+    sh.line(X(PAGE_W), yo - 2.5, X(PAGE_W), yo + 2.5, "dim")
 
-    tx = 258
-    sh.text(tx, 22, "SLOT TABLE - panel C (positions from left edge, cm)", "tb")
-    end = slot_table(sh, tx, 25, slots, SIZES_SMALL, 5)
-    sh.lines(tx, end + 6, [
-        "**PAGE (both faces) - proposal, not in prototype",
-        "- One double-sided page carries all 5 cm tips plus the",
-        "  small hardware, so the 10 cm panels stay uncluttered.",
-        "  Core 1.5 mm board, lined both faces, 20.5 x 12.5.",
-        "- Hinge: 1.5 cm faux-leather strip along the bottom",
-        "  edge, stitched to the front-wall inner face. The page",
-        "  lies on panel A when closed and flips onto the lid",
-        "  when the case is opened (sheet 2).",
-        "- Face 1 (this sheet): 5 cm tips 2.0-5.0 mm in the same",
-        "  slot widths and positions as panel A, band 2.0 wide",
-        "  (narrower for the short tips). Below: 2.5 cm elastic",
-        "  with 6 loops for the screw-on end caps (1.6 wide)",
-        "  and 4 loops for the cable keys (1.4 wide).",
-        "- Loop sizes assume caps <= 1.0 dia x 1.5 long and keys",
-        "  <= 1.2 x 3.5. Measure the real hardware (Q6, sheet 2).",
+
+def page_notes():
+    return [
+        "**PAGE CONSTRUCTION (all four pages)",
+        "1. Page = 2 plies faux leather 1.0 mm over 0.8 mm board",
+        "   stiffener, 20.0 x 12.5, R 1.0 top corners, edge-stitched",
+        "   0.3 in contrast thread (as reference photos).",
+        "2. Elastic: 15 mm knit elastic in matching colour, laid",
+        "   flat and stitched on every line shown. Slot widths are",
+        "   the prototype's: 0.6 for 2.0 mm, +0.1 per size step, to",
+        "   2.2 for 10 mm. One slot holds one PAIR, side by side.",
+        "3. Stitch lines in pairs 0.5 apart between slots (the",
+        "   'land'); bar-tack both ends of each line.",
+        "4. Size labels heat-stamped / printed above each slot",
+        "   with a 0.5 leader line to the tip (reference photo).",
+        "5. Hinge tab 1.5 below the page is sewn into the bottom",
+        "   gusset - pages are not removable (sheet 7, detail C).",
+        "6. Tip points up; 1.5 clear above the points (prototype).",
+    ]
+
+
+# ==========================================================================
+# SHEET 1 - outer shell flat pattern (outer face up)
+# ==========================================================================
+def sheet1():
+    sh = Sheet(1, "Outer shell - flat pattern, outer face (die line)", "1:2")
+    sh.frame()
+    s = 5.0
+    v = View(28, 40, s)
+    X, Y, L = v.X, v.Y, v.L
+    xa = END_FLAP
+    xb = END_FLAP + SIDE_WALL
+    xc = xb + BASE_W
+    xd = xc + SIDE_WALL
+    ya = REAR_FLAP
+    yb = ya + REAR_WALL
+    yc = yb + BASE_H
+    yd = yc + FRONT_WALL
+
+    # fills
+    sh.rect(X(xb), Y(0), L(BASE_W), L(PATTERN_H), "leather")
+    sh.rect(X(0), Y(yb), L(PATTERN_W), L(BASE_H), "leather")
+    # perimeter with rounded free corners
+    r = R
+    per = (f"M{X(xb):.3f},{Y(r):.3f} A{L(r)},{L(r)} 0 0 1 {X(xb + r):.3f},{Y(0):.3f} "
+           f"L{X(xc - r):.3f},{Y(0):.3f} A{L(r)},{L(r)} 0 0 1 {X(xc):.3f},{Y(r):.3f} "
+           f"L{X(xc):.3f},{Y(yb):.3f} L{X(PATTERN_W - r):.3f},{Y(yb):.3f} A{L(r)},{L(r)} 0 0 1 {X(PATTERN_W):.3f},{Y(yb + r):.3f} "
+           f"L{X(PATTERN_W):.3f},{Y(yc - r):.3f} A{L(r)},{L(r)} 0 0 1 {X(PATTERN_W - r):.3f},{Y(yc):.3f} "
+           f"L{X(xc):.3f},{Y(yc):.3f} L{X(xc):.3f},{Y(PATTERN_H - r):.3f} A{L(r)},{L(r)} 0 0 1 {X(xc - r):.3f},{Y(PATTERN_H):.3f} "
+           f"L{X(xb + r):.3f},{Y(PATTERN_H):.3f} A{L(r)},{L(r)} 0 0 1 {X(xb):.3f},{Y(PATTERN_H - r):.3f} "
+           f"L{X(xb):.3f},{Y(yc):.3f} L{X(r):.3f},{Y(yc):.3f} A{L(r)},{L(r)} 0 0 1 {X(0):.3f},{Y(yc - r):.3f} "
+           f"L{X(0):.3f},{Y(yb + r):.3f} A{L(r)},{L(r)} 0 0 1 {X(r):.3f},{Y(yb):.3f} "
+           f"L{X(xb):.3f},{Y(yb):.3f} Z")
+    sh.add(f'<path d="{per}" class="cut"/>')
+    for yy in (ya, yb, yc, yd):
+        sh.line(X(xb), Y(yy), X(xc), Y(yy), "fold")
+    for xx in (xa, xb, xc, xd):
+        sh.line(X(xx), Y(yb), X(xx), Y(yc), "fold")
+
+    # strap (stitched part): back panel + top gusset + top flap, centred
+    cx = xb + BASE_W / 2
+    sh.rect(X(cx - STRAP_W / 2), Y(0), L(STRAP_W), L(yc), "strap")
+    sh.rect(X(cx - STRAP_W / 2 + 0.3), Y(0.3), L(STRAP_W - 0.6), L(yc - 0.6), "stitch")
+    sh.text(X(cx) + 10, Y(yb + 9.0), "STRAP 3.0 wide, dark brown, stitched 0.3 from edges", "ts", "middle", rot=-90)
+    buckle(sh, X(cx), Y(2.6), L(STRAP_W + 0.6))
+    sh.rect(X(cx - STRAP_W / 2 - 0.2), Y(3.9), L(STRAP_W + 0.4), L(0.7), "strap")   # keeper
+    sh.text(X(cx) + 11, Y(2.9), "buckle 30 mm", "tx")
+    sh.text(X(cx) + 11, Y(4.6), "keeper", "tx")
+    sh.text(X(cx), Y(0) - 1.5, "tongue continues 10.5 beyond this edge - sheet 7", "tx", "middle")
+    # logo emboss on top flap
+    lx, ly = xc - 3.0, 2.5
+    sh.rect(X(lx - 1.25), Y(ly - 1.25), L(2.5), L(2.5), "thin")
+    sh.text(X(lx), Y(ly) + 1, "LOGO", "tx", "middle")
+    sh.text(X(lx), Y(ly) + 3.3, "emboss 2.5 sq", "tx", "middle")
+
+    # labels
+    def lab(x, y, a, b=None):
+        sh.text(X(x), Y(y), a, "tb", "middle")
+        if b:
+            sh.text(X(x), Y(y) + 4, b, "ts", "middle")
+    lab(xb + 4.5, REAR_FLAP / 2 + 0.3, "TOP FLAP", "21.0 x 5.0")
+    lab(xb + 4.5, ya + REAR_WALL / 2 + 0.3, "TOP GUSSET", "21.0 x 6.5")
+    lab(xb + 4.5, yb + BASE_H / 2 - 0.3, "BACK PANEL", "21.0 x 13.0 (pages inside)")
+    lab(cx, yc + FRONT_WALL / 2 + 0.3, "BOTTOM GUSSET - page hinge seams inside", "21.0 x 6.0")
+    lab(cx, yd + 3.0, "FRONT PANEL", "21.0 x 12.7")
+    sh.text(X(xa + SIDE_WALL / 2) + 1.2, Y(yb + 1.2), "SIDE GUSSET 5.7 x 13.0", "ts", "end", rot=-90)
+    sh.text(X(xc + SIDE_WALL / 2) + 1.2, Y(yb + 1.2), "SIDE GUSSET 5.7 x 13.0", "ts", "end", rot=-90)
+    lab(END_FLAP / 2, yb + 2.2, "SIDE FLAP (L)", "8.0 x 13.0 - tucks inside")
+    lab(xd + END_FLAP / 2, yb + 2.2, "SIDE FLAP (R)", "8.0 x 13.0 - tucks inside")
+
+    # side-flap snap studs (outer face) + sockets on front panel inner face (hidden)
+    sxl, sxr, sy = xa - SNAP_FROM_FOLD, xd + SNAP_FROM_FOLD, yb + SNAP_FROM_TOP
+    sh.snap_cap(X(sxl), Y(sy), 3.0)
+    sh.snap_cap(X(sxr), Y(sy), 3.0)
+    sh.text(X(sxl), Y(sy) + 7.5, "SNAP STUD (outer face)", "tx", "middle")
+    sh.text(X(sxr), Y(sy) + 7.5, "SNAP STUD (outer face)", "tx", "middle")
+    sock_y = yd + SNAP_FROM_TOP
+    for sx in (xb + SNAP_FROM_FOLD, xc - SNAP_FROM_FOLD):
+        sh.snap_stud(X(sx), Y(sock_y), 3.0)
+    sh.text(X(xb + SNAP_FROM_FOLD), Y(sock_y) + 7.5, "SOCKET x2, inner face (hidden)", "tx", "middle")
+    sh.text(X(xc - SNAP_FROM_FOLD), Y(sock_y) + 7.5, "SOCKET x2, inner face (hidden)", "tx", "middle")
+    # strap stud on front panel outer face
+    st_y = PATTERN_H - 8.0
+    sh.snap_cap(X(cx), Y(st_y), 3.0)
+    sh.text(X(cx), Y(st_y) + 7.5, "STRAP STUD (outer face)", "tx", "middle")
+
+    # dimensions
+    yt = Y(0) - 9
+    segs = [(0, xa, "8.0"), (xa, xb, "5.7"), (xb, xc, "21.0"), (xc, xd, "5.7"), (xd, PATTERN_W, "8.0")]
+    for a, b, t in segs:
+        sh.dim_h(X(a), X(b), Y(yb) if (a < xb or b > xc) else Y(0), yt, t)
+    sh.dim_h(X(0), X(PATTERN_W), Y(yb), yt - 8, fmt(PATTERN_W) + "  OVERALL")
+    xr = X(PATTERN_W) + 8
+    vsegs = [(0, ya, "5.0"), (ya, yb, "6.5"), (yb, yc, "13.0"), (yc, yd, "6.0"), (yd, PATTERN_H, "12.7")]
+    for a, b, t in vsegs:
+        sh.dim_v(Y(a), Y(b), X(PATTERN_W) if (a >= yb and b <= yc) else X(xc), xr, t)
+    sh.dim_v(Y(0), Y(PATTERN_H), X(PATTERN_W), xr + 8, fmt(PATTERN_H) + "  OVERALL")
+    sh.dim_h(X(sxl), X(xa), Y(sy), Y(yc) + 5, "5.0")
+    sh.dim_v(Y(yb), Y(sy), X(sxl), X(0) - 5, "6.5")
+    sh.text(X(0), Y(yc) + 12, "(R) side flap: snap position symmetrical", "tx")
+    sh.dim_h(X(xb), X(xb + SNAP_FROM_FOLD), Y(sock_y), Y(PATTERN_H) + 5, "5.0")
+    sh.dim_h(X(xc - SNAP_FROM_FOLD), X(xc), Y(sock_y), Y(PATTERN_H) + 5, "5.0")
+    sh.dim_v(Y(yd), Y(sock_y), X(xb), X(xb) - 5, "6.5")
+    sh.dim_v(Y(st_y), Y(PATTERN_H), X(cx), X(xc) + 8, "8.0")
+    sh.dim_h(X(cx - STRAP_W / 2), X(cx + STRAP_W / 2), Y(yb + 1), Y(yb) - 4, "3.0", ext=False)
+    gx, gy = X(xb) - 14, Y(yd + 2)
+    sh.line(gx, gy + 30, gx, gy, "thin", 'marker-end="url(#ar)"')
+    sh.line(gx, gy, gx, gy + 30, "thin", 'marker-end="url(#ar)"')
+    sh.text(gx - 1.5, gy + 15, "GRAIN / NAP", "tx", "middle", rot=-90)
+    sh.text(X(xb + 1.0), Y(PATTERN_H) - 2, "all free corners R 1.0; edge-stitch 0.3 all round", "tx")
+
+    nx, ny = 288, 22
+    sh.text(nx, ny, "LEGEND", "tb")
+    sh.line(nx, ny + 5, nx + 14, ny + 5, "cut"); sh.text(nx + 17, ny + 6, "Cut line (net finished size)", "ts")
+    sh.line(nx, ny + 10, nx + 14, ny + 10, "fold"); sh.text(nx + 17, ny + 11, "Fold / score line", "ts")
+    sh.line(nx, ny + 15, nx + 14, ny + 15, "hid"); sh.text(nx + 17, ny + 16, "Hidden (feature on far face)", "ts")
+    sh.line(nx, ny + 20, nx + 14, ny + 20, "stitch"); sh.text(nx + 17, ny + 21, "Stitch line", "ts")
+    sh.snap_cap(nx + 7, ny + 28, 2.2); sh.text(nx + 17, ny + 29, "Snap on this face", "ts")
+    sh.snap_stud(nx + 7, ny + 36, 2.2); sh.text(nx + 17, ny + 37, "Snap on far face", "ts")
+    sh.lines(nx, ny + 46, [
+        "**NOTES",
+        "1. All dimensions in cm, finished (net) sizes as measured",
+        "   on the cardboard prototype. No seam allowance included:",
+        "   add 0.8 for turned seams, 0 for bound / edge-painted",
+        "   edges (reference shows edge-stitched, turned edges).",
+        "2. Drawn with the OUTER face up (strap, buckle, logo side).",
+        "   Pattern assumed symmetrical about its vertical centre",
+        "   line; left side measured equal to the right (5.7 / 8.0).",
+        "3. Construction: trifold clutch (reference photos). Side",
+        "   flaps fold in and tuck inside, front panel folds up over",
+        "   them, top flap folds down, strap tongue snaps to the",
+        "   front panel. Pages are sewn into the bottom gusset.",
+        "4. Gusset depths as measured: 5.7 (sides), 6.0 (bottom),",
+        "   6.5 (top). Top 6.5 gives the flap room over the front",
+        "   panel; keep as measured (Q1, sheet 2).",
+        "5. Snaps: 12.5 mm (line 20) spring snaps: 2 on the side",
+        "   flaps, 1 strap tongue, 1 accessory pocket. Set the",
+        "   front-panel sockets and strap stud from a dry fold.",
+        "6. Outer: faux leather (PU) 1.0-1.2 mm, tan; strap dark",
+        "   brown. Stiffen back and front panels with 1.0 mm board.",
+        "   Lining: faux leather 0.6 mm, same tan (reference).",
+        "7. Reference photos show a deeper top flap (about 9-10) and",
+        "   the buckle lower down; prototype gives 5.0 - confirm (Q2).",
         "",
-    ] + panel_notes()[:9], "ts", 3.7)
+        "**SHEET INDEX",
+        "1  Outer shell - flat pattern (this sheet)",
+        "2  Assembly - closed views, section, open layout, fold sequence",
+        "3  Page 1: 10 cm tips 2.0-5.0 mm (11 pairs)",
+        "4  Page 2: 10 cm tips 5.5-10 mm (6 pairs)",
+        "5  Page 3: 5 cm tips 2.0-5.0 mm (11 pairs)",
+        "6  Page 4: 5 cm tips 5.5-8 mm (4 pairs) + accessory pocket",
+        "7  Details: strap, cable pocket, hinge section, elastic section",
+        "8  Contents checklist, bill of materials, construction",
+    ], "ts", 3.9)
     return sh
 
 
 # ==========================================================================
-# SHEET 6 - hinged page face 2 (panel D) + connectors, grip patch, cable pocket
+# SHEET 2 - assembly
 # ==========================================================================
-def sheet6():
-    sh = Sheet(6, "Hinged page, face 2 - panel D: 5 cm tips 5.5-8 mm (4 pairs) + accessories", "1:1")
+def sheet2():
+    sh = Sheet(2, "Assembly - closed views, section, open layout, fold sequence", "1:2 / 1:1 / 1:4 as noted")
+    sh.frame()
+    s = 5.0
+    D = 6.0
+    # ---- FRONT VIEW closed ----
+    v = View(30, 40, s)
+    X, Y, L = v.X, v.Y, v.L
+    sh.text(X(0), Y(0) - 14, "FRONT VIEW - closed (1:2)", "tb")
+    sh.add(f'<path d="{rounded_rect_path(X, Y, L, 0, 0, BASE_W, BASE_H, R)}" class="leather"/>')
+    sh.line(X(0), Y(REAR_FLAP), X(BASE_W), Y(REAR_FLAP), "cut")
+    sh.add(f'<path d="{rounded_rect_path(X, Y, L, 0.3, 0.3, BASE_W - 0.6, BASE_H - 0.6, R - 0.3)}" class="stitch"/>')
+    cx = BASE_W / 2
+    sh.rect(X(cx - STRAP_W / 2), Y(0), L(STRAP_W), L(REAR_FLAP + 6.0), "strap")
+    sh.poly([(X(cx - STRAP_W / 2), Y(REAR_FLAP + 6.0)), (X(cx + STRAP_W / 2), Y(REAR_FLAP + 6.0)), (X(cx), Y(REAR_FLAP + 7.5))], "strap")
+    buckle(sh, X(cx), Y(2.6), L(STRAP_W + 0.6))
+    sh.rect(X(cx - STRAP_W / 2 - 0.2), Y(3.9), L(STRAP_W + 0.4), L(0.7), "strap")
+    sh.circle(X(cx), Y(REAR_FLAP + 3.0), 2.2, "brass")
+    sh.text(X(cx) + 4, Y(REAR_FLAP + 3.0) + 1, "snap", "tx")
+    sh.rect(X(BASE_W - 4.25), Y(1.25), L(2.5), L(2.5), "thin")
+    sh.text(X(BASE_W - 3.0), Y(2.5) + 1, "logo", "tx", "middle")
+    sh.text(X(1.5), Y(2.8), "top flap 5.0", "tx")
+    sh.text(X(1.5), Y(9.0), "front panel", "tx")
+    sh.dim_h(X(0), X(BASE_W), Y(0), Y(0) - 6, "21.0")
+    sh.dim_v(Y(0), Y(BASE_H), X(BASE_W), X(BASE_W) + 7, "13.0")
+    sh.dim_v(Y(0), Y(REAR_FLAP), X(0), X(0) - 7, "5.0")
+    sh.dim_v(Y(0), Y(REAR_FLAP + 3.0), X(0), X(0) - 14, "8.0 to snap")
+
+    # ---- BACK VIEW ----
+    v2 = View(155, 40, s)
+    sh.text(v2.X(0), v2.Y(0) - 14, "BACK VIEW - closed (1:2)", "tb")
+    sh.add(f'<path d="{rounded_rect_path(v2.X, v2.Y, v2.L, 0, 0, BASE_W, BASE_H, R)}" class="leather"/>')
+    sh.rect(v2.X(cx - STRAP_W / 2), v2.Y(0), v2.L(STRAP_W), v2.L(BASE_H), "strap")
+    sh.rect(v2.X(cx - STRAP_W / 2 + 0.3), v2.Y(0.3), v2.L(STRAP_W - 0.6), v2.L(BASE_H - 0.6), "stitch")
+    sh.text(v2.X(cx) + 6, v2.Y(BASE_H - 0.8), "strap stitched full height of back", "tx", rot=-90)
+    sh.dim_h(v2.X(cx - STRAP_W / 2), v2.X(cx + STRAP_W / 2), v2.Y(BASE_H), v2.Y(BASE_H) + 6, "3.0", ext=False)
+
+    # ---- END VIEW ----
+    v3 = View(272, 40, s)
+    sh.text(v3.X(0), v3.Y(0) - 14, "END VIEW (1:2)", "tb")
+    sh.add(f'<path d="{rounded_rect_path(v3.X, v3.Y, v3.L, 0, 0, D, BASE_H, 0.6)}" class="leather"/>')
+    sh.line(v3.X(0), v3.Y(REAR_FLAP), v3.X(D), v3.Y(REAR_FLAP), "thin")
+    sh.dim_h(v3.X(0), v3.X(D), v3.Y(BASE_H), v3.Y(BASE_H) + 6, "6.0")
+
+    # ---- SECTION A-A 1:1 ----
+    v4 = View(40, 126, 10.0)
+    X4, Y4, L4 = v4.X, v4.Y, v4.L
+    sh.text(X4(0) - 10, Y4(0) - 11, "SECTION A-A - vertical through the centre, closed (1:1)", "tb")
+    sh.text(X4(0) - 10, Y4(0) - 7, "Pages fan from staggered hinge seams in the bottom gusset. P1 (back): 10 cm 2.0-5.0; P2: 10 cm 5.5-10; P3: 5 cm 2.0-5.0; P4 (front): 5 cm 5.5-8 + pocket.", "ts")
+    t = 0.25
+    sh.rect(X4(-t), Y4(0), L4(t), L4(BASE_H), "leather")                      # back
+    sh.rect(X4(-t), Y4(BASE_H), L4(FRONT_WALL + t), L4(t), "leather")          # bottom gusset
+    sh.rect(X4(FRONT_WALL - t), Y4(BASE_H - LID_H), L4(t), L4(LID_H), "leather")   # front panel
+    sh.rect(X4(-t), Y4(-t), L4(REAR_WALL + t), L4(t), "leather")              # top gusset
+    sh.rect(X4(REAR_WALL - t), Y4(-t), L4(t), L4(REAR_FLAP + t), "leather")   # top flap
+    sh.rect(X4(REAR_WALL), Y4(REAR_FLAP - 1.0), L4(0.15), L4(TONGUE - 2.0 - 0.0), "strap")   # tongue over flap/front
+    sh.rect(X4(-t - 0.15), Y4(0), L4(0.15), L4(BASE_H), "strap")               # strap on back
+    sh.circle(X4(REAR_WALL - 0.05), Y4(8.0), 1.2, "brass")
+    sh.text(X4(REAR_WALL) + 4, Y4(8.0) + 1, "strap snap", "tx")
+    sh.text(X4(REAR_WALL) + 4, Y4(2.5), "top flap", "tx")
+    sh.text(X4(FRONT_WALL) + 4, Y4(11.0), "front panel", "tx")
+    sh.text(X4(-t) - 5, Y4(6.5), "back panel + strap", "tx", "middle", rot=-90)
+    for i, sp in enumerate(SEAMS):
+        xtop = sp + 0.12 * i - 0.1
+        sh.line(X4(sp), Y4(BASE_H), X4(xtop), Y4(BASE_H - PAGE_H), "cut")
+        sh.line(X4(sp) + 0.5, Y4(BASE_H) - 1.5, X4(sp) + 0.5, Y4(BASE_H) + 4, "stitch")
+        sh.text(X4(xtop), Y4(BASE_H - PAGE_H) - 1.5, f"P{i + 1}", "tx", "middle")
+        ln = 10 if i < 2 else 5
+        top = BASE_H - PAGE_H + (1.5 if i < 2 else 3.75)
+        sh.rect(X4(xtop) + 0.3, Y4(top), L4(0.5 if i in (0, 2) else (1.0 if i == 1 else 0.8)), L4(ln), "needle")
+    sh.rect(X4(0), Y4(BASE_H - 9.0), L4(0.2), L4(9.0), "mesh")
+    sh.text(X4(0) + 3, Y4(BASE_H - 7.0), "cable pocket", "tx", rot=-90)
+    yd = Y4(BASE_H + t) + 7
+    sh.dim_h(X4(0), X4(SEAMS[0]), Y4(BASE_H + t), yd, "1.0")
+    for a, b in zip(SEAMS, SEAMS[1:]):
+        sh.dim_h(X4(a), X4(b), Y4(BASE_H + t), yd, "1.2")
+    sh.dim_h(X4(SEAMS[-1]), X4(FRONT_WALL), Y4(BASE_H + t), yd, "1.4")
+    sh.dim_h(X4(0), X4(FRONT_WALL), Y4(BASE_H + t), yd + 8, "6.0 bottom gusset")
+    sh.dim_v(Y4(BASE_H - PAGE_H), Y4(BASE_H), X4(REAR_WALL), X4(REAR_WALL) + 22, "12.5 page")
+    sh.dim_v(Y4(0), Y4(BASE_H), X4(REAR_WALL), X4(REAR_WALL) + 30, "13.0")
+
+    # ---- OPEN LAYOUT 1:4 ----
+    s4 = 2.5
+    vi = View(160, 134, s4)
+    Xi, Yi, Li = vi.X, vi.Y, vi.L
+    sh.text(Xi(0), Yi(0) - 8, "OPEN LAYOUT - inner face up, flaps flat (1:4)", "tb")
+    xa, xb = END_FLAP, END_FLAP + SIDE_WALL
+    xc, xd = xb + BASE_W, xb + BASE_W + SIDE_WALL
+    ya, yb = REAR_FLAP, REAR_FLAP + REAR_WALL
+    yc, yd2 = yb + BASE_H, yb + BASE_H + FRONT_WALL
+    sh.rect(Xi(xb), Yi(0), Li(BASE_W), Li(PATTERN_H), "leather")
+    sh.rect(Xi(0), Yi(yb), Li(PATTERN_W), Li(BASE_H), "leather")
+    for yy in (ya, yb, yc, yd2):
+        sh.line(Xi(xb), Yi(yy), Xi(xc), Yi(yy), "fold")
+    for xx in (xa, xb, xc, xd):
+        sh.line(Xi(xx), Yi(yb), Xi(xx), Yi(yc), "fold")
+    for i in range(4):
+        off = 0.35 * (3 - i)
+        sh.rect(Xi(xb + 0.5), Yi(yc - PAGE_H - off), Li(PAGE_W), Li(PAGE_H), "band")
+    sh.text(Xi(xb + BASE_W / 2), Yi(yc - 6.0), "P4 (front page) over P3, P2, P1", "ts", "middle")
+    sh.text(Xi(xb + BASE_W / 2), Yi(yc - 3.0), "cable pocket on back panel behind P1", "tx", "middle")
+    sh.text(Xi(xb + BASE_W / 2), Yi(yc + FRONT_WALL / 2) + 1, "page hinge seams in bottom gusset", "tx", "middle")
+    sh.text(Xi(xb + BASE_W / 2), Yi(yd2 + 2.5), "FRONT PANEL (inner face)", "tx", "middle")
+    sh.text(Xi(xb + BASE_W / 2), Yi(yd2 + 9.5), "sockets for side-flap snaps", "tx", "middle")
+    sh.text(Xi(xb + BASE_W / 2), Yi(REAR_FLAP / 2) + 1, "TOP FLAP", "tx", "middle")
+    sh.text(Xi(xb + BASE_W / 2), Yi(ya + REAR_WALL / 2) + 1, "TOP GUSSET", "tx", "middle")
+    sh.text(Xi(END_FLAP / 2) + 1, Yi(yb + 6.5), "SIDE FLAP", "tx", "middle", rot=-90)
+    sh.text(Xi(xd + END_FLAP / 2) + 1, Yi(yb + 6.5), "SIDE FLAP", "tx", "middle", rot=-90)
+    for sx in (xb + SNAP_FROM_FOLD, xc - SNAP_FROM_FOLD):
+        sh.circle(Xi(sx), Yi(yd2 + 6.5), 1.3, "thin")
+    sh.circle(Xi(xa - 5.0), Yi(yb + 3.5), 1.3, "hid")
+    sh.circle(Xi(xd + 5.0), Yi(yb + 3.5), 1.3, "hid")
+    sh.text(Xi(xa - 5.0), Yi(yb + 2.2), "stud, far face", "tx", "middle")
+    sh.text(Xi(xd + 5.0), Yi(yb + 2.2), "stud, far face", "tx", "middle")
+
+    # ---- NOTES column ----
+    fx, fy = 312, 22
+    sh.lines(fx, fy, [
+        "**FOLD / CLOSING SEQUENCE",
+        "1. Pages stand up from the bottom gusset.",
+        "2. Fold both side flaps in over the pages;",
+        "   they tuck inside the front panel.",
+        "3. Fold the front panel up; its inner-face",
+        "   sockets snap onto the side-flap studs.",
+        "4. Fold the top gusset + flap over the front.",
+        "5. Pass the strap tongue through the buckle",
+        "   and keeper; snap it to the front-panel stud.",
+        "",
+        "**STACK-HEIGHT CHECK (depth 6.0)",
+        "P1  2 x 5 mm tips + page          0.7",
+        "P2  2 x 10 mm tips + page         1.2",
+        "P3  2 x 5 mm tips + page          0.7",
+        "P4  2 x 8 mm tips + pocket        1.2",
+        "cable pocket, 5 coils             1.2",
+        "back + front panel                0.5",
+        "TOTAL                             5.5  (OK)",
+        "",
+        "**OPEN QUESTIONS (confirm before cutting)",
+        "Q1 Keep gussets 5.7 / 6.0 / 6.5 as measured?",
+        "Q2 Top flap 5.0 (prototype) vs ~9 in the",
+        "   reference photos?",
+        "Q3 Strap: working buckle, or fixed buckle",
+        "   with snap closure only (drawn)?",
+        "Q4 Side-flap snaps: spring snaps (drawn) or",
+        "   hidden magnetic snaps?",
+        "Q5 Cables in the back-panel pocket (drawn)",
+        "   or in page 4's accessory pocket?",
+        "Q6 Confirm real cap / key / connector sizes",
+        "   against the pocket on sheet 6.",
+    ], "ts", 3.85)
+    return sh
+
+
+# ==========================================================================
+# SHEETS 3-6 - pages
+# ==========================================================================
+def page_sheet(n, title, sizes, tip_len, tip_top, band_c, table_title):
+    sh = Sheet(n, title, "1:1")
     sh.frame()
     v = View(32, 48, 10.0)
-    X, Y, L = v.X, v.Y, v.L
-    tip_m, nl, butt_m = 1.5, 5.0, 1.5
-    b0, b1 = 3.0, 5.0
-    sh.rect(X(0), Y(0), L(PANEL_W), L(PANEL_H), "leather")
-    # Panel D strip in the left zone: margins 1.0
-    _, slots = slot_layout(SIZES_LARGE5, 0, margin=1.0)
-    for lab, a, b in slots:
-        draw_needle_pair(sh, v, a, b, tip_m, nl, float(lab) / 10.0)
-    draw_slot_strip(sh, v, slots, b0, b1)
-    zone_w = slots[-1][2] + 1.0          # 10.9
-    sh.line(X(zone_w), Y(0), X(zone_w), Y(PANEL_H), "thin")
-    sh.text(X(PANEL_W / 2), Y(PANEL_H) + 35, "PAGE FACE 2 - 20.5 x 12.5 (reverse of face 1; hinge along the BOTTOM edge). Full size 1:1 - use as pattern.", "tb", "middle")
-    # connector loops + patch pocket below
-    sh.line(X(0), Y(8.0), X(zone_w), Y(8.0), "thin")
-    items = [(f"CONN {i + 1}", 1.4) for i in range(3)]
-    cend = acc_loops(sh, v, 1.0, 9.0, 11.5, items)
-    # grip patch slip pocket
-    px0, px1 = cend + 0.6, zone_w - 0.6
-    sh.rect(X(px0), Y(8.5), L(px1 - px0), L(3.5), "band")
-    sh.line(X(px0), Y(8.5), X(px1), Y(8.5), "cut")
-    sh.text(X((px0 + px1) / 2), Y(10.3), "GRIP PATCH", "tx", "middle")
-    sh.text(X((px0 + px1) / 2), Y(11.1), "slip pocket", "tx", "middle")
-    # cable pocket in right zone
-    cx0 = zone_w + 0.6
-    cw = PANEL_W - cx0 - 0.6
-    sh.rect(X(cx0), Y(0.6), L(cw), L(PANEL_H - 1.2), "mesh")
-    # zip along the top
-    sh.rect(X(cx0), Y(0.6), L(cw), L(0.8), "thin")
-    for i in range(int(L(cw) / 2)):
-        sh.line(X(cx0) + i * 2 + 1, Y(0.6) + 1, X(cx0) + i * 2 + 1, Y(0.6) + 7, "thin")
-    sh.text(X(cx0 + cw / 2), Y(1.0) + 0.9, "zip (8 cm)", "tx", "middle")
-    # coiled cables suggestion
-    ccx, ccy = X(cx0 + cw / 2), Y(6.8)
-    for i, lab in enumerate(["100", "80", "60", "40", "25"]):
-        sh.circle(ccx, ccy, 36 - i * 6, "thin")
-    sh.text(ccx, Y(2.55), "5 cables (25 / 40 / 60 / 80 / 100 cm) coiled to <= 8 cm dia", "tx", "middle")
-    sh.text(X(cx0 + cw / 2), Y(PANEL_H - 1.3), "CABLE POCKET - mesh front, zip top, grip-patch slip pocket behind", "tx", "middle")
-    # dims
-    xl = X(0) - 7
-    sh.dim_v(Y(0), Y(tip_m), X(0), xl, "1.5")
-    sh.dim_v(Y(tip_m), Y(tip_m + nl), X(0), xl, "5.0 tip")
-    sh.dim_v(Y(tip_m + nl), Y(8.0), X(0), xl, "1.5")
-    sh.dim_v(Y(8.0), Y(9.0), X(0), xl, "1.0")
-    sh.dim_v(Y(9.0), Y(11.5), X(0), xl, "2.5")
-    sh.dim_v(Y(11.5), Y(PANEL_H), X(0), xl, "1.0")
-    sh.dim_v(Y(0), Y(b0), X(0), xl - 8, "3.0")
-    sh.dim_v(Y(b0), Y(b1), X(0), xl - 8, "2.0 band")
-    sh.dim_v(Y(0), Y(PANEL_H), X(0), xl - 16, "12.5")
-    xr = X(PANEL_W) + 7
-    sh.dim_v(Y(0), Y(0.6), X(PANEL_W), xr, "0.6")
-    sh.dim_v(Y(0.6), Y(PANEL_H - 0.6), X(PANEL_W), xr, f"{fmt(PANEL_H - 1.2)} pocket")
-    sh.dim_v(Y(PANEL_H - 0.6), Y(PANEL_H), X(PANEL_W), xr, "0.6")
-    yb = Y(PANEL_H) + 10
-    sh.dim_h(X(0), X(1.0), Y(PANEL_H), yb, "1.0")
-    x = 1.0
-    for lab, a, b in slots:
-        sh.dim_h(X(a), X(b), Y(PANEL_H), yb, fmt(b - a))
-        if b < slots[-1][2]:
-            sh.dim_h(X(b), X(b + LAND), Y(PANEL_H), yb, "0.5", ext=False, textpos="below")
-    sh.dim_h(X(slots[-1][2]), X(zone_w), Y(PANEL_H), yb, "1.0")
-    sh.dim_h(X(zone_w), X(cx0), Y(PANEL_H), yb, "0.6", ext=False, textpos="below")
-    sh.dim_h(X(cx0), X(cx0 + cw), Y(PANEL_H), yb, f"{fmt(cw)} cable pocket")
-    sh.dim_h(X(cx0 + cw), X(PANEL_W), Y(PANEL_H), yb, "0.6", ext=False, textpos="below")
-    sh.dim_h(X(0), X(zone_w), Y(PANEL_H), yb + 8, f"{fmt(zone_w)} panel D zone")
-    sh.dim_h(X(0), X(PANEL_W), Y(PANEL_H), yb + 16, "20.5")
-    sh.dim_h(X(1.0), X(cend), Y(8.0), Y(8.0) - 6, f"{fmt(cend - 1.0)} = 3 loops x 1.4 + 2 lands x 0.4", textpos="above")
-    sh.dim_h(X(px0), X(px1), Y(8.0), Y(8.0) - 6, f"{fmt(px1 - px0)} pocket")
-    # ordinate for slot stitch lines
-    yo = Y(0) - 8
-    sh.line(X(0), yo, X(zone_w), yo, "dim")
-    sh.text(X(0), yo - 11, "ORDINATE: slot stitch-line positions from left edge (cm)", "tx")
-    for lab, a, b in slots:
-        for xx in (a, b):
-            sh.line(X(xx), yo - 1.5, X(xx), Y(0), "dim")
-            sh.text(X(xx) + 0.7, yo - 2.2, fmt(xx), "tx", "start", rot=-90)
-    sh.line(X(0), yo - 2.5, X(0), yo + 2.5, "dim")
-    sh.text(X(0), yo - 1.2, "0", "tx", "middle")
-
+    margin, slots = draw_page(sh, v, sizes, tip_len, tip_top, band_c)
+    page_dims(sh, v, slots, margin, tip_len, tip_top, band_c)
+    sh.text(v.X(PAGE_W / 2), v.Y(PAGE_H + HINGE_TAB) + 27,
+            f"{title.split(':')[0].upper()} - 20.0 x 12.5 + 1.5 hinge tab. Full size 1:1 - use as pattern.", "tb", "middle")
     tx = 258
-    sh.text(tx, 22, "SLOT TABLE - panel D (positions from left edge, cm)", "tb")
-    end = slot_table(sh, tx, 25, slots, SIZES_LARGE5, 5)
-    sh.lines(tx, end + 6, [
-        "**FACE 2 LAYOUT - proposal, not in prototype",
-        "- Panel D: 5 cm tips 5.5 / 6 / 7 / 8 mm, slot widths",
-        "  1.7-2.0 as on the prototype (photo 4), 1.0 margins,",
-        "  band 2.0 wide. Zone width 10.9.",
-        "- Below panel D: 3 connector loops (1.4 wide, 2.5 cm",
-        "  elastic) and a slip pocket 4.3 x 3.5 for the leather",
-        "  grip patch (see spec, right).",
-        "- Cable pocket 8.5 x 11.3: mesh front, 8 cm zip along the",
-        "  top, 0.6 cm bound edges. Holds the 5 cables coiled",
-        "  to <= 8 cm dia. A second slip pocket behind the mesh",
-        "  can take a pattern card.",
-        "",
-        "**LEATHER GRIP PATCH (replaces the rubber grip disc)",
-        "- Vegetable-tanned leather 1.8-2.0 mm, 6.0 x 4.0 cm,",
-        "  R 0.5 corners, suede side out for grip. Burnish edges.",
-        "- Optional: 0.6 cm punched hole in one corner so it can",
-        "  be looped onto a cable key.",
-        "- Fold it round the tip when tightening / loosening.",
-        "",
-        "**ELASTIC LOOP SPEC (caps, keys, connectors)",
-        "- 25 mm knit elastic stitched flat on every line; the",
-        "  loop widths are flat widths. Elastic stretches to",
-        "  take hardware up to ~1.5x the loop width.",
+    sh.text(tx, 22, table_title, "tb")
+    end = slot_table(sh, tx, 25, slots, sizes, tip_len)
+    sh.lines(tx, end + 6, page_notes(), "ts", 3.7)
+    return sh, v, slots, end
+
+
+def sheet3():
+    sh, *_ = page_sheet(3, "Page 1: 10 cm tips 2.0-5.0 mm (11 pairs)", SIZES_SMALL, 10.0, 1.5, 6.5,
+                        "SLOT TABLE - page 1 (positions from left page edge, cm)")
+    band_detail(sh, 32, 232, "DETAIL A - elastic slot section, 2:1 (same on all pages)")
+    return sh
+
+
+def sheet4():
+    sh, v, slots, end = page_sheet(4, "Page 2: 10 cm tips 5.5-10 mm (6 pairs)", SIZES_LARGE10, 10.0, 1.5, 6.5,
+                                   "SLOT TABLE - page 2 (positions from left page edge, cm)")
+    sh.lines(258, end + 6 + 15 * 3.7 + 4, [
+        "**PAGE 2 NOTE",
+        "- 6 slots use 14.2 of the 20.0 width; the strip is",
+        "  centred (2.9 margins). The 10 mm pair is the thickest",
+        "  item in the case (1.0) - see stack check, sheet 2.",
     ], "ts", 3.7)
     return sh
 
 
+def sheet5():
+    sh, v, slots, end = page_sheet(5, "Page 3: 5 cm tips 2.0-5.0 mm (11 pairs)", SIZES_SMALL, 5.0, 3.75, 6.25,
+                                   "SLOT TABLE - page 3 (positions from left page edge, cm)")
+    sh.lines(258, end + 6 + 15 * 3.7 + 4, [
+        "**PAGE 3 NOTE",
+        "- Same slot widths and stitch positions as page 1, so",
+        "  the two pages share one stitching template.",
+        "- 5 cm tips sit centred on the page (reference photo):",
+        "  points 3.75 from the top, elastic centred at 6.25.",
+    ], "ts", 3.7)
+    return sh
+
+
+def sheet6():
+    sh = Sheet(6, "Page 4: 5 cm tips 5.5-8 mm (4 pairs) + accessory snap pocket", "1:1")
+    sh.frame()
+    v = View(32, 48, 10.0)
+    X, Y, L = v.X, v.Y, v.L
+    tip_len, tip_top, band_c = 5.0, 3.75, 6.25
+    pw, ph, pf = 7.0, 9.0, 3.0          # pocket body, flap
+    px, py = 1.0, 1.0                   # pocket position
+    zone_x = px + pw + 1.0              # needle zone start (9.0)
+    zone_w = PAGE_W - zone_x            # 11.0
+    margin, slots = draw_page(sh, v, SIZES_LARGE5, tip_len, tip_top, band_c, x_offset=zone_x, zone_w=zone_w)
+    # pocket: body + flap
+    sh.add(f'<path d="{rounded_rect_path(X, Y, L, px, py + pf - 0.5, pw, ph, 0.6, (0, 0, 1, 1))}" class="band"/>')
+    sh.add(f'<path d="{rounded_rect_path(X, Y, L, px + 0.3, py + pf - 0.2, pw - 0.6, ph - 0.6, 0.4, (0, 0, 1, 1))}" class="stitch"/>')
+    sh.add(f'<path d="{rounded_rect_path(X, Y, L, px, py, pw, pf + 1.0, 0.6, (1, 1, 1, 1))}" class="leather"/>')
+    sh.add(f'<path d="{rounded_rect_path(X, Y, L, px + 0.3, py + 0.3, pw - 0.6, pf + 0.4, 0.4, (1, 1, 1, 1))}" class="stitch"/>')
+    sh.line(X(px), Y(py), X(px + pw), Y(py), "fold")
+    sh.circle(X(px + pw / 2), Y(py + pf - 0.4), 3.0, "brass")
+    sh.circle(X(px + pw / 2), Y(py + pf - 0.4), 1.4, "thin")
+    sh.text(X(px + pw / 2), Y(py + pf + 3.5), "ACCESSORY POCKET", "ts", "middle")
+    sh.text(X(px + pw / 2), Y(py + pf + 4.3), "6 end caps, 4 keys,", "tx", "middle")
+    sh.text(X(px + pw / 2), Y(py + pf + 5.0), "3 connectors, grip patch", "tx", "middle")
+    sh.text(X(px + pw / 2), Y(py + pf + 6.2), "patch pocket 7.0 x 9.0,", "tx", "middle")
+    sh.text(X(px + pw / 2), Y(py + pf + 6.9), "flap 7.0 x 3.0, snap 12.5 mm", "tx", "middle")
+    sh.text(X(px + pw / 2), Y(py + 0.8), "flap", "tx", "middle")
+    # dims
+    page_dims(sh, v, slots, margin, tip_len, tip_top, band_c, x_offset=zone_x, zone_w=zone_w, overall_off=8)
+    yb = Y(PAGE_H + HINGE_TAB) + 8
+    sh.dim_h(X(0), X(px), Y(PAGE_H + HINGE_TAB), yb, "1.0")
+    sh.dim_h(X(px), X(px + pw), Y(PAGE_H + HINGE_TAB), yb, "7.0 pocket")
+    sh.dim_h(X(px + pw), X(zone_x), Y(PAGE_H + HINGE_TAB), yb, "1.0")
+    sh.dim_v(Y(0), Y(py), X(px + pw), X(px + pw) + 5, "1.0")
+    sh.dim_v(Y(py), Y(py + pf), X(px + pw), X(px + pw) + 5, "3.0 flap")
+    sh.dim_v(Y(py + pf), Y(py + pf - 0.5 + ph), X(px + pw), X(px + pw) + 5, "8.5")
+    sh.dim_v(Y(py + pf - 0.5 + ph), Y(PAGE_H), X(px + pw), X(px + pw) + 5, "1.0")
+    sh.text(X(PAGE_W / 2), Y(PAGE_H + HINGE_TAB) + 27, "PAGE 4 - 20.0 x 12.5 + 1.5 hinge tab. Full size 1:1 - use as pattern.", "tb", "middle")
+    tx = 258
+    sh.text(tx, 22, "SLOT TABLE - page 4 (positions from left page edge, cm)", "tb")
+    end = slot_table(sh, tx, 25, slots, SIZES_LARGE5, 5)
+    sh.lines(tx, end + 6, [
+        "**PAGE 4 LAYOUT (reference photo 5)",
+        "- Accessory pocket at left: patch pocket 7.0 x 9.0",
+        "  with a 3.0 flap and 12.5 mm brass snap, edge-",
+        "  stitched. Body cut 7.0 x 9.5 (0.5 under the flap).",
+        "- Holds the 6 screw-on end caps, 4 cable keys,",
+        "  3 connectors and the leather grip patch.",
+        "- Needle zone 11.0 wide: 4 pairs 5.5 / 6 / 7 / 8 mm,",
+        "  slot widths 1.7-2.0, strip centred (1.05 margins).",
+        "",
+        "**LEATHER GRIP PATCH (replaces the rubber grip disc)",
+        "- Veg-tan leather 1.8-2.0 mm, 6.0 x 4.0, R 0.5 corners,",
+        "  suede side out. Fold round the tip when tightening.",
+        "",
+    ] + page_notes(), "ts", 3.7)
+    return sh
+
+
 # ==========================================================================
-# SHEET 7 - contents, BOM, construction
+# SHEET 7 - details
 # ==========================================================================
 def sheet7():
-    sh = Sheet(7, "Contents checklist, bill of materials, construction & cutting list", "-")
+    sh = Sheet(7, "Details - strap, cable pocket, page hinge section, elastic section", "1:2 / 2:1 as noted")
+    sh.frame()
+    # ---- STRAP 1:2 ----
+    v = View(22, 34, 5.0)
+    X, Y, L = v.X, v.Y, v.L
+    total = BASE_H + REAR_WALL + REAR_FLAP + TONGUE + 1.0
+    sh.text(X(0), Y(0) - 5, "DETAIL B - STRAP, flat, 1:2 (dark brown faux leather, 2 ply, edge-stitched 0.3)", "tb")
+    tip_len = 2.0
+    body = total - tip_len
+    pts = [(X(0), Y(0)), (X(body), Y(0)), (X(total), Y(STRAP_W / 2)), (X(body), Y(STRAP_W)), (X(0), Y(STRAP_W))]
+    sh.poly(pts, "strap")
+    sh.line(X(0.3), Y(0.3), X(body), Y(0.3), "stitch")
+    sh.line(X(0.3), Y(STRAP_W - 0.3), X(body), Y(STRAP_W - 0.3), "stitch")
+    # zones
+    z = [(0, 1.0, "anchor"), (1.0, 1.0 + BASE_H, "back panel (stitched)"), (1.0 + BASE_H, 1.0 + BASE_H + REAR_WALL, "top gusset"),
+         (1.0 + BASE_H + REAR_WALL, 1.0 + BASE_H + REAR_WALL + REAR_FLAP, "top flap"), (1.0 + BASE_H + REAR_WALL + REAR_FLAP, total, "free tongue")]
+    for a, b, t in z:
+        sh.line(X(a), Y(0) - 1, X(a), Y(STRAP_W) + 1, "fold")
+        sh.text(X((a + b) / 2), Y(STRAP_W) + 4, t, "tx", "middle")
+    # holes (decorative) + snap socket
+    for i in range(3):
+        sh.circle(X(total - 4.5 - i * 1.5), Y(STRAP_W / 2), L(0.2), "cut")
+    sh.circle(X(total - 2.0), Y(STRAP_W / 2), 2.0, "brass")
+    sh.circle(X(total - 2.0), Y(STRAP_W / 2), 0.9, "thin")
+    sh.text(X(total - 2.0), Y(0) - 7, "snap socket (inner face)", "tx", "middle")
+    sh.text(X(total - 7.5), Y(0) - 7, "3 holes 0.4, decorative", "tx", "middle")
+    # dims
+    yd = Y(STRAP_W) + 10
+    for a, b, t in [(0, 1.0, "1.0"), (1.0, 14.0, "13.0"), (14.0, 20.5, "6.5"), (20.5, 25.5, "5.0"), (25.5, total, fmt(TONGUE))]:
+        sh.dim_h(X(a), X(b), Y(STRAP_W), yd, t)
+    sh.dim_h(X(0), X(total), Y(STRAP_W), yd + 8, f"{fmt(total)} overall")
+    sh.dim_v(Y(0), Y(STRAP_W), X(0), X(0) - 6, "3.0")
+    sh.dim_h(X(total - 2.0), X(total), Y(0), Y(0) - 3, "2.0", ext=False)
+    # buckle piece
+    bx = X(0)
+    by = yd + 22
+    sh.text(bx, by - 3, "BUCKLE PIECE - 3.0 x 8.0 loop round the 30 mm buckle bar, stitched to the top flap under the strap with the bar 2.6 below the flap edge; keeper 3.4 x 0.7 stitched 1.3 below the buckle", "ts")
+    vb = View(bx, by, 5.0)
+    sh.rect(vb.X(0), vb.Y(0), vb.L(8.0), vb.L(STRAP_W), "strap")
+    buckle(sh, vb.X(4.0), vb.Y(STRAP_W / 2), vb.L(STRAP_W + 0.6))
+    sh.rect(vb.X(4.0 + 1.3 + 1.6), vb.Y(-0.2), vb.L(0.7), vb.L(STRAP_W + 0.4), "strap")
+    sh.dim_h(vb.X(0), vb.X(8.0), vb.Y(STRAP_W), vb.Y(STRAP_W) + 6, "8.0")
+    sh.text(vb.X(10), vb.Y(1.0), "Buckle: 30 mm (1 1/4 in) antique brass, roller or plain; prong engages the strap holes.", "ts")
+    sh.text(vb.X(10), vb.Y(2.3), "Closure is the snap: the buckle is decorative unless Q3 (sheet 2) says otherwise.", "ts")
+
+    # ---- CABLE POCKET 1:2 ----
+    vc = View(22, 128, 5.0)
+    Xc, Yc, Lc = vc.X, vc.Y, vc.L
+    sh.text(Xc(0), Yc(0) - 5, "DETAIL D - CABLE POCKET on the inner face of the back panel, behind page 1 (1:2)", "tb")
+    sh.rect(Xc(0), Yc(0), Lc(BASE_W), Lc(BASE_H), "leather")
+    sh.rect(Xc(0.5), Yc(BASE_H - 9.5), Lc(PAGE_W), Lc(9.0), "mesh")
+    sh.rect(Xc(0.5), Yc(BASE_H - 9.5), Lc(PAGE_W), Lc(0.8), "elastic")
+    sh.text(Xc(BASE_W / 2), Yc(BASE_H - 9.5) + 2.8, "15 mm elastic top edge", "tx", "middle")
+    for i, d in enumerate([8.0, 7.0, 6.0, 5.0, 4.0]):
+        sh.circle(Xc(BASE_W / 2), Yc(BASE_H - 5.0), Lc(d / 2), "thin")
+    sh.text(Xc(BASE_W / 2), Yc(BASE_H - 5.0) + 1, "5 cables coiled", "tx", "middle")
+    sh.text(Xc(BASE_W / 2), Yc(BASE_H - 5.0) + 3.4, "25 / 40 / 60 / 80 / 100 cm", "tx", "middle")
+    sh.text(Xc(BASE_W / 2), Yc(1.8), "BACK PANEL inner face 21.0 x 13.0", "ts", "middle")
+    sh.dim_h(Xc(0), Xc(0.5), Yc(BASE_H), Yc(BASE_H) + 6, "0.5", ext=False)
+    sh.dim_h(Xc(0.5), Xc(0.5 + PAGE_W), Yc(BASE_H), Yc(BASE_H) + 6, "20.0 pocket")
+    sh.dim_v(Yc(BASE_H - 9.5), Yc(BASE_H - 0.5), Xc(BASE_W), Xc(BASE_W) + 6, "9.0")
+    sh.dim_v(Yc(BASE_H - 0.5), Yc(BASE_H), Xc(BASE_W), Xc(BASE_W) + 6, "0.5", ext=False)
+    sh.lines(Xc(BASE_W) + 16, Yc(1.5), [
+        "- Slip pocket, faux leather lining 0.6 mm, sides and",
+        "  bottom stitched to the back-panel lining before",
+        "  the shell is assembled; 15 mm elastic in the top hem",
+        "  keeps the coils in.",
+        "- Alternative (Q5): put the cables in page 4's pocket",
+        "  and use this pocket for a pattern card.",
+    ], "ts", 3.7)
+
+    # ---- HINGE SECTION 2:1 ----
+    vh = View(200, 128, 20.0)
+    Xh, Yh, Lh = vh.X, vh.Y, vh.L
+    sh.text(Xh(0) - 10, Yh(0) - 5, "DETAIL C - PAGE HINGE, section through the bottom gusset, 2:1", "tb")
+    sh.rect(Xh(0), Yh(2.0), Lh(FRONT_WALL), Lh(0.25), "hatch")
+    sh.rect(Xh(0), Yh(2.0), Lh(FRONT_WALL), Lh(0.25), "thin")
+    sh.rect(Xh(-0.25), Yh(-0.8), Lh(0.25), Lh(3.05), "hatch")       # back panel
+    sh.rect(Xh(-0.25), Yh(-0.8), Lh(0.25), Lh(3.05), "thin")
+    sh.rect(Xh(FRONT_WALL), Yh(-0.8), Lh(0.25), Lh(3.05), "hatch")  # front panel
+    sh.rect(Xh(FRONT_WALL), Yh(-0.8), Lh(0.25), Lh(3.05), "thin")
+    for i, sp in enumerate(SEAMS):
+        # tab folded: page comes down, tab lies flat on the gusset toward the front, stitched through
+        sh.line(Xh(sp), Yh(-0.8), Xh(sp), Yh(2.0), "cut")
+        sh.line(Xh(sp), Yh(2.0), Xh(sp + 0.9), Yh(2.0), "cut")
+        sh.line(Xh(sp + 0.5), Yh(1.85), Xh(sp + 0.5), Yh(2.4), "stitch")
+        sh.text(Xh(sp), Yh(-0.8) - 1.5, f"P{i + 1}", "tx", "middle")
+    sh.text(Xh(FRONT_WALL / 2), Yh(2.25) + 4, "bottom gusset: outer 1.0 mm + 1.0 mm board + lining", "tx", "middle")
+    sh.text(Xh(-0.1), Yh(0.6), "back", "tx", "end", rot=-90)
+    sh.text(Xh(FRONT_WALL + 0.25) + 3, Yh(0.6), "front", "tx", "start", rot=-90)
+    yd2 = Yh(2.4) + 10
+    sh.dim_h(Xh(0), Xh(SEAMS[0]), Yh(2.25), yd2, "1.0")
+    for a, b in zip(SEAMS, SEAMS[1:]):
+        sh.dim_h(Xh(a), Xh(b), Yh(2.25), yd2, "1.2")
+    sh.dim_h(Xh(SEAMS[-1]), Xh(FRONT_WALL), Yh(2.25), yd2, "1.4")
+    sh.dim_h(Xh(0), Xh(FRONT_WALL), Yh(2.25), yd2 + 8, "6.0")
+    sh.dim_h(Xh(SEAMS[0]), Xh(SEAMS[0] + 0.9), Yh(2.0), Yh(2.0) - 4, "1.5 tab, folded", ext=False)
+    sh.lines(Xh(0) - 10, yd2 + 16, [
+        "- Each page's 1.5 hinge tab folds toward the front and is",
+        "  stitched through the gusset (lining + board + outer) on",
+        "  one line, 0.5 from the fold. Seams staggered 1.2 apart",
+        "  so the four pages fan open (reference photo).",
+        "- Stitch pages P1 to P4 in order from the back; the front",
+        "  panel seam is last. The gusset outer face shows four",
+        "  parallel stitch lines - use the same contrast thread.",
+    ], "ts", 3.7)
+
+    band_detail(sh, 30, 226, "DETAIL A - elastic slot section, 2:1")
+    return sh
+
+
+# ==========================================================================
+# SHEET 8 - contents, BOM, construction
+# ==========================================================================
+def sheet8():
+    sh = Sheet(8, "Contents checklist, bill of materials, construction & cutting list", "-")
     sh.frame()
     x0, y0 = 14, 26
     sh.text(x0, y0, "CONTENTS CHECKLIST - 64 tips (32 pairs), 5 cables, 14 accessories: where each item lives", "tb")
     rows = []
     for i, (lab, w) in enumerate(SIZES_SMALL):
-        rows.append([f"{lab} mm", "2 x 10 cm", "A (base)", str(i + 1), fmt(w), "2 x 5 cm", "C (page f.1)", str(i + 1), fmt(w)])
+        rows.append([f"{lab} mm", "2 x 10 cm", "Page 1", str(i + 1), fmt(w), "2 x 5 cm", "Page 3", str(i + 1), fmt(w)])
     for i, (lab, w) in enumerate(SIZES_LARGE10):
-        c = ("D (page f.2)", str(i + 1), fmt(w)) if i < 4 else ("-", "-", "-")
-        rows.append([f"{lab} mm", "2 x 10 cm", "B (lid)", str(i + 1), fmt(w), "2 x 5 cm" if i < 4 else "-", *c])
-    end = sh.table(x0, y0 + 3, ["Size", "10 cm tips", "Panel", "Slot", "w", "5 cm tips", "Panel", "Slot", "w"],
-                   rows, [16, 18, 18, 10, 10, 18, 22, 10, 10], rh=4.0)
-    sh.text(x0, end + 4, "Totals: 17 pairs x 10 cm (34 tips) on panels A + B;  15 pairs x 5 cm (30 tips) on panels C + D;  32 pairs / 64 tips.", "ts")
-    sh.text(x0, end + 8, "Accessories: 6 end caps + 4 keys -> face 1 loops;  3 connectors + grip patch -> face 2;  5 cables -> face 2 pocket.", "ts")
+        c = ("Page 4", str(i + 1), fmt(w)) if i < 4 else ("-", "-", "-")
+        rows.append([f"{lab} mm", "2 x 10 cm", "Page 2", str(i + 1), fmt(w), "2 x 5 cm" if i < 4 else "-", *c])
+    end = sh.table(x0, y0 + 3, ["Size", "10 cm tips", "Page", "Slot", "w", "5 cm tips", "Page", "Slot", "w"],
+                   rows, [16, 18, 16, 10, 10, 18, 16, 10, 10], rh=4.0)
+    sh.text(x0, end + 4, "Totals: 17 pairs x 10 cm (34 tips) on pages 1 + 2;  15 pairs x 5 cm (30 tips) on pages 3 + 4;  32 pairs / 64 tips.", "ts")
+    sh.text(x0, end + 8, "Accessories: 6 end caps + 4 keys + 3 connectors + grip patch -> page 4 snap pocket;  5 cables -> back-panel cable pocket.", "ts")
 
-    # BOM
     bx, by = 150, 26
     sh.text(bx, by, "BILL OF MATERIALS (per case)", "tb")
     bom = [
-        ["1", "Outer shell, faux leather (PU) 1.0-1.2 mm", "1", "48.4 x 43.2 net + allowance (sheet 1)"],
-        ["2", "Lining, faux leather 0.6-0.8 mm or cotton", "1", "48.4 x 43.2 net + allowance"],
-        ["3", "Greyboard 1.5 mm: base, lid, 4 walls", "6", "21x13, 21x12.7, 21x6.5, 21x6, 2 of 5.7x13"],
-        ["4", "Greyboard 1.5 mm: panels A, B, page", "3", "20.5 x 12.5"],
-        ["5", "Panel lining faux leather (wrap)", "3", "24.5 x 16.5 (2.0 wrap)"],
-        ["6", "Knit elastic 25 mm, slot bands", "4", "17.1 / 14.2 / 17.1 / 8.9 cm"],
-        ["7", "Knit elastic 25 mm, accessory loops", "2", "18.8 / 5.0 cm"],
-        ["8", "Keeper flap faux leather (2 ply)", "2", "20.5 x 9.0 + allowance"],
-        ["9", "Hinge strip faux leather", "1", "20.5 x 3.0 (folded to 1.5)"],
-        ["10", "Mesh, cable pocket front", "1", "8.5 x 11.3 + allowance"],
-        ["11", "Zip, #3 nylon coil", "1", "8 cm"],
-        ["12", "Spring snaps 12.5 mm (line 20), 4-part", "4 sets", "2 end flaps + 2 keeper flap"],
-        ["13", "Snap backing patches, leather 2 x 2 cm", "4", "behind lid studs / panel B studs"],
-        ["14", "Leather grip patch, veg-tan 1.8-2 mm", "1", "6.0 x 4.0, R 0.5"],
-        ["15", "Thread, bonded nylon / polyester Tex 70", "-", "stitch length 3 mm"],
-        ["16", "Interfacing (if soft case, no board)", "1", "48.4 x 43.2"],
+        ["1", "Outer shell, faux leather (PU) 1.0-1.2 mm, tan", "1", "48.4 x 43.2 net + allowance (sheet 1)"],
+        ["2", "Lining, faux leather 0.6 mm, tan", "1", "48.4 x 43.2 net + allowance"],
+        ["3", "Board 1.0 mm: back panel, front panel", "2", "21 x 13, 21 x 12.7"],
+        ["4", "Board 0.8 mm: pages", "4", "20.0 x 12.5"],
+        ["5", "Page faces, faux leather 1.0 mm", "8", "20.0 x 14.0 (incl. 1.5 hinge tab) + allowance"],
+        ["6", "Knit elastic 15 mm, tan", "4", "17.1 / 14.2 / 17.1 / 8.9 cm"],
+        ["7", "Strap, faux leather 1.2 mm, dark brown, 2 ply", "2", "3.0 x 36.0 (sheet 7)"],
+        ["8", "Buckle piece + keeper, dark brown", "1+1", "3.0 x 8.0;  3.4 x 0.7"],
+        ["9", "Buckle 30 mm, antique brass", "1", "roller or plain"],
+        ["10", "Spring snaps 12.5 mm (line 20), antique brass", "4 sets", "2 side flaps, 1 strap, 1 pocket"],
+        ["11", "Accessory pocket + flap, faux leather", "1+1", "7.0 x 9.5;  7.0 x 4.0"],
+        ["12", "Cable pocket, lining faux leather", "1", "20.0 x 10.0 + 15 mm elastic 20 cm"],
+        ["13", "Leather grip patch, veg-tan 1.8-2 mm", "1", "6.0 x 4.0, R 0.5"],
+        ["14", "Thread, bonded polyester Tex 70, contrast", "-", "stitch length 3 mm"],
+        ["15", "Logo emboss plate", "1", "2.5 x 2.5 (artwork by client)"],
     ]
     end2 = sh.table(bx, by + 3, ["#", "Item", "Qty", "Cut size (cm) / note"], bom, [8, 90, 14, 90], rh=4.0)
-
-    # construction notes
-    cx, cy = 150, end2 + 8
-    sh.lines(cx, cy, [
+    sh.lines(150, end2 + 8, [
         "**CONSTRUCTION SEQUENCE",
-        "1. Cut outer shell and lining from sheet 1 (net + allowance). Score fold lines on the board side.",
-        "2. Make the three interior panels first (sheets 3-6): wrap board in lining, stitch bands / loops / pockets",
-        "   through the lining BEFORE wrapping so no stitching shows on the back. Set panel B studs.",
-        "3. Set end-flap snap caps on the outer shell while flat. Studs on the lid outer face: mark from a dry fold.",
-        "4. Laminate board to the outer shell (base, lid, walls); turn / bind all edges; top-stitch at 0.3 cm.",
-        "5. Form the box: fold the walls, glue corner tabs or stitch the corners (box-stitch) outside-in.",
-        "6. Glue + edge-stitch panel A into the base, panel B into the lid; stitch the page hinge to the front wall.",
-        "7. Stitch the keeper flap to the tip edge of panel B. Check all 4 snaps engage cleanly.",
-        "8. Load the set in the order of the contents checklist and check the stack height closes without pressure.",
+        "1. Cut outer shell, lining and board (sheet 1). Emboss the logo on the top flap while flat.",
+        "2. Stitch the strap to the outer shell (back panel + top gusset + top flap); add buckle piece and keeper.",
+        "3. Make the four pages (sheets 3-6): stitch elastics and labels on the face plies, add the pocket to page 4,",
+        "   then laminate face + board + back ply and edge-stitch, leaving the hinge tab single-ply.",
+        "4. Stitch the cable pocket to the back-panel lining. Set the side-flap studs and front-panel sockets.",
+        "5. Stitch the page hinge tabs through the bottom gusset in order P1-P4 (sheet 7, detail C).",
+        "6. Laminate lining to shell with board in back and front panels; turn and edge-stitch 0.3 all round.",
+        "7. Dry-fold; set the strap stud on the front panel and the socket in the tongue; check all snaps.",
+        "8. Load the set per the contents checklist; check the closed case has no pressure on the 10 mm tips.",
         "",
         "**TOLERANCES",
-        "Cut pieces +/- 0.1 cm; slot stitch lines +/- 0.05 cm (the 0.6 slot must still take two 2 mm tips); snap centres +/- 0.15 cm.",
-        "Interior panels are 0.5 cm smaller than the box interior in both directions to allow for lining thickness.",
+        "Cut pieces +/- 0.1 cm; elastic stitch lines +/- 0.05 cm (the 0.6 slot must still take two 2 mm tips);",
+        "snap centres +/- 0.15 cm; page hinge seams +/- 0.1 cm.",
     ], "ts", 3.8)
 
-    # measurement record
     mx, my = 14, 172
-    sh.text(mx, my, "PROTOTYPE MEASUREMENT RECORD - what each photo contributed", "tb")
+    sh.text(mx, my, "MEASUREMENT RECORD - what each prototype / reference photo contributed", "tb")
     mend = sh.table(mx, my + 3, ["Photo", "Feature", "Value used on drawings"], [
-        ["1", "Outer shell cross pattern", "Rear flap 5.0, rear wall 6.5, base 21.0 x 13.0, front wall 6.0, lid 12.7; side wall 5.7, end flap 8.0, snaps"],
-        ["2", "Panel with 9 cm flap, large sizes (early draft)", "Keeper flap depth 9.0; 20.5 panel length. Row widths superseded by photo 4"],
-        ["3", "Panel 2.0-5.0 mm, 11 rows", "Slot widths 0.6-1.6 (= 6-16 mm), 0.5 lands, 1.0 end margins, 1.5 side margin"],
-        ["4", "Panel 5.5-10 mm, 6 rows + 2-snap flap", "Slot widths 1.7-2.2, 0.5 lands, 0.5 top / 1.0 bottom margin, two snap tabs"],
-        ["5", "Panel 2.0-5.0 mm, clean copy", "Confirms photo 3 widths and 0.5 'between typical'; used for the 5 cm tip panel C"],
-    ], [14, 70, 150], rh=4.2)
-    hx = 14
-    sh.text(hx, mend + 8, "HARDWARE SIZE ASSUMPTIONS (loops sized to these; measure the real parts - Q6)", "tb")
-    sh.table(hx, mend + 11, ["Item", "Qty", "Assumed size (cm)", "Loop / pocket on drawing"], [
-        ["Screw-on end cap", "6", "1.0 dia x 1.5", "1.6 wide loop, face 1"],
-        ["Cable key", "4", "1.2 x 3.5", "1.4 wide loop, face 1"],
-        ["Cable connector", "3", "1.0 dia x 3.0", "1.4 wide loop, face 2"],
-        ["Leather grip patch", "1", "6.0 x 4.0 x 0.2", "4.3 x 3.5 slip pocket, face 2 (patch folds in half)"],
-        ["Cables 25-100 cm", "5", "coil to 8.0 dia", "8.4 x 11.3 zip pocket, face 2"],
-    ], [40, 12, 48, 120], rh=4.2)
+        ["P1", "Cardboard cross pattern", "Top flap 5.0, top gusset 6.5, back 21.0 x 13.0, bottom gusset 6.0, front 12.7; side gusset 5.7, side flap 8.0, snaps"],
+        ["P2-P5", "Cardboard panels", "Slot widths 0.6-2.2 (= 6-22 mm), 0.5 lands, 1.0 end margins, 1.5 above the points"],
+        ["R1, R3", "Closed clutch, front/back", "Trifold clutch, wrap strap 3.0 with buckle, keeper and snap; logo on flap; R 1.0 corners; edge stitch"],
+        ["R2, R3", "Open case", "Pages sewn into the bottom gusset, not removable; side flaps tuck inside; cable pocket at the back"],
+        ["R4, R5", "Page interiors", "1.5 elastic across the middle of each page; size labels above tips; snap accessory pocket on the 5.5-8 page"],
+    ], [16, 54, 164], rh=4.2)
+    sh.text(14, mend + 8, "HARDWARE SIZE ASSUMPTIONS (confirm against the real set - Q6)", "tb")
+    sh.table(14, mend + 11, ["Item", "Qty", "Assumed size (cm)", "Where"], [
+        ["Screw-on end cap", "6", "1.0 dia x 1.5", "page 4 pocket"],
+        ["Cable key", "4", "1.2 x 3.5", "page 4 pocket"],
+        ["Cable connector", "3", "1.0 dia x 3.0", "page 4 pocket"],
+        ["Leather grip patch", "1", "6.0 x 4.0 x 0.2", "page 4 pocket"],
+        ["Cables 25-100 cm", "5", "coil to 8.0 dia", "back-panel cable pocket"],
+    ], [40, 12, 48, 60], rh=4.2)
     return sh
 
 
 # ==========================================================================
 def main():
-    sheets = [sheet1(), sheet2(), sheet3(), sheet4(), sheet5(), sheet6(), sheet7()]
+    sheets = [sheet1(), sheet2(), sheet3(), sheet4(), sheet5(), sheet6(), sheet7(), sheet8()]
     names = []
     for sh in sheets:
         fn = f"sheet{sh.n}.svg"
         with open(os.path.join(OUT, fn), "w") as f:
             f.write(sh.svg())
         names.append((fn, sh.title))
-    # print-ready HTML (A3 landscape pages)
     pages = []
     for fn, title in names:
         with open(os.path.join(OUT, fn)) as f:
