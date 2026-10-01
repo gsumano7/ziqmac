@@ -45,22 +45,22 @@
 <text x="332.000" y="260.200" class="tx" text-anchor="start">CLIENT</text>
 <text x="332.000" y="264.800" class="t" text-anchor="start">gsumano7 / ziqmac</text>
 <text x="212.000" y="270.200" class="tx" text-anchor="start">SHEET TITLE</text>
-<text x="212.000" y="274.800" class="tb" text-anchor="start">Details - adjustable strap, elastic threading, page hinge, pockets</text>
+<text x="212.000" y="274.800" class="tb" text-anchor="start">Details - strap, elastic threading, page hinge, pockets</text>
 <text x="332.000" y="270.200" class="tx" text-anchor="start">SCALE</text>
 <text x="332.000" y="274.800" class="t" text-anchor="start">1:2 / 2:1 as noted</text>
 <text x="372.000" y="270.200" class="tx" text-anchor="start">UNITS</text>
 <text x="372.000" y="274.800" class="t" text-anchor="start">cm (page A3)</text>
 <text x="212.000" y="280.200" class="tx" text-anchor="start">SOURCE</text>
-<text x="212.000" y="284.800" class="t" text-anchor="start">Cardboard prototype P1-P5 + client brief and reference photos R1-R6</text>
+<text x="212.000" y="284.800" class="t" text-anchor="start">Cardboard prototype P1-P5 + client brief, logo and reference photos R1-R6</text>
 <text x="332.000" y="280.200" class="tx" text-anchor="start">DATE / REV</text>
-<text x="332.000" y="284.800" class="t" text-anchor="start">2026-10-01   Rev C</text>
+<text x="332.000" y="284.800" class="t" text-anchor="start">2026-10-01   Rev D</text>
 <text x="372.000" y="280.200" class="tx" text-anchor="start">SHEET</text>
 <text x="372.000" y="284.800" class="tb" text-anchor="start">8 of 9</text>
-<text x="13.000" y="17.000" class="tt" text-anchor="start">SHEET 8  -  DETAILS - ADJUSTABLE STRAP, ELASTIC THREADING, PAGE HINGE, POCKETS</text>
+<text x="13.000" y="17.000" class="tt" text-anchor="start">SHEET 8  -  DETAILS - STRAP, ELASTIC THREADING, PAGE HINGE, POCKETS</text>
 <text x="22.000" y="29.000" class="tb" text-anchor="start">DETAIL B - STRAP, flat, 1:2 (dark brown leather 1.4 mm, 2 ply, edge-stitched 0.3)</text>
-<path d="M22.000,34.000 L202.000,34.000 L209.500,41.500 L202.000,49.000 L22.000,49.000 Z" class="strap"/>
-<line x1="23.500" y1="35.500" x2="202.000" y2="35.500" class="stitch" />
-<line x1="23.500" y1="47.500" x2="202.000" y2="47.500" class="stitch" />
+<path d="M22.000,34.000 L167.000,34.000 L174.500,41.500 L167.000,49.000 L22.000,49.000 Z" class="strap"/>
+<line x1="23.500" y1="35.500" x2="167.000" y2="35.500" class="stitch" />
+<line x1="23.500" y1="47.500" x2="167.000" y2="47.500" class="stitch" />
 <line x1="22.000" y1="33.000" x2="22.000" y2="50.000" class="fold" />
 <text x="24.500" y="53.000" class="tx" text-anchor="middle">anchor</text>
 <line x1="27.000" y1="33.000" x2="27.000" y2="50.000" class="fold" />
@@ -68,15 +68,19 @@
 <line x1="92.000" y1="33.000" x2="92.000" y2="50.000" class="fold" />
 <text x="108.250" y="53.000" class="tx" text-anchor="middle">top gusset</text>
 <line x1="124.500" y1="33.000" x2="124.500" y2="50.000" class="fold" />
-<text x="137.000" y="53.000" class="tx" text-anchor="middle">top flap</text>
+<text x="137.000" y="53.000" class="tx" text-anchor="middle">top flap (buckle + keeper here)</text>
 <line x1="149.500" y1="33.000" x2="149.500" y2="50.000" class="fold" />
-<text x="179.500" y="53.000" class="tx" text-anchor="middle">free end - through buckle</text>
-<circle cx="194.500" cy="41.500" r="1.250" class="cut"/>
-<circle cx="188.500" cy="41.500" r="1.250" class="cut"/>
-<circle cx="182.500" cy="41.500" r="1.250" class="cut"/>
-<circle cx="176.500" cy="41.500" r="1.250" class="cut"/>
-<circle cx="170.500" cy="41.500" r="1.250" class="cut"/>
-<text x="182.500" y="27.000" class="tx" text-anchor="middle">5 holes 0.5 dia at 1.2 pitch (adjustment)</text>
+<text x="162.000" y="53.000" class="tx" text-anchor="middle">tongue</text>
+<circle cx="164.500" cy="41.500" r="2.000" class="brass"/>
+<circle cx="164.500" cy="41.500" r="0.900" class="thin"/>
+<circle cx="157.000" cy="41.500" r="1.000" class="cut"/>
+<circle cx="151.000" cy="41.500" r="1.000" class="cut"/>
+<text x="164.500" y="27.000" class="tx" text-anchor="middle">snap socket, inner face</text>
+<text x="154.000" y="23.500" class="tx" text-anchor="middle">2 holes 0.4, decorative</text>
+<rect x="128.500" y="37.720" width="18.000" height="7.560" rx="0.6" class="brass"/>
+<rect x="129.500" y="38.720" width="16.000" height="5.560" rx="0" class="thin"/>
+<line x1="137.500" y1="37.720" x2="137.500" y2="46.780" class="cut" />
+<rect x="142.750" y="33.000" width="3.500" height="17.000" rx="0" class="strap"/>
 <line x1="22.000" y1="49.800" x2="22.000" y2="60.200" class="dim" />
 <line x1="27.000" y1="49.800" x2="27.000" y2="60.200" class="dim" />
 <line x1="17.000" y1="59.000" x2="22.000" y2="59.000" class="dim" marker-end="url(#ar)"/>
@@ -95,34 +99,33 @@
 <line x1="124.500" y1="59.000" x2="149.500" y2="59.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
 <text x="137.000" y="58.100" class="t" text-anchor="middle">5.0</text>
 <line x1="149.500" y1="49.800" x2="149.500" y2="60.200" class="dim" />
-<line x1="209.500" y1="49.800" x2="209.500" y2="60.200" class="dim" />
-<line x1="149.500" y1="59.000" x2="209.500" y2="59.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="179.500" y="58.100" class="t" text-anchor="middle">12.0</text>
+<line x1="174.500" y1="49.800" x2="174.500" y2="60.200" class="dim" />
+<line x1="149.500" y1="59.000" x2="174.500" y2="59.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="162.000" y="58.100" class="t" text-anchor="middle">5.0</text>
 <line x1="22.000" y1="49.800" x2="22.000" y2="68.200" class="dim" />
-<line x1="209.500" y1="49.800" x2="209.500" y2="68.200" class="dim" />
-<line x1="22.000" y1="67.000" x2="209.500" y2="67.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="115.750" y="66.100" class="t" text-anchor="middle">37.5 overall</text>
+<line x1="174.500" y1="49.800" x2="174.500" y2="68.200" class="dim" />
+<line x1="22.000" y1="67.000" x2="174.500" y2="67.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="98.250" y="66.100" class="t" text-anchor="middle">30.5 overall</text>
 <line x1="21.200" y1="34.000" x2="14.800" y2="34.000" class="dim" />
 <line x1="21.200" y1="49.000" x2="14.800" y2="49.000" class="dim" />
 <line x1="16.000" y1="34.000" x2="16.000" y2="49.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
 <text x="15.100" y="41.500" class="t" text-anchor="middle" transform="rotate(-90 15.100 41.500)">3.0</text>
-<line x1="194.500" y1="31.000" x2="209.500" y2="31.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="202.000" y="30.100" class="t" text-anchor="middle">3.0</text>
-<line x1="183.500" y1="31.000" x2="188.500" y2="31.000" class="dim" marker-end="url(#ar)"/>
-<line x1="194.500" y1="31.000" x2="199.500" y2="31.000" class="dim" marker-start="url(#ar)"/>
-<text x="191.500" y="30.100" class="t" text-anchor="middle">1.2</text>
-<text x="22.000" y="78.000" class="ts" text-anchor="start">BUCKLE PIECE - 3.0 x 7.0 folded round the 30 mm buckle bar and stitched to the front panel (bar 1.0 below the closed flap edge); keeper 3.4 x 0.7 stitched 1.3 below the buckle.</text>
-<rect x="22.000" y="81.000" width="35.000" height="15.000" rx="0" class="strap"/>
-<rect x="23.000" y="84.720" width="18.000" height="7.560" rx="0.6" class="brass"/>
-<rect x="24.000" y="85.720" width="16.000" height="5.560" rx="0" class="thin"/>
-<line x1="32.000" y1="84.720" x2="32.000" y2="93.780" class="cut" />
-<rect x="45.000" y="80.000" width="3.500" height="17.000" rx="0" class="strap"/>
+<line x1="149.500" y1="31.000" x2="164.500" y2="31.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="157.000" y="30.100" class="t" text-anchor="middle">3.0</text>
+<line x1="124.500" y1="31.000" x2="137.500" y2="31.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="131.000" y="30.100" class="t" text-anchor="middle">2.6</text>
+<text x="22.000" y="78.000" class="ts" text-anchor="start">BUCKLE PIECE - 3.0 x 8.0 loop round the 30 mm buckle bar, stitched ON the strap over the top flap (bar 2.6 below the flap top edge); keeper 3.4 x 0.7 stitched at 4.0. Both decorative.</text>
+<rect x="22.000" y="81.000" width="40.000" height="15.000" rx="0" class="strap"/>
+<rect x="26.000" y="84.720" width="18.000" height="7.560" rx="0.6" class="brass"/>
+<rect x="27.000" y="85.720" width="16.000" height="5.560" rx="0" class="thin"/>
+<line x1="35.000" y1="84.720" x2="35.000" y2="93.780" class="cut" />
+<rect x="40.250" y="80.000" width="3.500" height="17.000" rx="0" class="strap"/>
 <line x1="22.000" y1="96.800" x2="22.000" y2="103.200" class="dim" />
-<line x1="57.000" y1="96.800" x2="57.000" y2="103.200" class="dim" />
-<line x1="22.000" y1="102.000" x2="57.000" y2="102.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="39.500" y="101.100" class="t" text-anchor="middle">7.0</text>
-<text x="67.000" y="86.000" class="ts" text-anchor="start">Buckle: 30 mm (1 1/4 in) antique brass roller buckle; prong engages the strap holes - closure is adjustable.</text>
-<text x="67.000" y="92.500" class="ts" text-anchor="start">The strap tongue passes under the keeper; it does not need a snap.</text>
+<line x1="62.000" y1="96.800" x2="62.000" y2="103.200" class="dim" />
+<line x1="22.000" y1="102.000" x2="62.000" y2="102.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="42.000" y="101.100" class="t" text-anchor="middle">8.0</text>
+<text x="72.000" y="86.000" class="ts" text-anchor="start">Buckle: 30 mm (1 1/4 in) antique brass, fixed; the tongue passes under the keeper and closes with the 12.5 mm snap.</text>
+<text x="72.000" y="92.500" class="ts" text-anchor="start">Stud on the front panel outer face, centred, 8.0 below the top edge (sheet 2). Set after a dry fold.</text>
 <text x="190.000" y="117.000" class="tb" text-anchor="start">DETAIL C - PAGE HINGES, section through the bottom gusset, 2:1</text>
 <rect x="200.000" y="168.000" width="120.000" height="5.000" rx="0" class="hatch"/>
 <rect x="200.000" y="168.000" width="120.000" height="5.000" rx="0" class="thin"/>

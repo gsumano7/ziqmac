@@ -51,9 +51,9 @@
 <text x="372.000" y="270.200" class="tx" text-anchor="start">UNITS</text>
 <text x="372.000" y="274.800" class="t" text-anchor="start">cm (page A3)</text>
 <text x="212.000" y="280.200" class="tx" text-anchor="start">SOURCE</text>
-<text x="212.000" y="284.800" class="t" text-anchor="start">Cardboard prototype P1-P5 + client brief and reference photos R1-R6</text>
+<text x="212.000" y="284.800" class="t" text-anchor="start">Cardboard prototype P1-P5 + client brief, logo and reference photos R1-R6</text>
 <text x="332.000" y="280.200" class="tx" text-anchor="start">DATE / REV</text>
-<text x="332.000" y="284.800" class="t" text-anchor="start">2026-10-01   Rev C</text>
+<text x="332.000" y="284.800" class="t" text-anchor="start">2026-10-01   Rev D</text>
 <text x="372.000" y="280.200" class="tx" text-anchor="start">SHEET</text>
 <text x="372.000" y="284.800" class="tb" text-anchor="start">9 of 9</text>
 <text x="13.000" y="17.000" class="tt" text-anchor="start">SHEET 9  -  CONTENTS CHECKLIST, BILL OF MATERIALS, CONSTRUCTION &amp; CUTTING LIST</text>
@@ -291,22 +291,22 @@
 <text x="151.200" y="59.880" class="ts" text-anchor="start">7</text>
 <text x="159.200" y="59.880" class="ts" text-anchor="start">Strap, leather 1.4 mm, dark brown, 2 ply</text>
 <text x="259.200" y="59.880" class="ts" text-anchor="start">2</text>
-<text x="273.200" y="59.880" class="ts" text-anchor="start">3.0 x 37.5 (sheet 8)</text>
+<text x="273.200" y="59.880" class="ts" text-anchor="start">3.0 x 30.5 (sheet 8)</text>
 <line x1="150.000" y1="61.000" x2="358.000" y2="61.000" class="dim" />
 <text x="151.200" y="63.880" class="ts" text-anchor="start">8</text>
 <text x="159.200" y="63.880" class="ts" text-anchor="start">Buckle piece + keeper, dark brown</text>
 <text x="259.200" y="63.880" class="ts" text-anchor="start">1+1</text>
-<text x="273.200" y="63.880" class="ts" text-anchor="start">3.0 x 7.0;  3.4 x 0.7</text>
+<text x="273.200" y="63.880" class="ts" text-anchor="start">3.0 x 8.0;  3.4 x 0.7</text>
 <line x1="150.000" y1="65.000" x2="358.000" y2="65.000" class="dim" />
 <text x="151.200" y="67.880" class="ts" text-anchor="start">9</text>
-<text x="159.200" y="67.880" class="ts" text-anchor="start">Roller buckle 30 mm, antique brass</text>
+<text x="159.200" y="67.880" class="ts" text-anchor="start">Buckle 30 mm, antique brass</text>
 <text x="259.200" y="67.880" class="ts" text-anchor="start">1</text>
-<text x="273.200" y="67.880" class="ts" text-anchor="start">adjustable closure</text>
+<text x="273.200" y="67.880" class="ts" text-anchor="start">decorative, fixed on the strap</text>
 <line x1="150.000" y1="69.000" x2="358.000" y2="69.000" class="dim" />
 <text x="151.200" y="71.880" class="ts" text-anchor="start">10</text>
 <text x="159.200" y="71.880" class="ts" text-anchor="start">Spring snaps 12.5 mm (line 20), antique brass</text>
-<text x="259.200" y="71.880" class="ts" text-anchor="start">3 sets</text>
-<text x="273.200" y="71.880" class="ts" text-anchor="start">2 side flaps, 1 cable pocket</text>
+<text x="259.200" y="71.880" class="ts" text-anchor="start">4 sets</text>
+<text x="273.200" y="71.880" class="ts" text-anchor="start">2 side flaps, 1 strap tongue, 1 cable pocket</text>
 <line x1="150.000" y1="73.000" x2="358.000" y2="73.000" class="dim" />
 <text x="151.200" y="75.880" class="ts" text-anchor="start">11</text>
 <text x="159.200" y="75.880" class="ts" text-anchor="start">Spring snaps 10 mm, antique brass</text>
@@ -334,19 +334,19 @@
 <text x="273.200" y="91.880" class="ts" text-anchor="start">stitch length 3 mm</text>
 <line x1="150.000" y1="93.000" x2="358.000" y2="93.000" class="dim" />
 <text x="151.200" y="95.880" class="ts" text-anchor="start">16</text>
-<text x="159.200" y="95.880" class="ts" text-anchor="start">Logo emboss plate</text>
+<text x="159.200" y="95.880" class="ts" text-anchor="start">Logo emboss die</text>
 <text x="259.200" y="95.880" class="ts" text-anchor="start">1</text>
-<text x="273.200" y="95.880" class="ts" text-anchor="start">2.5 x 2.5 (artwork by client)</text>
+<text x="273.200" y="95.880" class="ts" text-anchor="start">2.5 x 2.5 (client artwork, sheet 1)</text>
 <text x="150.000" y="105.000" class="tb" text-anchor="start">CONSTRUCTION SEQUENCE</text>
 <text x="150.000" y="108.800" class="ts" text-anchor="start">1. Cut shell, lining, board, pages and pockets (sheets 2, 4-8). Die-cut the elastic slits in the three page face plies and in the</text>
 <text x="150.000" y="112.600" class="ts" text-anchor="start">   back-wall lining (sheets 4-7 at 1:1). Emboss the logo on the top flap while flat.</text>
 <text x="150.000" y="116.400" class="ts" text-anchor="start">2. Make the pockets on the face plies (panel 2: A, B; back-wall lining: cable pocket). Set the pocket snaps.</text>
 <text x="150.000" y="120.200" class="ts" text-anchor="start">3. Thread the elastics in and out of the slits, loop by loop; bar-tack each slit, stitch the ends down. Print / stamp the size labels.</text>
 <text x="150.000" y="124.000" class="ts" text-anchor="start">4. Laminate each page: face ply + 0.8 board + back ply; edge-stitch 0.3, leaving the 1.5 hinge tab single-ply.</text>
-<text x="150.000" y="127.800" class="ts" text-anchor="start">5. Stitch the strap to the outer shell (back wall + top gusset + top flap). Stitch the buckle piece and keeper to the front panel.</text>
+<text x="150.000" y="127.800" class="ts" text-anchor="start">5. Stitch the strap to the outer shell (back wall + top gusset + top flap) with the buckle piece and keeper on the flap section.</text>
 <text x="150.000" y="131.600" class="ts" text-anchor="start">6. Set the side-flap studs and the front-panel sockets. Laminate lining to shell with board in the back wall and front panel.</text>
 <text x="150.000" y="135.400" class="ts" text-anchor="start">7. Stitch the page hinge tabs through the bottom gusset in order P3, P2, P1 (sheet 8, detail C). Turn / bind all edges; edge-stitch 0.3.</text>
-<text x="150.000" y="139.200" class="ts" text-anchor="start">8. Dry-fold, check the side-flap snaps and the strap length through the buckle. Load the set; the closed case must not press on the 10 mm tips.</text>
+<text x="150.000" y="139.200" class="ts" text-anchor="start">8. Dry-fold; set the strap stud on the front panel and the socket in the tongue; check all snaps. Load the set; the closed case must not press on the 10 mm tips.</text>
 <text x="150.000" y="143.000" class="ts" text-anchor="start"></text>
 <text x="150.000" y="146.800" class="tb" text-anchor="start">TOLERANCES</text>
 <text x="150.000" y="150.600" class="ts" text-anchor="start">Cut pieces +/- 0.1 cm; slit positions +/- 0.05 cm (the 0.6 loop must still take two 2 mm tips); snap centres +/- 0.15 cm; hinge seams +/- 0.1 cm.</text>
@@ -380,7 +380,7 @@
 <line x1="14.000" y1="200.200" x2="248.000" y2="200.200" class="dim" />
 <text x="15.200" y="203.224" class="ts" text-anchor="start">Brief</text>
 <text x="31.200" y="203.224" class="ts" text-anchor="start">Client text 2026-10-01</text>
-<text x="85.200" y="203.224" class="ts" text-anchor="start">Front &gt; P1 &gt; P2 &gt; P3 &gt; back wall; back wall = panel 4 with cable pocket; 2 small pockets on panel 2; adjustable strap</text>
+<text x="85.200" y="203.224" class="ts" text-anchor="start">Front &gt; P1 &gt; P2 &gt; P3 &gt; back wall; back wall = panel 4 with cable pocket; 2 small pockets on panel 2; snaps hold the front panel to the side flaps; strap visual, snap-closed; logo</text>
 <text x="14.000" y="212.400" class="tb" text-anchor="start">HARDWARE SIZE ASSUMPTIONS (confirm against the real set - Q5)</text>
 <rect x="14.000" y="215.400" width="160.000" height="25.200" rx="0" class="thin"/>
 <line x1="14.000" y1="219.600" x2="174.000" y2="219.600" class="thin" />

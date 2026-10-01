@@ -2,10 +2,10 @@
 """
 Technical drawing set for the interchangeable knitting-needle case.
 
-Rev C: trifold clutch per the client's brief and reference photos: three
+Rev D: trifold clutch per the client's brief and reference photos: three
 pages sewn into the bottom gusset plus the back wall as the fourth storage
-panel, 15 mm elastic threaded in and out of each panel, snap pockets, and
-an adjustable buckle strap.  Every dimension comes
+panel, 15 mm elastic threaded in and out of each panel, snap pockets, a
+wrap-around strap with decorative buckle and snap closure, client logo.  Every dimension comes
 from the cardboard prototype (photos 1-5) unless a note on the sheet says
 it is a proposal.  Units on the sheets are cm; page geometry is A3
 landscape in mm.
@@ -24,7 +24,7 @@ W, H = 420.0, 297.0          # A3 landscape, mm
 M = 10.0                     # drawing border margin, mm
 FONT = "Liberation Sans, Arial, Helvetica, sans-serif"
 DATE = "2026-10-01"
-REV = "C"
+REV = "D"
 PROJECT = "INTERCHANGEABLE KNITTING NEEDLE CASE"
 CLIENT = "gsumano7 / ziqmac"
 TOTAL_SHEETS = 9
@@ -63,7 +63,11 @@ STRAP_W = 3.0                # wrap-around strap (reference photos)
 R = 1.0                      # corner radius on flaps and pages
 SEAMS = (1.5, 3.0, 4.5)      # three page hinge seams, evenly spaced across the 6.0 gusset (from the back-wall fold)
 SLIT = 1.6                   # slit length for the 15 mm elastic
-BUCKLE_BELOW_FLAP = 1.0      # buckle bar below the closed top-flap edge
+BUCKLE_ON_FLAP = 2.6         # decorative buckle bar, below the top-flap top edge
+KEEPER_ON_FLAP = 4.0         # keeper centre, below the top-flap top edge
+TONGUE_FREE = 5.0            # strap tongue beyond the top-flap edge
+SNAP_FROM_FLAP_EDGE = 3.0    # tongue snap socket, beyond the top-flap edge
+STRAP_STUD_FROM_TOP = 8.0    # strap stud on the front panel, below the case top when closed
 
 
 def slot_layout(sizes, total_len, land=LAND, margin=None):
@@ -266,7 +270,7 @@ class Sheet:
         self.text(x0 + 162, y0 + 13.2, "UNITS", "tx")
         self.text(x0 + 162, y0 + 17.8, "cm (page A3)", "t")
         self.text(x0 + 2, y0 + 23.2, "SOURCE", "tx")
-        self.text(x0 + 2, y0 + 27.8, "Cardboard prototype P1-P5 + client brief and reference photos R1-R6", "t")
+        self.text(x0 + 2, y0 + 27.8, "Cardboard prototype P1-P5 + client brief, logo and reference photos R1-R6", "t")
         self.text(x0 + 122, y0 + 23.2, "DATE / REV", "tx")
         self.text(x0 + 122, y0 + 27.8, f"{DATE}   Rev {REV}", "t")
         self.text(x0 + 162, y0 + 23.2, "SHEET", "tx")
@@ -489,8 +493,15 @@ def panel_notes():
 # ==========================================================================
 def img_data(fn):
     import base64
+    mime = "image/png" if fn.lower().endswith(".png") else "image/jpeg"
     with open(os.path.join(HERE, "reference", fn), "rb") as f:
-        return "data:image/jpeg;base64," + base64.b64encode(f.read()).decode()
+        return f"data:{mime};base64," + base64.b64encode(f.read()).decode()
+
+
+def logo(sh, cx, cy, size):
+    """Client logo centred at page (cx, cy), 'size' mm square."""
+    sh.add(f'<image x="{cx - size / 2:.2f}" y="{cy - size / 2:.2f}" width="{size:.2f}" height="{size:.2f}" '
+           f'href="{img_data("logo.png")}" preserveAspectRatio="xMidYMid meet"/>')
 
 
 def sheet1():
@@ -501,9 +512,11 @@ def sheet1():
         "**DESIGN BRIEF (client, 2026-10-01)",
         "Premium interchangeable knitting-needle case in genuine or faux leather:",
         "structured construction, finished edge stitching, folding side flaps, top flap,",
-        "adjustable leather closure strap with metal hardware. Minimal and premium",
-        "in appearance - not a fabric organiser. The case opens fully for access to",
-        "every storage panel.",
+        "and a leather strap with metal hardware that wraps the whole case. Minimal",
+        "and premium in appearance - not a fabric organiser. The case opens fully.",
+        "- Snaps hold the front panel to the two folded side flaps.",
+        "- The strap closes everything: buckle and keeper are visual, the strap tongue",
+        "  snaps to a stud on the front panel. Client logo embossed on the top flap.",
         "",
         "**STORAGE SURFACES - front to back",
         "Front panel  >  Panel 1  >  Panel 2  >  Panel 3  >  Back wall (Panel 4)",
@@ -529,8 +542,12 @@ def sheet1():
         "**MATERIALS",
         "Outer: full-grain leather 1.2-1.4 mm, tan (or PU faux leather 1.0-1.2 mm).",
         "Strap: 1.4 mm, dark brown. Lining and pages: 0.6-1.0 mm matching leather.",
-        "Hardware: antique brass - 30 mm buckle, 12.5 mm and 10 mm spring snaps.",
+        "Hardware: antique brass - 30 mm buckle (decorative), 12.5 mm and 10 mm snaps.",
         "Elastic: 15 mm knit, colour-matched. Thread: bonded polyester, contrast.",
+        "",
+        "**LOGO (client artwork, right)  blind / heat emboss 2.5 x 2.5 on the top flap,",
+        "centred 3.0 from the right edge and 2.5 from the flap top edge (sheet 2).",
+        "Vector artwork to be supplied for the emboss die; raster shown for placement.",
         "",
         "**SHEET INDEX",
         "1  Cover (this sheet)",
@@ -540,9 +557,11 @@ def sheet1():
         "5  Panel 2 (page): 10 cm tips 5.5-10 mm + two accessory pockets",
         "6  Panel 3 (page): 5 cm tips 2.0-5.0 mm",
         "7  Panel 4 (back wall): 5 cm tips 5.5-8 mm + cable pocket",
-        "8  Details: adjustable strap, elastic threading, page hinge, pockets",
+        "8  Details: strap, elastic threading, page hinge, pockets",
         "9  Contents checklist, bill of materials, construction",
     ], "ts", 3.75)
+    logo(sh, 178, 160, 26)
+    sh.rect(163, 145, 30, 30, "thin")
     # reference photos, 2 x 3 grid
     gx, gy = 218, 22
     sh.text(gx, gy, "REFERENCE PHOTOS (client-supplied; construction and appearance target)", "tb")
@@ -610,24 +629,27 @@ def sheet2():
         sh.line(X(xx), Y(yb), X(xx), Y(yc), "fold")
 
     cx = xb + BASE_W / 2
-    # strap stitched on back panel + top gusset + top flap; free end continues beyond flap edge
+    # strap stitched on back wall + top gusset + top flap; tongue continues beyond the flap edge
     sh.rect(X(cx - STRAP_W / 2), Y(0), L(STRAP_W), L(yc), "strap")
     sh.rect(X(cx - STRAP_W / 2 + 0.3), Y(0.3), L(STRAP_W - 0.6), L(yc - 0.6), "stitch")
     sh.text(X(cx) + 10, Y(yb + 10.5), "STRAP 3.0 wide, dark brown, stitched 0.3 from edges", "ts", "middle", rot=-90)
-    sh.text(X(cx), Y(0) - 1.5, "free end continues 12.0 beyond this edge with 5 adjustment holes - sheet 8", "tx", "middle")
-    # buckle piece on the FRONT panel outer face: bar 1.0 below the flap edge when closed
-    bk_y = PATTERN_H - REAR_FLAP - BUCKLE_BELOW_FLAP      # measured from pattern top; front panel free edge at PATTERN_H
-    sh.rect(X(cx - STRAP_W / 2), Y(bk_y - 0.6), L(STRAP_W), L(4.0), "strap")       # buckle loop piece
-    buckle(sh, X(cx), Y(bk_y), L(STRAP_W + 0.6))
-    sh.rect(X(cx - STRAP_W / 2 - 0.2), Y(bk_y + 1.9), L(STRAP_W + 0.4), L(0.7), "strap")   # keeper
-    sh.text(X(cx), Y(bk_y + 4.3), "BUCKLE 30 mm + keeper on buckle piece, stitched to front panel", "tx", "middle")
+    # decorative buckle + keeper on the strap over the top flap
+    sh.rect(X(cx - STRAP_W / 2), Y(BUCKLE_ON_FLAP - 1.5), L(STRAP_W), L(4.5), "strap")
+    buckle(sh, X(cx), Y(BUCKLE_ON_FLAP), L(STRAP_W + 0.6))
+    sh.rect(X(cx - STRAP_W / 2 - 0.2), Y(KEEPER_ON_FLAP - 0.35), L(STRAP_W + 0.4), L(0.7), "strap")
+    sh.text(X(cx) - 11, Y(BUCKLE_ON_FLAP) + 1, "buckle 30 mm (decorative)", "tx", "end")
+    sh.text(X(cx) - 11, Y(KEEPER_ON_FLAP) + 1, "keeper", "tx", "end")
+    sh.text(X(cx), Y(0) - 1.5, "tongue continues 5.0 beyond this edge; snap socket 3.0 from the edge - sheet 8", "tx", "middle")
+    # logo on the top flap
+    logo(sh, X(xc - 3.0), Y(2.5), L(2.5))
+    sh.rect(X(xc - 3.0 - 1.25), Y(2.5 - 1.25), L(2.5), L(2.5), "thin")
+    sh.text(X(xc - 3.0), Y(2.5) + 10, "LOGO emboss 2.5 sq", "tx", "middle")
+    # strap stud on the front panel outer face
+    st_y = PATTERN_H - STRAP_STUD_FROM_TOP
+    sh.snap_cap(X(cx), Y(st_y), 3.0)
+    sh.text(X(cx), Y(st_y) + 7.5, "STRAP STUD (outer face) - tongue snaps here", "tx", "middle")
     sh.line(X(xb), Y(PATTERN_H - REAR_FLAP), X(xc), Y(PATTERN_H - REAR_FLAP), "hid")
     sh.text(X(xc) - 2, Y(PATTERN_H - REAR_FLAP) - 1.2, "top-flap edge when closed", "tx", "end")
-    # logo on top flap
-    lx, ly = xc - 3.0, 2.5
-    sh.rect(X(lx - 1.25), Y(ly - 1.25), L(2.5), L(2.5), "thin")
-    sh.text(X(lx), Y(ly) + 1, "LOGO", "tx", "middle")
-    sh.text(X(lx), Y(ly) + 3.3, "emboss 2.5 sq", "tx", "middle")
 
     def lab(x, y, a, b=None):
         sh.text(X(x), Y(y), a, "tb", "middle")
@@ -667,7 +689,8 @@ def sheet2():
     sh.dim_h(X(xb), X(xb + SNAP_FROM_FOLD), Y(sock_y), Y(PATTERN_H) + 5, "5.0")
     sh.dim_h(X(xc - SNAP_FROM_FOLD), X(xc), Y(sock_y), Y(PATTERN_H) + 5, "5.0")
     sh.dim_v(Y(yd), Y(sock_y), X(xb), X(xb) - 5, "6.5")
-    sh.dim_v(Y(bk_y), Y(PATTERN_H), X(cx), X(xc) + 8, fmt(PATTERN_H - bk_y) + " buckle bar")
+    sh.dim_v(Y(st_y), Y(PATTERN_H), X(cx), X(xc) + 8, fmt(STRAP_STUD_FROM_TOP) + " stud")
+    sh.dim_v(Y(0), Y(BUCKLE_ON_FLAP), X(cx + STRAP_W / 2), X(xc) + 8, fmt(BUCKLE_ON_FLAP))
     sh.dim_h(X(cx - STRAP_W / 2), X(cx + STRAP_W / 2), Y(yb + 1), Y(yb) - 4, "3.0", ext=False)
     gx, gy = X(xb) - 14, Y(yd + 2)
     sh.line(gx, gy + 30, gx, gy, "thin", 'marker-end="url(#ar)"')
@@ -694,16 +717,18 @@ def sheet2():
         "   line; left side measured equal to the right (5.7 / 8.0).",
         "3. Construction: trifold clutch (reference photos). Side",
         "   flaps fold in and tuck inside, front panel folds up over",
-        "   them, top flap folds down, strap buckles to the front.",
+        "   them and snaps to the side flaps, top flap folds down,",
+        "   strap tongue snaps to the front panel.",
         "   Pages 1-3 are sewn into the bottom gusset; the back",
         "   wall lining is storage panel 4 (sheet 7).",
         "4. Gusset depths as measured: 5.7 (sides), 6.0 (bottom),",
         "   6.5 (top). Keep as measured (Q1, sheet 3).",
-        "5. Strap: adjustable. Fixed end stitched to the back wall,",
-        "   top gusset and top flap; free end with 5 holes buckles",
-        "   into a 30 mm buckle on the front panel, bar 1.0 below",
-        "   the closed flap edge. Snaps: 12.5 mm on the side flaps",
-        "   (studs outer face, sockets front-panel inner face).",
+        "5. Strap: stitched to the back wall, top gusset and top",
+        "   flap; 30 mm buckle and keeper on the flap are visual",
+        "   only. The tongue (5.0 beyond the flap) snaps to a stud",
+        "   on the front panel 8.0 below the top. Side-flap snaps:",
+        "   12.5 mm, studs outer face, sockets front-panel inner",
+        "   face - they hold the front panel to the side flaps.",
         "6. Outer: full-grain leather 1.2-1.4 mm (or PU 1.0-1.2),",
         "   tan; strap dark brown. Board 1.0 mm in back wall and",
         "   front panel; lining 0.6 mm, same tan (reference).",
@@ -728,23 +753,21 @@ def sheet3():
     sh.line(X(0), Y(REAR_FLAP), X(BASE_W), Y(REAR_FLAP), "cut")
     sh.add(f'<path d="{rounded_rect_path(X, Y, L, 0.3, 0.3, BASE_W - 0.6, BASE_H - 0.6, R - 0.3)}" class="stitch"/>')
     cx = BASE_W / 2
-    bk = REAR_FLAP + BUCKLE_BELOW_FLAP
-    sh.rect(X(cx - STRAP_W / 2), Y(bk - 0.6), L(STRAP_W), L(4.0), "strap")       # buckle piece
-    sh.rect(X(cx - STRAP_W / 2), Y(0), L(STRAP_W), L(bk + 2.6), "strap")          # strap through buckle, under keeper
-    sh.poly([(X(cx - STRAP_W / 2), Y(bk + 2.6)), (X(cx + STRAP_W / 2), Y(bk + 2.6)), (X(cx), Y(bk + 3.8))], "strap")
-    buckle(sh, X(cx), Y(bk), L(STRAP_W + 0.6))
-    sh.rect(X(cx - STRAP_W / 2 - 0.2), Y(bk + 1.9), L(STRAP_W + 0.4), L(0.7), "strap")
-    for i in range(2):
-        sh.circle(X(cx), Y(1.8 + i * 1.2), 0.6, "cut")
-    sh.rect(X(BASE_W - 4.25), Y(1.25), L(2.5), L(2.5), "thin")
-    sh.text(X(BASE_W - 3.0), Y(2.5) + 1, "logo", "tx", "middle")
+    sh.rect(X(cx - STRAP_W / 2), Y(0), L(STRAP_W), L(STRAP_STUD_FROM_TOP + 0.5), "strap")
+    sh.poly([(X(cx - STRAP_W / 2), Y(STRAP_STUD_FROM_TOP + 0.5)), (X(cx + STRAP_W / 2), Y(STRAP_STUD_FROM_TOP + 0.5)), (X(cx), Y(STRAP_STUD_FROM_TOP + 2.0))], "strap")
+    sh.rect(X(cx - STRAP_W / 2), Y(BUCKLE_ON_FLAP - 1.5), L(STRAP_W), L(4.5), "strap")
+    buckle(sh, X(cx), Y(BUCKLE_ON_FLAP), L(STRAP_W + 0.6))
+    sh.rect(X(cx - STRAP_W / 2 - 0.2), Y(KEEPER_ON_FLAP - 0.35), L(STRAP_W + 0.4), L(0.7), "strap")
+    sh.circle(X(cx), Y(STRAP_STUD_FROM_TOP), 2.2, "brass")
+    sh.text(X(cx) + 4, Y(STRAP_STUD_FROM_TOP) + 1, "snap", "tx")
+    sh.text(X(cx) - 11, Y(BUCKLE_ON_FLAP) + 1, "buckle + keeper (visual)", "tx", "end")
+    logo(sh, X(BASE_W - 3.0), Y(2.5), L(2.5))
     sh.text(X(1.5), Y(2.8), "top flap 5.0", "tx")
     sh.text(X(1.5), Y(9.0), "front panel", "tx")
-    sh.text(X(cx) + 11, Y(bk) + 1, "buckle + keeper", "tx")
     sh.dim_h(X(0), X(BASE_W), Y(0), Y(0) - 6, "21.0")
     sh.dim_v(Y(0), Y(BASE_H), X(BASE_W), X(BASE_W) + 7, "13.0")
     sh.dim_v(Y(0), Y(REAR_FLAP), X(0), X(0) - 7, "5.0")
-    sh.dim_v(Y(0), Y(bk), X(0), X(0) - 14, f"{fmt(bk)} to buckle bar")
+    sh.dim_v(Y(0), Y(STRAP_STUD_FROM_TOP), X(0), X(0) - 14, f"{fmt(STRAP_STUD_FROM_TOP)} to snap")
 
     v2 = View(155, 40, s)
     sh.text(v2.X(0), v2.Y(0) - 14, "BACK VIEW - closed (1:2)", "tb")
@@ -771,10 +794,12 @@ def sheet3():
     sh.rect(X4(FRONT_WALL - t), Y4(BASE_H - LID_H), L4(t), L4(LID_H), "leather")
     sh.rect(X4(-t), Y4(-t), L4(REAR_WALL + t), L4(t), "leather")
     sh.rect(X4(REAR_WALL - t), Y4(-t), L4(t), L4(REAR_FLAP + t), "leather")
-    sh.rect(X4(REAR_WALL), Y4(-t), L4(0.15), L4(REAR_FLAP + 4.5), "strap")
+    sh.rect(X4(REAR_WALL), Y4(-t), L4(0.15), L4(REAR_FLAP + 5.0), "strap")
     sh.rect(X4(-t - 0.15), Y4(0), L4(0.15), L4(BASE_H), "strap")
-    sh.rect(X4(REAR_WALL - 0.1), Y4(REAR_FLAP + 0.6), L4(0.45), L4(1.2), "brass")
-    sh.text(X4(REAR_WALL) + 6, Y4(REAR_FLAP + 1.4), "buckle", "tx")
+    sh.rect(X4(REAR_WALL - 0.1), Y4(BUCKLE_ON_FLAP - 0.6), L4(0.45), L4(1.2), "brass")
+    sh.text(X4(REAR_WALL) + 6, Y4(BUCKLE_ON_FLAP + 0.2), "buckle (visual)", "tx")
+    sh.circle(X4(REAR_WALL + 0.1), Y4(STRAP_STUD_FROM_TOP), 1.2, "brass")
+    sh.text(X4(REAR_WALL) + 6, Y4(STRAP_STUD_FROM_TOP) + 1, "strap snap", "tx")
     sh.text(X4(REAR_WALL) + 4, Y4(2.5), "top flap", "tx")
     sh.text(X4(FRONT_WALL) + 4, Y4(11.5), "front panel", "tx")
     sh.text(X4(-t) - 5, Y4(6.5), "back wall = panel 4", "tx", "middle", rot=-90)
@@ -837,14 +862,15 @@ def sheet3():
     fx, fy = 312, 22
     sh.lines(fx, fy, [
         "**OPENING / CLOSING",
-        "Open: unbuckle, lift the top flap, fold the",
-        "front panel down (side-flap snaps release),",
-        "fold the side flaps out. The case lies flat",
-        "and the three pages flip like a book; the",
-        "back wall is the fourth storage surface.",
+        "Open: unsnap the strap tongue, lift the top",
+        "flap, fold the front panel down (its snaps",
+        "release from the side flaps), fold the side",
+        "flaps out. The case lies flat and the three",
+        "pages flip like a book; the back wall is the",
+        "fourth storage surface.",
         "Close: side flaps in over the pages, front",
-        "panel up (snaps), top flap over, strap",
-        "through the buckle and keeper.",
+        "panel up and snap to the side flaps, top",
+        "flap over, strap tongue snaps to the front.",
         "",
         "**STACK-HEIGHT CHECK (depth 6.0)",
         "P4 back wall: 8 mm tips / cable pocket  1.3",
@@ -1039,12 +1065,12 @@ def elastic_detail(sh, x, y, label="DETAIL A - elastic threaded through the face
 
 
 def sheet8():
-    sh = Sheet(8, "Details - adjustable strap, elastic threading, page hinge, pockets", "1:2 / 2:1 as noted")
+    sh = Sheet(8, "Details - strap, elastic threading, page hinge, pockets", "1:2 / 2:1 as noted")
     sh.frame()
     # ---- STRAP 1:2 ----
     v = View(22, 34, 5.0)
     X, Y, L = v.X, v.Y, v.L
-    free = 12.0
+    free = TONGUE_FREE
     total = 1.0 + BASE_H + REAR_WALL + REAR_FLAP + free
     sh.text(X(0), Y(0) - 5, "DETAIL B - STRAP, flat, 1:2 (dark brown leather 1.4 mm, 2 ply, edge-stitched 0.3)", "tb")
     tip_len = 1.5
@@ -1052,30 +1078,35 @@ def sheet8():
     sh.poly([(X(0), Y(0)), (X(body), Y(0)), (X(total), Y(STRAP_W / 2)), (X(body), Y(STRAP_W)), (X(0), Y(STRAP_W))], "strap")
     sh.line(X(0.3), Y(0.3), X(body), Y(0.3), "stitch")
     sh.line(X(0.3), Y(STRAP_W - 0.3), X(body), Y(STRAP_W - 0.3), "stitch")
-    z = [(0, 1.0, "anchor"), (1.0, 14.0, "back wall (stitched)"), (14.0, 20.5, "top gusset"), (20.5, 25.5, "top flap"), (25.5, total, "free end - through buckle")]
-    for a, b, t in z:
+    z = [(0, 1.0, "anchor"), (1.0, 14.0, "back wall (stitched)"), (14.0, 20.5, "top gusset"), (20.5, 25.5, "top flap (buckle + keeper here)"), (25.5, total, "tongue")]
+    for a, bb, t in z:
         sh.line(X(a), Y(0) - 1, X(a), Y(STRAP_W) + 1, "fold")
-        sh.text(X((a + b) / 2), Y(STRAP_W) + 4, t, "tx", "middle")
-    holes = [total - 3.0 - i * 1.2 for i in range(5)]
-    for hx in holes:
-        sh.circle(X(hx), Y(STRAP_W / 2), L(0.25), "cut")
-    sh.text(X(holes[2]), Y(0) - 7, "5 holes 0.5 dia at 1.2 pitch (adjustment)", "tx", "middle")
+        sh.text(X((a + bb) / 2), Y(STRAP_W) + 4, t, "tx", "middle")
+    sock = 25.5 + SNAP_FROM_FLAP_EDGE
+    sh.circle(X(sock), Y(STRAP_W / 2), 2.0, "brass")
+    sh.circle(X(sock), Y(STRAP_W / 2), 0.9, "thin")
+    for hx in (sock - 1.5, sock - 2.7):
+        sh.circle(X(hx), Y(STRAP_W / 2), L(0.2), "cut")
+    sh.text(X(sock), Y(0) - 7, "snap socket, inner face", "tx", "middle")
+    sh.text(X(sock - 2.1), Y(0) - 10.5, "2 holes 0.4, decorative", "tx", "middle")
+    buckle(sh, X(20.5 + BUCKLE_ON_FLAP), Y(STRAP_W / 2), L(STRAP_W + 0.6))
+    sh.rect(X(20.5 + KEEPER_ON_FLAP - 0.35), Y(-0.2), L(0.7), L(STRAP_W + 0.4), "strap")
     yd = Y(STRAP_W) + 10
-    for a, b, t in [(0, 1.0, "1.0"), (1.0, 14.0, "13.0"), (14.0, 20.5, "6.5"), (20.5, 25.5, "5.0"), (25.5, total, fmt(free))]:
-        sh.dim_h(X(a), X(b), Y(STRAP_W), yd, t)
+    for a, bb, t in [(0, 1.0, "1.0"), (1.0, 14.0, "13.0"), (14.0, 20.5, "6.5"), (20.5, 25.5, "5.0"), (25.5, total, fmt(free))]:
+        sh.dim_h(X(a), X(bb), Y(STRAP_W), yd, t)
     sh.dim_h(X(0), X(total), Y(STRAP_W), yd + 8, f"{fmt(total)} overall")
     sh.dim_v(Y(0), Y(STRAP_W), X(0), X(0) - 6, "3.0")
-    sh.dim_h(X(holes[0]), X(total), Y(0), Y(0) - 3, "3.0", ext=False)
-    sh.dim_h(X(holes[1]), X(holes[0]), Y(0), Y(0) - 3, "1.2", ext=False)
+    sh.dim_h(X(25.5), X(sock), Y(0), Y(0) - 3, fmt(SNAP_FROM_FLAP_EDGE), ext=False)
+    sh.dim_h(X(20.5), X(20.5 + BUCKLE_ON_FLAP), Y(0), Y(0) - 3, fmt(BUCKLE_ON_FLAP), ext=False)
     bx, by = X(0), yd + 22
-    sh.text(bx, by - 3, "BUCKLE PIECE - 3.0 x 7.0 folded round the 30 mm buckle bar and stitched to the front panel (bar 1.0 below the closed flap edge); keeper 3.4 x 0.7 stitched 1.3 below the buckle.", "ts")
+    sh.text(bx, by - 3, "BUCKLE PIECE - 3.0 x 8.0 loop round the 30 mm buckle bar, stitched ON the strap over the top flap (bar 2.6 below the flap top edge); keeper 3.4 x 0.7 stitched at 4.0. Both decorative.", "ts")
     vb = View(bx, by, 5.0)
-    sh.rect(vb.X(0), vb.Y(0), vb.L(7.0), vb.L(STRAP_W), "strap")
-    buckle(sh, vb.X(2.0), vb.Y(STRAP_W / 2), vb.L(STRAP_W + 0.6))
-    sh.rect(vb.X(2.0 + 1.3 + 1.3), vb.Y(-0.2), vb.L(0.7), vb.L(STRAP_W + 0.4), "strap")
-    sh.dim_h(vb.X(0), vb.X(7.0), vb.Y(STRAP_W), vb.Y(STRAP_W) + 6, "7.0")
-    sh.text(vb.X(9), vb.Y(1.0), "Buckle: 30 mm (1 1/4 in) antique brass roller buckle; prong engages the strap holes - closure is adjustable.", "ts")
-    sh.text(vb.X(9), vb.Y(2.3), "The strap tongue passes under the keeper; it does not need a snap.", "ts")
+    sh.rect(vb.X(0), vb.Y(0), vb.L(8.0), vb.L(STRAP_W), "strap")
+    buckle(sh, vb.X(2.6), vb.Y(STRAP_W / 2), vb.L(STRAP_W + 0.6))
+    sh.rect(vb.X(4.0 - 0.35), vb.Y(-0.2), vb.L(0.7), vb.L(STRAP_W + 0.4), "strap")
+    sh.dim_h(vb.X(0), vb.X(8.0), vb.Y(STRAP_W), vb.Y(STRAP_W) + 6, "8.0")
+    sh.text(vb.X(10), vb.Y(1.0), "Buckle: 30 mm (1 1/4 in) antique brass, fixed; the tongue passes under the keeper and closes with the 12.5 mm snap.", "ts")
+    sh.text(vb.X(10), vb.Y(2.3), "Stud on the front panel outer face, centred, 8.0 below the top edge (sheet 2). Set after a dry fold.", "ts")
 
     # ---- HINGE SECTION 2:1 ----
     vh = View(200, 128, 20.0)
@@ -1176,16 +1207,16 @@ def sheet9():
         ["4", "Board 0.8 mm: pages", "3", "20.0 x 12.5"],
         ["5", "Page face plies 1.0 mm (slits die-cut) + back plies 0.6 mm", "3+3", "20.0 x 14.0 (incl. 1.5 hinge tab) + allowance"],
         ["6", "Knit elastic 15 mm, tan", "4", "19.1 / 16.2 / 19.1 / 10.9 cm (slit field + 2)"],
-        ["7", "Strap, leather 1.4 mm, dark brown, 2 ply", "2", "3.0 x 37.5 (sheet 8)"],
-        ["8", "Buckle piece + keeper, dark brown", "1+1", "3.0 x 7.0;  3.4 x 0.7"],
-        ["9", "Roller buckle 30 mm, antique brass", "1", "adjustable closure"],
-        ["10", "Spring snaps 12.5 mm (line 20), antique brass", "3 sets", "2 side flaps, 1 cable pocket"],
+        ["7", "Strap, leather 1.4 mm, dark brown, 2 ply", "2", "3.0 x 30.5 (sheet 8)"],
+        ["8", "Buckle piece + keeper, dark brown", "1+1", "3.0 x 8.0;  3.4 x 0.7"],
+        ["9", "Buckle 30 mm, antique brass", "1", "decorative, fixed on the strap"],
+        ["10", "Spring snaps 12.5 mm (line 20), antique brass", "4 sets", "2 side flaps, 1 strap tongue, 1 cable pocket"],
         ["11", "Spring snaps 10 mm, antique brass", "2 sets", "pockets A, B"],
         ["12", "Cable pocket body + flap, 0.8 mm leather", "1+1", "7.0 x 9.0;  7.0 x 3.8"],
         ["13", "Small pocket bodies + flaps, 0.8 mm leather", "2+2", "3.4 x 4.5;  3.4 x 2.4"],
         ["14", "Leather grip patch, veg-tan 1.8-2 mm", "1", "6.0 x 3.0, R 0.5, folds in half"],
         ["15", "Thread, bonded polyester Tex 70, contrast", "-", "stitch length 3 mm"],
-        ["16", "Logo emboss plate", "1", "2.5 x 2.5 (artwork by client)"],
+        ["16", "Logo emboss die", "1", "2.5 x 2.5 (client artwork, sheet 1)"],
     ]
     end2 = sh.table(bx, by + 3, ["#", "Item", "Qty", "Cut size (cm) / note"], bom, [8, 100, 14, 86], rh=4.0)
     sh.lines(150, end2 + 8, [
@@ -1195,10 +1226,10 @@ def sheet9():
         "2. Make the pockets on the face plies (panel 2: A, B; back-wall lining: cable pocket). Set the pocket snaps.",
         "3. Thread the elastics in and out of the slits, loop by loop; bar-tack each slit, stitch the ends down. Print / stamp the size labels.",
         "4. Laminate each page: face ply + 0.8 board + back ply; edge-stitch 0.3, leaving the 1.5 hinge tab single-ply.",
-        "5. Stitch the strap to the outer shell (back wall + top gusset + top flap). Stitch the buckle piece and keeper to the front panel.",
+        "5. Stitch the strap to the outer shell (back wall + top gusset + top flap) with the buckle piece and keeper on the flap section.",
         "6. Set the side-flap studs and the front-panel sockets. Laminate lining to shell with board in the back wall and front panel.",
         "7. Stitch the page hinge tabs through the bottom gusset in order P3, P2, P1 (sheet 8, detail C). Turn / bind all edges; edge-stitch 0.3.",
-        "8. Dry-fold, check the side-flap snaps and the strap length through the buckle. Load the set; the closed case must not press on the 10 mm tips.",
+        "8. Dry-fold; set the strap stud on the front panel and the socket in the tongue; check all snaps. Load the set; the closed case must not press on the 10 mm tips.",
         "",
         "**TOLERANCES",
         "Cut pieces +/- 0.1 cm; slit positions +/- 0.05 cm (the 0.6 loop must still take two 2 mm tips); snap centres +/- 0.15 cm; hinge seams +/- 0.1 cm.",
@@ -1212,7 +1243,7 @@ def sheet9():
         ["R1, R3", "Closed clutch, front/back", "Trifold clutch, wrap strap 3.0 with buckle, keeper; logo on flap; R 1.0 corners; contrast edge stitch"],
         ["R2, R3", "Open case", "Pages sewn into the bottom gusset, not removable; side flaps tuck inside"],
         ["R4-R6", "Panel interiors", "1.5 elastic threaded in / out of the panel per pair; size labels above tips; snap pockets on panel 2 and the back wall"],
-        ["Brief", "Client text 2026-10-01", "Front > P1 > P2 > P3 > back wall; back wall = panel 4 with cable pocket; 2 small pockets on panel 2; adjustable strap"],
+        ["Brief", "Client text 2026-10-01", "Front > P1 > P2 > P3 > back wall; back wall = panel 4 with cable pocket; 2 small pockets on panel 2; snaps hold the front panel to the side flaps; strap visual, snap-closed; logo"],
     ], [16, 54, 164], rh=4.2)
     sh.text(14, mend + 8, "HARDWARE SIZE ASSUMPTIONS (confirm against the real set - Q5)", "tb")
     sh.table(14, mend + 11, ["Item", "Qty", "Assumed size (cm)", "Where"], [

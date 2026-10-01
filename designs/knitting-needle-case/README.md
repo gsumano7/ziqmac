@@ -3,7 +3,7 @@
 Factory-ready drawing set for a premium leather trifold clutch holding a
 full interchangeable needle set. Dimensions come from the cardboard
 prototype (photos P1–P5); construction follows the client's written brief
-and reference photos (R1–R6). Rev C, 2026-10-01.
+reference photos (R1–R6) and logo artwork. Rev D, 2026-10-01.
 
 ## Files
 
@@ -13,19 +13,19 @@ and reference photos (R1–R6). Rev C, 2026-10-01.
 | `index.html` | Same nine sheets as a print-ready web page (File → Print, A3 landscape, no margins). |
 | `sheets/sheet1.svg` … `sheet9.svg` | Each sheet as a vector SVG, editable in Inkscape / Illustrator. |
 | `preview/sheet*.png` | Quick-look raster previews. |
-| `reference/*.jpg` | Client reference photos, downscaled, as embedded on the cover sheet. |
+| `reference/*.jpg`, `reference/logo.png` | Client reference photos (downscaled) and logo artwork, as embedded on the sheets. |
 | `generate_drawings.py` | Generator. Every dimension lives in this script; change a value, re-run, and all sheets update. |
 
 ## Sheet index
 
 1. Cover — design brief, construction summary, reference photos, sheet index
-2. Outer shell — flat pattern, outer face, with strap, buckle, logo and snap positions, 1:2
+2. Outer shell — flat pattern, outer face, with strap, decorative buckle, logo emboss and snap positions, 1:2
 3. Assembly — front / back / end views closed, vertical section (front panel, pages 1–3, back wall), open layout, closing sequence, stack check, open questions
 4. Panel 1 (page): 10 cm tips 2.0–5.0 mm, 11 pairs, 1:1
 5. Panel 2 (page): 10 cm tips 5.5–10 mm, 6 pairs, plus two small snap pockets for accessories, 1:1
 6. Panel 3 (page): 5 cm tips 2.0–5.0 mm, 11 pairs, 1:1
 7. Panel 4 (back-wall lining): 5 cm tips 5.5–8 mm, 4 pairs, plus the large cable snap pocket, 1:1
-8. Details — adjustable strap and buckle piece (1:2), page hinge section (2:1), pocket patterns (1:2), elastic threading section (2:1)
+8. Details — strap and buckle piece (1:2), page hinge section (2:1), pocket patterns (1:2), elastic threading section (2:1)
 9. Contents checklist (64 tips / 32 pairs, 5 cables, accessories), bill of materials, construction sequence, tolerances, measurement record, hardware size assumptions
 
 ## What came from the prototype and what is proposed
@@ -37,7 +37,7 @@ Taken directly from the cardboard prototype:
 
 Taken from the client's brief and reference photos:
 
-- Trifold clutch: side flaps fold in and tuck inside, front panel folds up, top flap folds over, adjustable 3 cm dark brown strap with 30 mm buckle and keeper; embossed logo on the flap; R 1.0 corners; contrast edge stitching.
+- Trifold clutch: side flaps fold in and tuck inside, front panel folds up and snaps to the side flaps, top flap folds over, 3 cm dark brown strap wraps the case with a decorative 30 mm buckle and keeper and a snap-closed tongue; client logo embossed on the flap; R 1.0 corners; contrast edge stitching.
 - Storage order front to back: front panel, panel 1, panel 2, panel 3, back wall (panel 4). Panels 1–3 are pages sewn into the bottom gusset on three evenly spaced seams and are not removable; panel 4 is the back-wall lining itself.
 - 15 mm elastic threaded in and out of each panel through die-cut slits, one visible loop per pair, size label above each pair.
 - Large snap pocket for the cables on the back wall; two small snap pockets for caps, keys, connectors and the grip patch on panel 2.
@@ -48,7 +48,7 @@ Proposed to fit the full contents list:
 - Panel assignment: panel 1 = 10 cm 2.0–5.0, panel 2 = 10 cm 5.5–10, panel 3 = 5 cm 2.0–5.0, panel 4 = 5 cm 5.5–8.
 - Leather grip patch 6.0 × 3.0 cm, veg-tan 1.8–2.0 mm, folded in half in pocket B.
 
-Sheet 3 lists five open questions (gusset depths, top-flap depth, snap type, genuine vs faux leather, real hardware sizes) to confirm before cutting.
+Sheet 3 lists five open questions (gusset depths, top-flap depth, snap type, genuine vs faux leather, real hardware sizes) to confirm before cutting. The logo is embedded as a raster for placement only; vector artwork is needed for the emboss die.
 
 ## Regenerating
 
