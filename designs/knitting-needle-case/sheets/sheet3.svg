@@ -11,7 +11,7 @@
 .band{fill:#d9c9a8;stroke:#000;stroke-width:0.35}
 .strap{fill:#a9876a;stroke:#000;stroke-width:0.4}
 .brass{fill:#c9a85c;stroke:#000;stroke-width:0.3}
-.elastic{fill:#d8ccb4;stroke:#000;stroke-width:0.35}
+.elastic{fill:#cfd6dc;stroke:#000;stroke-width:0.35}
 .mesh{fill:#e4e9ee;stroke:#000;stroke-width:0.35}
 .needle{fill:#9aa3ab;stroke:#000;stroke-width:0.15}
 .hatch{fill:url(#h45)}
@@ -45,325 +45,178 @@
 <text x="332.000" y="260.200" class="tx" text-anchor="start">CLIENT</text>
 <text x="332.000" y="264.800" class="t" text-anchor="start">gsumano7 / ziqmac</text>
 <text x="212.000" y="270.200" class="tx" text-anchor="start">SHEET TITLE</text>
-<text x="212.000" y="274.800" class="tb" text-anchor="start">Page 1: 10 cm tips 2.0-5.0 mm (11 pairs)</text>
+<text x="212.000" y="274.800" class="tb" text-anchor="start">Assembly - closed views, section, open layout, closing sequence</text>
 <text x="332.000" y="270.200" class="tx" text-anchor="start">SCALE</text>
-<text x="332.000" y="274.800" class="t" text-anchor="start">1:1</text>
+<text x="332.000" y="274.800" class="t" text-anchor="start">1:2 / 1:1 / 1:4 as noted</text>
 <text x="372.000" y="270.200" class="tx" text-anchor="start">UNITS</text>
 <text x="372.000" y="274.800" class="t" text-anchor="start">cm (page A3)</text>
 <text x="212.000" y="280.200" class="tx" text-anchor="start">SOURCE</text>
-<text x="212.000" y="284.800" class="t" text-anchor="start">Cardboard prototype (photos 1-5) + client reference photos (Rev B)</text>
+<text x="212.000" y="284.800" class="t" text-anchor="start">Cardboard prototype P1-P5 + client brief and reference photos R1-R6</text>
 <text x="332.000" y="280.200" class="tx" text-anchor="start">DATE / REV</text>
-<text x="332.000" y="284.800" class="t" text-anchor="start">2026-10-01   Rev B</text>
+<text x="332.000" y="284.800" class="t" text-anchor="start">2026-10-01   Rev C</text>
 <text x="372.000" y="280.200" class="tx" text-anchor="start">SHEET</text>
-<text x="372.000" y="284.800" class="tb" text-anchor="start">3 of 8</text>
-<text x="13.000" y="17.000" class="tt" text-anchor="start">SHEET 3  -  PAGE 1: 10 CM TIPS 2.0-5.0 MM (11 PAIRS)</text>
-<path d="M42.000,48.000 L222.000,48.000 A10.000,10.000 0 0 1 232.000,58.000 L232.000,173.000 L32.000,173.000 L32.000,58.000 A10.000,10.000 0 0 1 42.000,48.000 Z" class="leather"/>
-<rect x="42.000" y="173.000" width="180.000" height="15.000" rx="0" class="hatch"/>
-<rect x="42.000" y="173.000" width="180.000" height="15.000" rx="0" class="thin"/>
-<line x1="32.000" y1="173.000" x2="232.000" y2="173.000" class="fold" />
-<path d="M42.000,51.000 L222.000,51.000 A7.000,7.000 0 0 1 229.000,58.000 L229.000,170.000 L35.000,170.000 L35.000,58.000 A7.000,7.000 0 0 1 42.000,51.000 Z" class="stitch"/>
-<path d="M48.200,63.000 L49.200,79.000 L49.200,163.000 L47.200,163.000 L47.200,79.000 Z" class="needle"/>
-<path d="M50.800,63.000 L51.800,79.000 L51.800,163.000 L49.800,163.000 L49.800,79.000 Z" class="needle"/>
-<path d="M59.575,63.000 L60.700,79.000 L60.700,163.000 L58.450,163.000 L58.450,79.000 Z" class="needle"/>
-<path d="M62.425,63.000 L63.550,79.000 L63.550,163.000 L61.300,163.000 L61.300,79.000 Z" class="needle"/>
-<path d="M71.950,63.000 L73.200,79.000 L73.200,163.000 L70.700,163.000 L70.700,79.000 Z" class="needle"/>
-<path d="M75.050,63.000 L76.300,79.000 L76.300,163.000 L73.800,163.000 L73.800,79.000 Z" class="needle"/>
-<path d="M85.325,63.000 L86.700,79.000 L86.700,163.000 L83.950,163.000 L83.950,79.000 Z" class="needle"/>
-<path d="M88.675,63.000 L90.050,79.000 L90.050,163.000 L87.300,163.000 L87.300,79.000 Z" class="needle"/>
-<path d="M99.700,63.000 L101.200,79.000 L101.200,163.000 L98.200,163.000 L98.200,79.000 Z" class="needle"/>
-<path d="M103.300,63.000 L104.800,79.000 L104.800,163.000 L101.800,163.000 L101.800,79.000 Z" class="needle"/>
-<path d="M115.075,63.000 L116.700,79.000 L116.700,163.000 L113.450,163.000 L113.450,79.000 Z" class="needle"/>
-<path d="M118.925,63.000 L120.550,79.000 L120.550,163.000 L117.300,163.000 L117.300,79.000 Z" class="needle"/>
-<path d="M131.450,63.000 L133.200,79.000 L133.200,163.000 L129.700,163.000 L129.700,79.000 Z" class="needle"/>
-<path d="M135.550,63.000 L137.300,79.000 L137.300,163.000 L133.800,163.000 L133.800,79.000 Z" class="needle"/>
-<path d="M148.825,63.000 L150.700,79.000 L150.700,163.000 L146.950,163.000 L146.950,79.000 Z" class="needle"/>
-<path d="M153.175,63.000 L155.050,79.000 L155.050,163.000 L151.300,163.000 L151.300,79.000 Z" class="needle"/>
-<path d="M167.200,63.000 L169.200,79.000 L169.200,163.000 L165.200,163.000 L165.200,79.000 Z" class="needle"/>
-<path d="M171.800,63.000 L173.800,79.000 L173.800,163.000 L169.800,163.000 L169.800,79.000 Z" class="needle"/>
-<path d="M186.450,63.000 L188.700,79.000 L188.700,163.000 L184.200,163.000 L184.200,79.000 Z" class="needle"/>
-<path d="M191.550,63.000 L193.800,79.000 L193.800,163.000 L189.300,163.000 L189.300,79.000 Z" class="needle"/>
-<path d="M206.700,63.000 L209.200,79.000 L209.200,163.000 L204.200,163.000 L204.200,79.000 Z" class="needle"/>
-<path d="M212.300,63.000 L214.800,79.000 L214.800,163.000 L209.800,163.000 L209.800,79.000 Z" class="needle"/>
-<rect x="46.499" y="105.500" width="171.000" height="15.000" rx="0" class="elastic"/>
-<line x1="46.500" y1="104.900" x2="46.500" y2="121.100" class="stitch" />
-<line x1="52.500" y1="104.900" x2="52.500" y2="121.100" class="stitch" />
-<line x1="57.500" y1="104.900" x2="57.500" y2="121.100" class="stitch" />
-<line x1="64.500" y1="104.900" x2="64.500" y2="121.100" class="stitch" />
-<line x1="69.500" y1="104.900" x2="69.500" y2="121.100" class="stitch" />
-<line x1="77.500" y1="104.900" x2="77.500" y2="121.100" class="stitch" />
-<line x1="82.500" y1="104.900" x2="82.500" y2="121.100" class="stitch" />
-<line x1="91.500" y1="104.900" x2="91.500" y2="121.100" class="stitch" />
-<line x1="96.500" y1="104.900" x2="96.500" y2="121.100" class="stitch" />
-<line x1="106.500" y1="104.900" x2="106.500" y2="121.100" class="stitch" />
-<line x1="111.500" y1="104.900" x2="111.500" y2="121.100" class="stitch" />
-<line x1="122.500" y1="104.900" x2="122.500" y2="121.100" class="stitch" />
-<line x1="127.500" y1="104.900" x2="127.500" y2="121.100" class="stitch" />
-<line x1="139.500" y1="104.900" x2="139.500" y2="121.100" class="stitch" />
-<line x1="144.500" y1="104.900" x2="144.500" y2="121.100" class="stitch" />
-<line x1="157.500" y1="104.900" x2="157.500" y2="121.100" class="stitch" />
-<line x1="162.500" y1="104.900" x2="162.500" y2="121.100" class="stitch" />
-<line x1="176.500" y1="104.900" x2="176.500" y2="121.100" class="stitch" />
-<line x1="181.500" y1="104.900" x2="181.500" y2="121.100" class="stitch" />
-<line x1="196.500" y1="104.900" x2="196.500" y2="121.100" class="stitch" />
-<line x1="201.500" y1="104.900" x2="201.500" y2="121.100" class="stitch" />
-<line x1="217.500" y1="104.900" x2="217.500" y2="121.100" class="stitch" />
-<text x="49.500" y="53.000" class="tx" text-anchor="middle">2.0</text>
-<text x="49.500" y="55.400" class="tx" text-anchor="middle">mm</text>
-<line x1="49.500" y1="56.200" x2="49.500" y2="62.200" class="dim" />
-<text x="61.000" y="53.000" class="tx" text-anchor="middle">2.25</text>
-<text x="61.000" y="55.400" class="tx" text-anchor="middle">mm</text>
-<line x1="61.000" y1="56.200" x2="61.000" y2="62.200" class="dim" />
-<text x="73.500" y="53.000" class="tx" text-anchor="middle">2.5</text>
-<text x="73.500" y="55.400" class="tx" text-anchor="middle">mm</text>
-<line x1="73.500" y1="56.200" x2="73.500" y2="62.200" class="dim" />
-<text x="87.000" y="53.000" class="tx" text-anchor="middle">2.75</text>
-<text x="87.000" y="55.400" class="tx" text-anchor="middle">mm</text>
-<line x1="87.000" y1="56.200" x2="87.000" y2="62.200" class="dim" />
-<text x="101.500" y="53.000" class="tx" text-anchor="middle">3.0</text>
-<text x="101.500" y="55.400" class="tx" text-anchor="middle">mm</text>
-<line x1="101.500" y1="56.200" x2="101.500" y2="62.200" class="dim" />
-<text x="117.000" y="53.000" class="tx" text-anchor="middle">3.25</text>
-<text x="117.000" y="55.400" class="tx" text-anchor="middle">mm</text>
-<line x1="117.000" y1="56.200" x2="117.000" y2="62.200" class="dim" />
-<text x="133.500" y="53.000" class="tx" text-anchor="middle">3.5</text>
-<text x="133.500" y="55.400" class="tx" text-anchor="middle">mm</text>
-<line x1="133.500" y1="56.200" x2="133.500" y2="62.200" class="dim" />
-<text x="151.000" y="53.000" class="tx" text-anchor="middle">3.75</text>
-<text x="151.000" y="55.400" class="tx" text-anchor="middle">mm</text>
-<line x1="151.000" y1="56.200" x2="151.000" y2="62.200" class="dim" />
-<text x="169.500" y="53.000" class="tx" text-anchor="middle">4.0</text>
-<text x="169.500" y="55.400" class="tx" text-anchor="middle">mm</text>
-<line x1="169.500" y1="56.200" x2="169.500" y2="62.200" class="dim" />
-<text x="189.000" y="53.000" class="tx" text-anchor="middle">4.5</text>
-<text x="189.000" y="55.400" class="tx" text-anchor="middle">mm</text>
-<line x1="189.000" y1="56.200" x2="189.000" y2="62.200" class="dim" />
-<text x="209.500" y="53.000" class="tx" text-anchor="middle">5.0</text>
-<text x="209.500" y="55.400" class="tx" text-anchor="middle">mm</text>
-<line x1="209.500" y1="56.200" x2="209.500" y2="62.200" class="dim" />
-<line x1="31.200" y1="48.000" x2="23.800" y2="48.000" class="dim" />
-<line x1="31.200" y1="63.000" x2="23.800" y2="63.000" class="dim" />
-<line x1="25.000" y1="48.000" x2="25.000" y2="63.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="24.100" y="55.500" class="t" text-anchor="middle" transform="rotate(-90 24.100 55.500)">1.5</text>
-<line x1="31.200" y1="63.000" x2="23.800" y2="63.000" class="dim" />
-<line x1="31.200" y1="163.000" x2="23.800" y2="163.000" class="dim" />
-<line x1="25.000" y1="63.000" x2="25.000" y2="163.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="24.100" y="113.000" class="t" text-anchor="middle" transform="rotate(-90 24.100 113.000)">10.0 tip</text>
-<line x1="31.200" y1="163.000" x2="23.800" y2="163.000" class="dim" />
-<line x1="31.200" y1="173.000" x2="23.800" y2="173.000" class="dim" />
-<line x1="25.000" y1="163.000" x2="25.000" y2="173.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="24.100" y="168.000" class="t" text-anchor="middle" transform="rotate(-90 24.100 168.000)">1.0</text>
-<line x1="31.200" y1="48.000" x2="15.800" y2="48.000" class="dim" />
-<line x1="31.200" y1="173.000" x2="15.800" y2="173.000" class="dim" />
-<line x1="17.000" y1="48.000" x2="17.000" y2="173.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="16.100" y="110.500" class="t" text-anchor="middle" transform="rotate(-90 16.100 110.500)">12.5</text>
-<line x1="31.200" y1="173.000" x2="23.800" y2="173.000" class="dim" />
-<line x1="31.200" y1="188.000" x2="23.800" y2="188.000" class="dim" />
-<line x1="25.000" y1="173.000" x2="25.000" y2="188.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="24.100" y="180.500" class="t" text-anchor="middle" transform="rotate(-90 24.100 180.500)">1.5</text>
-<line x1="232.800" y1="48.000" x2="240.200" y2="48.000" class="dim" />
-<line x1="232.800" y1="105.500" x2="240.200" y2="105.500" class="dim" />
-<line x1="239.000" y1="48.000" x2="239.000" y2="105.500" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="238.100" y="76.750" class="t" text-anchor="middle" transform="rotate(-90 238.100 76.750)">5.75</text>
-<line x1="232.800" y1="105.500" x2="240.200" y2="105.500" class="dim" />
-<line x1="232.800" y1="120.500" x2="240.200" y2="120.500" class="dim" />
-<line x1="239.000" y1="105.500" x2="239.000" y2="120.500" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="238.100" y="113.000" class="t" text-anchor="middle" transform="rotate(-90 238.100 113.000)">1.5 elastic</text>
-<line x1="32.000" y1="188.800" x2="32.000" y2="197.200" class="dim" />
-<line x1="46.500" y1="188.800" x2="46.500" y2="197.200" class="dim" />
-<line x1="32.000" y1="196.000" x2="46.500" y2="196.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="39.250" y="195.100" class="t" text-anchor="middle">1.45</text>
-<line x1="217.500" y1="188.800" x2="217.500" y2="197.200" class="dim" />
-<line x1="232.000" y1="188.800" x2="232.000" y2="197.200" class="dim" />
-<line x1="217.500" y1="196.000" x2="232.000" y2="196.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="224.750" y="195.100" class="t" text-anchor="middle">1.45</text>
-<line x1="46.500" y1="188.800" x2="46.500" y2="197.200" class="dim" />
-<line x1="217.500" y1="188.800" x2="217.500" y2="197.200" class="dim" />
-<line x1="46.500" y1="196.000" x2="217.500" y2="196.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="132.000" y="195.100" class="t" text-anchor="middle">17.1 elastic strip</text>
-<line x1="32.000" y1="188.800" x2="32.000" y2="205.200" class="dim" />
-<line x1="232.000" y1="188.800" x2="232.000" y2="205.200" class="dim" />
-<line x1="32.000" y1="204.000" x2="232.000" y2="204.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="132.000" y="203.100" class="t" text-anchor="middle">20.0</text>
-<line x1="32.000" y1="40.000" x2="232.000" y2="40.000" class="dim" />
-<text x="32.000" y="29.000" class="tx" text-anchor="start">ORDINATE: elastic stitch-line positions from left page edge (cm)</text>
-<line x1="32.000" y1="37.500" x2="32.000" y2="42.500" class="dim" />
-<text x="32.000" y="38.800" class="tx" text-anchor="middle">0</text>
-<line x1="46.500" y1="38.500" x2="46.500" y2="48.000" class="dim" />
-<text x="47.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 47.200 37.800)">1.45</text>
-<line x1="52.500" y1="38.500" x2="52.500" y2="48.000" class="dim" />
-<text x="53.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 53.200 37.800)">2.05</text>
-<line x1="57.500" y1="38.500" x2="57.500" y2="48.000" class="dim" />
-<text x="58.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 58.200 37.800)">2.55</text>
-<line x1="64.500" y1="38.500" x2="64.500" y2="48.000" class="dim" />
-<text x="65.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 65.200 37.800)">3.25</text>
-<line x1="69.500" y1="38.500" x2="69.500" y2="48.000" class="dim" />
-<text x="70.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 70.200 37.800)">3.75</text>
-<line x1="77.500" y1="38.500" x2="77.500" y2="48.000" class="dim" />
-<text x="78.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 78.200 37.800)">4.55</text>
-<line x1="82.500" y1="38.500" x2="82.500" y2="48.000" class="dim" />
-<text x="83.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 83.200 37.800)">5.05</text>
-<line x1="91.500" y1="38.500" x2="91.500" y2="48.000" class="dim" />
-<text x="92.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 92.200 37.800)">5.95</text>
-<line x1="96.500" y1="38.500" x2="96.500" y2="48.000" class="dim" />
-<text x="97.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 97.200 37.800)">6.45</text>
-<line x1="106.500" y1="38.500" x2="106.500" y2="48.000" class="dim" />
-<text x="107.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 107.200 37.800)">7.45</text>
-<line x1="111.500" y1="38.500" x2="111.500" y2="48.000" class="dim" />
-<text x="112.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 112.200 37.800)">7.95</text>
-<line x1="122.500" y1="38.500" x2="122.500" y2="48.000" class="dim" />
-<text x="123.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 123.200 37.800)">9.05</text>
-<line x1="127.500" y1="38.500" x2="127.500" y2="48.000" class="dim" />
-<text x="128.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 128.200 37.800)">9.55</text>
-<line x1="139.500" y1="38.500" x2="139.500" y2="48.000" class="dim" />
-<text x="140.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 140.200 37.800)">10.75</text>
-<line x1="144.500" y1="38.500" x2="144.500" y2="48.000" class="dim" />
-<text x="145.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 145.200 37.800)">11.25</text>
-<line x1="157.500" y1="38.500" x2="157.500" y2="48.000" class="dim" />
-<text x="158.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 158.200 37.800)">12.55</text>
-<line x1="162.500" y1="38.500" x2="162.500" y2="48.000" class="dim" />
-<text x="163.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 163.200 37.800)">13.05</text>
-<line x1="176.500" y1="38.500" x2="176.500" y2="48.000" class="dim" />
-<text x="177.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 177.200 37.800)">14.45</text>
-<line x1="181.500" y1="38.500" x2="181.500" y2="48.000" class="dim" />
-<text x="182.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 182.200 37.800)">14.95</text>
-<line x1="196.500" y1="38.500" x2="196.500" y2="48.000" class="dim" />
-<text x="197.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 197.200 37.800)">16.45</text>
-<line x1="201.500" y1="38.500" x2="201.500" y2="48.000" class="dim" />
-<text x="202.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 202.200 37.800)">16.95</text>
-<line x1="217.500" y1="38.500" x2="217.500" y2="48.000" class="dim" />
-<text x="218.200" y="37.800" class="tx" text-anchor="start" transform="rotate(-90 218.200 37.800)">18.55</text>
-<line x1="232.000" y1="37.500" x2="232.000" y2="42.500" class="dim" />
-<text x="132.000" y="215.000" class="tb" text-anchor="middle">PAGE 1 - 20.0 x 12.5 + 1.5 hinge tab. Full size 1:1 - use as pattern.</text>
-<text x="258.000" y="22.000" class="tb" text-anchor="start">SLOT TABLE - page 1 (positions from left page edge, cm)</text>
-<rect x="258.000" y="25.000" width="95.000" height="50.400" rx="0" class="thin"/>
-<line x1="258.000" y1="29.200" x2="353.000" y2="29.200" class="thin" />
-<text x="259.200" y="28.024" class="tb" text-anchor="start">#</text>
-<line x1="266.000" y1="25.000" x2="266.000" y2="75.400" class="thin" />
-<text x="267.200" y="28.024" class="tb" text-anchor="start">Size</text>
-<line x1="284.000" y1="25.000" x2="284.000" y2="75.400" class="thin" />
-<text x="285.200" y="28.024" class="tb" text-anchor="start">Slot w</text>
-<line x1="299.000" y1="25.000" x2="299.000" y2="75.400" class="thin" />
-<text x="300.200" y="28.024" class="tb" text-anchor="start">From</text>
-<line x1="314.000" y1="25.000" x2="314.000" y2="75.400" class="thin" />
-<text x="315.200" y="28.024" class="tb" text-anchor="start">To</text>
-<line x1="329.000" y1="25.000" x2="329.000" y2="75.400" class="thin" />
-<text x="330.200" y="28.024" class="tb" text-anchor="start">Holds</text>
-<text x="259.200" y="32.224" class="ts" text-anchor="start">1</text>
-<text x="267.200" y="32.224" class="ts" text-anchor="start">2.0 mm</text>
-<text x="285.200" y="32.224" class="ts" text-anchor="start">0.6</text>
-<text x="300.200" y="32.224" class="ts" text-anchor="start">1.45</text>
-<text x="315.200" y="32.224" class="ts" text-anchor="start">2.05</text>
-<text x="330.200" y="32.224" class="ts" text-anchor="start">2 x 10.0 cm</text>
-<line x1="258.000" y1="33.400" x2="353.000" y2="33.400" class="dim" />
-<text x="259.200" y="36.424" class="ts" text-anchor="start">2</text>
-<text x="267.200" y="36.424" class="ts" text-anchor="start">2.25 mm</text>
-<text x="285.200" y="36.424" class="ts" text-anchor="start">0.7</text>
-<text x="300.200" y="36.424" class="ts" text-anchor="start">2.55</text>
-<text x="315.200" y="36.424" class="ts" text-anchor="start">3.25</text>
-<text x="330.200" y="36.424" class="ts" text-anchor="start">2 x 10.0 cm</text>
-<line x1="258.000" y1="37.600" x2="353.000" y2="37.600" class="dim" />
-<text x="259.200" y="40.624" class="ts" text-anchor="start">3</text>
-<text x="267.200" y="40.624" class="ts" text-anchor="start">2.5 mm</text>
-<text x="285.200" y="40.624" class="ts" text-anchor="start">0.8</text>
-<text x="300.200" y="40.624" class="ts" text-anchor="start">3.75</text>
-<text x="315.200" y="40.624" class="ts" text-anchor="start">4.55</text>
-<text x="330.200" y="40.624" class="ts" text-anchor="start">2 x 10.0 cm</text>
-<line x1="258.000" y1="41.800" x2="353.000" y2="41.800" class="dim" />
-<text x="259.200" y="44.824" class="ts" text-anchor="start">4</text>
-<text x="267.200" y="44.824" class="ts" text-anchor="start">2.75 mm</text>
-<text x="285.200" y="44.824" class="ts" text-anchor="start">0.9</text>
-<text x="300.200" y="44.824" class="ts" text-anchor="start">5.05</text>
-<text x="315.200" y="44.824" class="ts" text-anchor="start">5.95</text>
-<text x="330.200" y="44.824" class="ts" text-anchor="start">2 x 10.0 cm</text>
-<line x1="258.000" y1="46.000" x2="353.000" y2="46.000" class="dim" />
-<text x="259.200" y="49.024" class="ts" text-anchor="start">5</text>
-<text x="267.200" y="49.024" class="ts" text-anchor="start">3.0 mm</text>
-<text x="285.200" y="49.024" class="ts" text-anchor="start">1.0</text>
-<text x="300.200" y="49.024" class="ts" text-anchor="start">6.45</text>
-<text x="315.200" y="49.024" class="ts" text-anchor="start">7.45</text>
-<text x="330.200" y="49.024" class="ts" text-anchor="start">2 x 10.0 cm</text>
-<line x1="258.000" y1="50.200" x2="353.000" y2="50.200" class="dim" />
-<text x="259.200" y="53.224" class="ts" text-anchor="start">6</text>
-<text x="267.200" y="53.224" class="ts" text-anchor="start">3.25 mm</text>
-<text x="285.200" y="53.224" class="ts" text-anchor="start">1.1</text>
-<text x="300.200" y="53.224" class="ts" text-anchor="start">7.95</text>
-<text x="315.200" y="53.224" class="ts" text-anchor="start">9.05</text>
-<text x="330.200" y="53.224" class="ts" text-anchor="start">2 x 10.0 cm</text>
-<line x1="258.000" y1="54.400" x2="353.000" y2="54.400" class="dim" />
-<text x="259.200" y="57.424" class="ts" text-anchor="start">7</text>
-<text x="267.200" y="57.424" class="ts" text-anchor="start">3.5 mm</text>
-<text x="285.200" y="57.424" class="ts" text-anchor="start">1.2</text>
-<text x="300.200" y="57.424" class="ts" text-anchor="start">9.55</text>
-<text x="315.200" y="57.424" class="ts" text-anchor="start">10.75</text>
-<text x="330.200" y="57.424" class="ts" text-anchor="start">2 x 10.0 cm</text>
-<line x1="258.000" y1="58.600" x2="353.000" y2="58.600" class="dim" />
-<text x="259.200" y="61.624" class="ts" text-anchor="start">8</text>
-<text x="267.200" y="61.624" class="ts" text-anchor="start">3.75 mm</text>
-<text x="285.200" y="61.624" class="ts" text-anchor="start">1.3</text>
-<text x="300.200" y="61.624" class="ts" text-anchor="start">11.25</text>
-<text x="315.200" y="61.624" class="ts" text-anchor="start">12.55</text>
-<text x="330.200" y="61.624" class="ts" text-anchor="start">2 x 10.0 cm</text>
-<line x1="258.000" y1="62.800" x2="353.000" y2="62.800" class="dim" />
-<text x="259.200" y="65.824" class="ts" text-anchor="start">9</text>
-<text x="267.200" y="65.824" class="ts" text-anchor="start">4.0 mm</text>
-<text x="285.200" y="65.824" class="ts" text-anchor="start">1.4</text>
-<text x="300.200" y="65.824" class="ts" text-anchor="start">13.05</text>
-<text x="315.200" y="65.824" class="ts" text-anchor="start">14.45</text>
-<text x="330.200" y="65.824" class="ts" text-anchor="start">2 x 10.0 cm</text>
-<line x1="258.000" y1="67.000" x2="353.000" y2="67.000" class="dim" />
-<text x="259.200" y="70.024" class="ts" text-anchor="start">10</text>
-<text x="267.200" y="70.024" class="ts" text-anchor="start">4.5 mm</text>
-<text x="285.200" y="70.024" class="ts" text-anchor="start">1.5</text>
-<text x="300.200" y="70.024" class="ts" text-anchor="start">14.95</text>
-<text x="315.200" y="70.024" class="ts" text-anchor="start">16.45</text>
-<text x="330.200" y="70.024" class="ts" text-anchor="start">2 x 10.0 cm</text>
-<line x1="258.000" y1="71.200" x2="353.000" y2="71.200" class="dim" />
-<text x="259.200" y="74.224" class="ts" text-anchor="start">11</text>
-<text x="267.200" y="74.224" class="ts" text-anchor="start">5.0 mm</text>
-<text x="285.200" y="74.224" class="ts" text-anchor="start">1.6</text>
-<text x="300.200" y="74.224" class="ts" text-anchor="start">16.95</text>
-<text x="315.200" y="74.224" class="ts" text-anchor="start">18.55</text>
-<text x="330.200" y="74.224" class="ts" text-anchor="start">2 x 10.0 cm</text>
-<text x="258.000" y="81.400" class="tb" text-anchor="start">PAGE CONSTRUCTION (all four pages)</text>
-<text x="258.000" y="85.100" class="ts" text-anchor="start">1. Page = 2 plies faux leather 1.0 mm over 0.8 mm board</text>
-<text x="258.000" y="88.800" class="ts" text-anchor="start">   stiffener, 20.0 x 12.5, R 1.0 top corners, edge-stitched</text>
-<text x="258.000" y="92.500" class="ts" text-anchor="start">   0.3 in contrast thread (as reference photos).</text>
-<text x="258.000" y="96.200" class="ts" text-anchor="start">2. Elastic: 15 mm knit elastic in matching colour, laid</text>
-<text x="258.000" y="99.900" class="ts" text-anchor="start">   flat and stitched on every line shown. Slot widths are</text>
-<text x="258.000" y="103.600" class="ts" text-anchor="start">   the prototype's: 0.6 for 2.0 mm, +0.1 per size step, to</text>
-<text x="258.000" y="107.300" class="ts" text-anchor="start">   2.2 for 10 mm. One slot holds one PAIR, side by side.</text>
-<text x="258.000" y="111.000" class="ts" text-anchor="start">3. Stitch lines in pairs 0.5 apart between slots (the</text>
-<text x="258.000" y="114.700" class="ts" text-anchor="start">   'land'); bar-tack both ends of each line.</text>
-<text x="258.000" y="118.400" class="ts" text-anchor="start">4. Size labels heat-stamped / printed above each slot</text>
-<text x="258.000" y="122.100" class="ts" text-anchor="start">   with a 0.5 leader line to the tip (reference photo).</text>
-<text x="258.000" y="125.800" class="ts" text-anchor="start">5. Hinge tab 1.5 below the page is sewn into the bottom</text>
-<text x="258.000" y="129.500" class="ts" text-anchor="start">   gusset - pages are not removable (sheet 7, detail C).</text>
-<text x="258.000" y="133.200" class="ts" text-anchor="start">6. Tip points up; 1.5 clear above the points (prototype).</text>
-<text x="32.000" y="229.000" class="tb" text-anchor="start">DETAIL A - elastic slot section, 2:1 (same on all pages)</text>
-<rect x="32.000" y="256.000" width="80.000" height="5.000" rx="0" class="hatch"/>
-<rect x="32.000" y="256.000" width="80.000" height="5.000" rx="0" class="thin"/>
-<path d="M36.000,256.000 L46.000,256.000 L46.000,256.000 L47.333,254.564 L48.667,253.153 L50.000,251.790 L51.333,250.500 L52.667,249.304 L54.000,248.222 L55.333,247.273 L56.667,246.474 L58.000,245.837 L59.333,245.375 L60.667,245.094 L62.000,245.000 L63.333,245.094 L64.667,245.375 L66.000,245.837 L67.333,246.474 L68.667,247.273 L70.000,248.222 L71.333,249.304 L72.667,250.500 L74.000,251.790 L75.333,253.153 L76.667,254.564 L78.000,256.000 L88.000,256.000 L108.000,256.000" class="cut"/>
-<circle cx="56.600" cy="251.000" r="5.000" class="needle"/>
-<circle cx="67.400" cy="251.000" r="5.000" class="needle"/>
-<line x1="46.000" y1="254.000" x2="46.000" y2="262.000" class="stitch" />
-<line x1="78.000" y1="254.000" x2="78.000" y2="262.000" class="stitch" />
-<line x1="88.000" y1="254.000" x2="88.000" y2="262.000" class="stitch" />
-<line x1="36.000" y1="254.000" x2="36.000" y2="262.000" class="stitch" />
-<line x1="46.000" y1="261.800" x2="46.000" y2="270.200" class="dim" />
-<line x1="78.000" y1="261.800" x2="78.000" y2="270.200" class="dim" />
-<line x1="46.000" y1="269.000" x2="78.000" y2="269.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="62.000" y="268.100" class="t" text-anchor="middle">slot width w (table)</text>
-<line x1="78.000" y1="269.000" x2="88.000" y2="269.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="83.000" y="268.100" class="t" text-anchor="middle">0.5</text>
-<text x="83.000" y="272.500" class="tx" text-anchor="middle">land</text>
-<line x1="80.800" y1="246.000" x2="93.200" y2="246.000" class="dim" />
-<line x1="80.800" y1="256.000" x2="93.200" y2="256.000" class="dim" />
-<line x1="92.000" y1="246.000" x2="92.000" y2="256.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
-<text x="91.100" y="251.000" class="t" text-anchor="middle" transform="rotate(-90 91.100 251.000)">d</text>
-<line x1="62.000" y1="244.000" x2="72.000" y2="236.000" class="dim" marker-start="url(#dot)"/>
-<text x="72.800" y="237.000" class="t" text-anchor="start">2 tips side by side (1 pair), under 15 mm elastic</text>
-<line x1="39.000" y1="258.600" x2="38.000" y2="272.600" class="dim" marker-start="url(#dot)"/>
-<text x="38.800" y="273.600" class="t" text-anchor="start">page: 2 ply + 0.8 board</text>
-<line x1="83.000" y1="256.000" x2="89.000" y2="274.000" class="dim" marker-start="url(#dot)"/>
-<text x="89.800" y="275.000" class="t" text-anchor="start">double stitch line, 0.5 apart</text>
+<text x="372.000" y="284.800" class="tb" text-anchor="start">3 of 9</text>
+<text x="13.000" y="17.000" class="tt" text-anchor="start">SHEET 3  -  ASSEMBLY - CLOSED VIEWS, SECTION, OPEN LAYOUT, CLOSING SEQUENCE</text>
+<text x="30.000" y="26.000" class="tb" text-anchor="start">FRONT VIEW - closed (1:2)</text>
+<path d="M35.000,40.000 L130.000,40.000 A5.000,5.000 0 0 1 135.000,45.000 L135.000,100.000 A5.000,5.000 0 0 1 130.000,105.000 L35.000,105.000 A5.000,5.000 0 0 1 30.000,100.000 L30.000,45.000 A5.000,5.000 0 0 1 35.000,40.000 Z" class="leather"/>
+<line x1="30.000" y1="65.000" x2="135.000" y2="65.000" class="cut" />
+<path d="M35.000,41.500 L130.000,41.500 A3.500,3.500 0 0 1 133.500,45.000 L133.500,100.000 A3.500,3.500 0 0 1 130.000,103.500 L35.000,103.500 A3.500,3.500 0 0 1 31.500,100.000 L31.500,45.000 A3.500,3.500 0 0 1 35.000,41.500 Z" class="stitch"/>
+<rect x="75.000" y="67.000" width="15.000" height="20.000" rx="0" class="strap"/>
+<rect x="75.000" y="40.000" width="15.000" height="43.000" rx="0" class="strap"/>
+<path d="M75.000,83.000 L90.000,83.000 L82.500,89.000 Z" class="strap"/>
+<rect x="73.500" y="66.220" width="18.000" height="7.560" rx="0.6" class="brass"/>
+<rect x="74.500" y="67.220" width="16.000" height="5.560" rx="0" class="thin"/>
+<line x1="82.500" y1="66.220" x2="82.500" y2="75.280" class="cut" />
+<rect x="74.000" y="79.500" width="17.000" height="3.500" rx="0" class="strap"/>
+<circle cx="82.500" cy="49.000" r="0.600" class="cut"/>
+<circle cx="82.500" cy="55.000" r="0.600" class="cut"/>
+<rect x="113.750" y="46.250" width="12.500" height="12.500" rx="0" class="thin"/>
+<text x="120.000" y="53.500" class="tx" text-anchor="middle">logo</text>
+<text x="37.500" y="54.000" class="tx" text-anchor="start">top flap 5.0</text>
+<text x="37.500" y="85.000" class="tx" text-anchor="start">front panel</text>
+<text x="93.500" y="71.000" class="tx" text-anchor="start">buckle + keeper</text>
+<line x1="30.000" y1="39.200" x2="30.000" y2="32.800" class="dim" />
+<line x1="135.000" y1="39.200" x2="135.000" y2="32.800" class="dim" />
+<line x1="30.000" y1="34.000" x2="135.000" y2="34.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="82.500" y="33.100" class="t" text-anchor="middle">21.0</text>
+<line x1="135.800" y1="40.000" x2="143.200" y2="40.000" class="dim" />
+<line x1="135.800" y1="105.000" x2="143.200" y2="105.000" class="dim" />
+<line x1="142.000" y1="40.000" x2="142.000" y2="105.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="141.100" y="72.500" class="t" text-anchor="middle" transform="rotate(-90 141.100 72.500)">13.0</text>
+<line x1="29.200" y1="40.000" x2="21.800" y2="40.000" class="dim" />
+<line x1="29.200" y1="65.000" x2="21.800" y2="65.000" class="dim" />
+<line x1="23.000" y1="40.000" x2="23.000" y2="65.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="22.100" y="52.500" class="t" text-anchor="middle" transform="rotate(-90 22.100 52.500)">5.0</text>
+<line x1="29.200" y1="40.000" x2="14.800" y2="40.000" class="dim" />
+<line x1="29.200" y1="70.000" x2="14.800" y2="70.000" class="dim" />
+<line x1="16.000" y1="40.000" x2="16.000" y2="70.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="15.100" y="55.000" class="t" text-anchor="middle" transform="rotate(-90 15.100 55.000)">6.0 to buckle bar</text>
+<text x="155.000" y="26.000" class="tb" text-anchor="start">BACK VIEW - closed (1:2)</text>
+<path d="M160.000,40.000 L255.000,40.000 A5.000,5.000 0 0 1 260.000,45.000 L260.000,100.000 A5.000,5.000 0 0 1 255.000,105.000 L160.000,105.000 A5.000,5.000 0 0 1 155.000,100.000 L155.000,45.000 A5.000,5.000 0 0 1 160.000,40.000 Z" class="leather"/>
+<rect x="200.000" y="40.000" width="15.000" height="65.000" rx="0" class="strap"/>
+<rect x="201.500" y="41.500" width="12.000" height="62.000" rx="0" class="stitch"/>
+<text x="213.500" y="101.000" class="tx" text-anchor="start" transform="rotate(-90 213.500 101.000)">strap stitched full height of back</text>
+<line x1="200.000" y1="111.000" x2="215.000" y2="111.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="207.500" y="110.100" class="t" text-anchor="middle">3.0</text>
+<text x="272.000" y="26.000" class="tb" text-anchor="start">END VIEW (1:2)</text>
+<path d="M275.000,40.000 L299.000,40.000 A3.000,3.000 0 0 1 302.000,43.000 L302.000,102.000 A3.000,3.000 0 0 1 299.000,105.000 L275.000,105.000 A3.000,3.000 0 0 1 272.000,102.000 L272.000,43.000 A3.000,3.000 0 0 1 275.000,40.000 Z" class="leather"/>
+<line x1="272.000" y1="65.000" x2="302.000" y2="65.000" class="thin" />
+<line x1="272.000" y1="105.800" x2="272.000" y2="112.200" class="dim" />
+<line x1="302.000" y1="105.800" x2="302.000" y2="112.200" class="dim" />
+<line x1="272.000" y1="111.000" x2="302.000" y2="111.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="287.000" y="110.100" class="t" text-anchor="middle">6.0</text>
+<text x="30.000" y="115.000" class="tb" text-anchor="start">SECTION A-A - vertical through the centre, closed (1:1)</text>
+<text x="30.000" y="119.000" class="ts" text-anchor="start">Front to back: front panel &gt; P1 &gt; P2 &gt; P3 &gt; back wall (P4). Pages hinge on evenly spaced seams in the bottom gusset.</text>
+<rect x="37.500" y="126.000" width="2.500" height="130.000" rx="0" class="leather"/>
+<rect x="37.500" y="256.000" width="62.500" height="2.500" rx="0" class="leather"/>
+<rect x="97.500" y="129.000" width="2.500" height="127.000" rx="0" class="leather"/>
+<rect x="37.500" y="123.500" width="67.500" height="2.500" rx="0" class="leather"/>
+<rect x="102.500" y="123.500" width="2.500" height="52.500" rx="0" class="leather"/>
+<rect x="105.000" y="123.500" width="1.500" height="95.000" rx="0" class="strap"/>
+<rect x="36.000" y="126.000" width="1.500" height="130.000" rx="0" class="strap"/>
+<rect x="104.000" y="182.000" width="4.500" height="12.000" rx="0" class="brass"/>
+<text x="111.000" y="190.000" class="tx" text-anchor="start">buckle</text>
+<text x="109.000" y="151.000" class="tx" text-anchor="start">top flap</text>
+<text x="104.000" y="241.000" class="tx" text-anchor="start">front panel</text>
+<text x="32.500" y="191.000" class="tx" text-anchor="middle" transform="rotate(-90 32.500 191.000)">back wall = panel 4</text>
+<rect x="40.000" y="136.000" width="1.500" height="90.000" rx="0" class="band"/>
+<text x="43.200" y="186.000" class="tx" text-anchor="start" transform="rotate(-90 43.200 186.000)">pocket</text>
+<rect x="41.500" y="163.500" width="8.000" height="50.000" rx="0" class="needle"/>
+<line x1="55.000" y1="256.000" x2="54.000" y2="131.000" class="cut" />
+<line x1="55.500" y1="254.500" x2="55.500" y2="260.000" class="stitch" />
+<text x="54.000" y="129.500" class="tx" text-anchor="middle">P3</text>
+<rect x="54.300" y="168.500" width="5.000" height="50.000" rx="0" class="needle"/>
+<line x1="70.000" y1="256.000" x2="70.200" y2="131.000" class="cut" />
+<line x1="70.500" y1="254.500" x2="70.500" y2="260.000" class="stitch" />
+<text x="70.200" y="129.500" class="tx" text-anchor="middle">P2</text>
+<rect x="70.500" y="146.000" width="10.000" height="100.000" rx="0" class="needle"/>
+<line x1="85.000" y1="256.000" x2="86.400" y2="131.000" class="cut" />
+<line x1="85.500" y1="254.500" x2="85.500" y2="260.000" class="stitch" />
+<text x="86.400" y="129.500" class="tx" text-anchor="middle">P1</text>
+<rect x="86.700" y="146.000" width="5.000" height="100.000" rx="0" class="needle"/>
+<line x1="40.000" y1="259.300" x2="40.000" y2="266.700" class="dim" />
+<line x1="55.000" y1="259.300" x2="55.000" y2="266.700" class="dim" />
+<line x1="40.000" y1="265.500" x2="55.000" y2="265.500" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="47.500" y="264.600" class="t" text-anchor="middle">1.5</text>
+<line x1="55.000" y1="259.300" x2="55.000" y2="266.700" class="dim" />
+<line x1="70.000" y1="259.300" x2="70.000" y2="266.700" class="dim" />
+<line x1="55.000" y1="265.500" x2="70.000" y2="265.500" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="62.500" y="264.600" class="t" text-anchor="middle">1.5</text>
+<line x1="70.000" y1="259.300" x2="70.000" y2="266.700" class="dim" />
+<line x1="85.000" y1="259.300" x2="85.000" y2="266.700" class="dim" />
+<line x1="70.000" y1="265.500" x2="85.000" y2="265.500" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="77.500" y="264.600" class="t" text-anchor="middle">1.5</text>
+<line x1="85.000" y1="259.300" x2="85.000" y2="266.700" class="dim" />
+<line x1="100.000" y1="259.300" x2="100.000" y2="266.700" class="dim" />
+<line x1="85.000" y1="265.500" x2="100.000" y2="265.500" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="92.500" y="264.600" class="t" text-anchor="middle">1.5</text>
+<line x1="40.000" y1="259.300" x2="40.000" y2="274.700" class="dim" />
+<line x1="100.000" y1="259.300" x2="100.000" y2="274.700" class="dim" />
+<line x1="40.000" y1="273.500" x2="100.000" y2="273.500" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="70.000" y="272.600" class="t" text-anchor="middle">6.0 bottom gusset</text>
+<line x1="105.800" y1="131.000" x2="128.200" y2="131.000" class="dim" />
+<line x1="105.800" y1="256.000" x2="128.200" y2="256.000" class="dim" />
+<line x1="127.000" y1="131.000" x2="127.000" y2="256.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="126.100" y="193.500" class="t" text-anchor="middle" transform="rotate(-90 126.100 193.500)">12.5 page</text>
+<line x1="105.800" y1="126.000" x2="136.200" y2="126.000" class="dim" />
+<line x1="105.800" y1="256.000" x2="136.200" y2="256.000" class="dim" />
+<line x1="135.000" y1="126.000" x2="135.000" y2="256.000" class="dim" marker-start="url(#ar)" marker-end="url(#ar)"/>
+<text x="134.100" y="191.000" class="t" text-anchor="middle" transform="rotate(-90 134.100 191.000)">13.0</text>
+<text x="160.000" y="126.000" class="tb" text-anchor="start">OPEN LAYOUT - inner face up, flaps flat (1:4)</text>
+<rect x="194.250" y="134.000" width="52.500" height="108.000" rx="0" class="leather"/>
+<rect x="160.000" y="162.750" width="121.000" height="32.500" rx="0" class="leather"/>
+<line x1="194.250" y1="146.500" x2="246.750" y2="146.500" class="fold" />
+<line x1="194.250" y1="162.750" x2="246.750" y2="162.750" class="fold" />
+<line x1="194.250" y1="195.250" x2="246.750" y2="195.250" class="fold" />
+<line x1="194.250" y1="210.250" x2="246.750" y2="210.250" class="fold" />
+<line x1="180.000" y1="162.750" x2="180.000" y2="195.250" class="fold" />
+<line x1="194.250" y1="162.750" x2="194.250" y2="195.250" class="fold" />
+<line x1="246.750" y1="162.750" x2="246.750" y2="195.250" class="fold" />
+<line x1="261.000" y1="162.750" x2="261.000" y2="195.250" class="fold" />
+<rect x="195.500" y="162.000" width="50.000" height="31.250" rx="0" class="band"/>
+<rect x="195.500" y="163.000" width="50.000" height="31.250" rx="0" class="band"/>
+<rect x="195.500" y="164.000" width="50.000" height="31.250" rx="0" class="band"/>
+<text x="220.500" y="180.250" class="ts" text-anchor="middle">P1 (front page) over P2, P3</text>
+<text x="220.500" y="187.750" class="tx" text-anchor="middle">back wall (P4) with cable pocket behind P3</text>
+<text x="220.500" y="203.750" class="tx" text-anchor="middle">3 page hinge seams in bottom gusset</text>
+<text x="220.500" y="216.500" class="tx" text-anchor="middle">FRONT PANEL (inner face)</text>
+<text x="220.500" y="234.000" class="tx" text-anchor="middle">sockets for side-flap snaps</text>
+<text x="220.500" y="141.250" class="tx" text-anchor="middle">TOP FLAP</text>
+<text x="220.500" y="155.625" class="tx" text-anchor="middle">TOP GUSSET</text>
+<text x="171.000" y="179.000" class="tx" text-anchor="middle" transform="rotate(-90 171.000 179.000)">SIDE FLAP</text>
+<text x="272.000" y="179.000" class="tx" text-anchor="middle" transform="rotate(-90 272.000 179.000)">SIDE FLAP</text>
+<circle cx="206.750" cy="226.500" r="1.300" class="thin"/>
+<circle cx="234.250" cy="226.500" r="1.300" class="thin"/>
+<circle cx="167.500" cy="171.500" r="1.300" class="hid"/>
+<circle cx="273.500" cy="171.500" r="1.300" class="hid"/>
+<text x="167.500" y="168.250" class="tx" text-anchor="middle">stud, far face</text>
+<text x="273.500" y="168.250" class="tx" text-anchor="middle">stud, far face</text>
+<text x="312.000" y="22.000" class="tb" text-anchor="start">OPENING / CLOSING</text>
+<text x="312.000" y="25.850" class="ts" text-anchor="start">Open: unbuckle, lift the top flap, fold the</text>
+<text x="312.000" y="29.700" class="ts" text-anchor="start">front panel down (side-flap snaps release),</text>
+<text x="312.000" y="33.550" class="ts" text-anchor="start">fold the side flaps out. The case lies flat</text>
+<text x="312.000" y="37.400" class="ts" text-anchor="start">and the three pages flip like a book; the</text>
+<text x="312.000" y="41.250" class="ts" text-anchor="start">back wall is the fourth storage surface.</text>
+<text x="312.000" y="45.100" class="ts" text-anchor="start">Close: side flaps in over the pages, front</text>
+<text x="312.000" y="48.950" class="ts" text-anchor="start">panel up (snaps), top flap over, strap</text>
+<text x="312.000" y="52.800" class="ts" text-anchor="start">through the buckle and keeper.</text>
+<text x="312.000" y="56.650" class="ts" text-anchor="start"></text>
+<text x="312.000" y="60.500" class="tb" text-anchor="start">STACK-HEIGHT CHECK (depth 6.0)</text>
+<text x="312.000" y="64.350" class="ts" text-anchor="start">P4 back wall: 8 mm tips / cable pocket  1.3</text>
+<text x="312.000" y="68.200" class="ts" text-anchor="start">P3  2 x 5 mm tips + page                0.7</text>
+<text x="312.000" y="72.050" class="ts" text-anchor="start">P2  2 x 10 mm tips + page + pockets     1.3</text>
+<text x="312.000" y="75.900" class="ts" text-anchor="start">P1  2 x 5 mm tips + page                0.7</text>
+<text x="312.000" y="79.750" class="ts" text-anchor="start">front + back walls, side flaps          0.9</text>
+<text x="312.000" y="83.600" class="ts" text-anchor="start">TOTAL                                   4.9  (OK)</text>
+<text x="312.000" y="87.450" class="ts" text-anchor="start"></text>
+<text x="312.000" y="91.300" class="tb" text-anchor="start">OPEN QUESTIONS (confirm before cutting)</text>
+<text x="312.000" y="95.150" class="ts" text-anchor="start">Q1 Keep gussets 5.7 / 6.0 / 6.5 as measured?</text>
+<text x="312.000" y="99.000" class="ts" text-anchor="start">Q2 Top flap 5.0 (prototype) vs ~9 in the</text>
+<text x="312.000" y="102.850" class="ts" text-anchor="start">   reference photos?</text>
+<text x="312.000" y="106.700" class="ts" text-anchor="start">Q3 Side-flap snaps: spring snaps (drawn) or</text>
+<text x="312.000" y="110.550" class="ts" text-anchor="start">   hidden magnetic snaps?</text>
+<text x="312.000" y="114.400" class="ts" text-anchor="start">Q4 Genuine (full-grain 1.2-1.4) or PU faux</text>
+<text x="312.000" y="118.250" class="ts" text-anchor="start">   leather for the shell?</text>
+<text x="312.000" y="122.100" class="ts" text-anchor="start">Q5 Confirm real cap / key / connector / cable</text>
+<text x="312.000" y="125.950" class="ts" text-anchor="start">   sizes against the pockets on sheets 5, 7.</text>
 </svg>
