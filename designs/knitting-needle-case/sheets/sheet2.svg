@@ -47,7 +47,7 @@
 <text x="212.000" y="270.200" class="tx" text-anchor="start">SHEET TITLE</text>
 <text x="212.000" y="274.800" class="tb" text-anchor="start">Outer shell - flat pattern, outer face (die line)</text>
 <text x="332.000" y="270.200" class="tx" text-anchor="start">SCALE</text>
-<text x="332.000" y="274.800" class="t" text-anchor="start">1:2.2 (not to scale - use dims)</text>
+<text x="332.000" y="274.800" class="t" text-anchor="start">1:2.2 - use dims</text>
 <text x="372.000" y="270.200" class="tx" text-anchor="start">UNITS</text>
 <text x="372.000" y="274.800" class="t" text-anchor="start">cm (page A3)</text>
 <text x="212.000" y="280.200" class="tx" text-anchor="start">SOURCE</text>

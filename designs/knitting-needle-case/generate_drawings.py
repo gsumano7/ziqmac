@@ -635,7 +635,7 @@ def sheet1():
 # SHEET 2 - outer shell flat pattern (outer face up)
 # ==========================================================================
 def sheet2():
-    sh = Sheet(2, "Outer shell - flat pattern, outer face (die line)", "1:2.2 (not to scale - use dims)")
+    sh = Sheet(2, "Outer shell - flat pattern, outer face (die line)", "1:2.2 - use dims")
     sh.frame()
     s = 4.5
     v = View(30, 36, s)
