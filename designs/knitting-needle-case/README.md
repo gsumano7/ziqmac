@@ -3,7 +3,7 @@
 Factory-ready drawing set for a premium leather trifold clutch holding a
 full interchangeable needle set. Dimensions come from the cardboard
 prototype (photos P1–P5); construction follows the client's written brief
-reference photos (R1–R6) and logo artwork. Rev D, 2026-10-01.
+reference photos (R1–R6) and logo artwork. Rev E, 2026-10-01.
 
 ## Files
 
@@ -32,7 +32,7 @@ reference photos (R1–R6) and logo artwork. Rev D, 2026-10-01.
 
 Taken directly from the cardboard prototype:
 
-- Outer shell cross pattern: top flap 5.0, top gusset 6.5, back panel 21.0 × 13.0, bottom gusset 6.0, front panel 12.7; side gussets 5.7, side flaps 8.0 with a snap each (photo 1).
+- Outer shell cross pattern: top gusset 6.5, back panel 21.0 × 13.0, bottom gusset 6.0, front panel 12.7; side gussets 5.7, side flaps 8.0 with a snap each (photo 1). The prototype's 5.0 top flap was superseded by a 10.0 flap to match the reference photos (client decision).
 - Slot widths: 0.6 cm for 2.0 mm rising 0.1 cm per size to 2.2 cm for 10 mm; 0.5 cm land between slots; 1.0 cm end margins; 1.5 cm clearance above the tip points (photos 2–5).
 
 Taken from the client's brief and reference photos:
@@ -40,7 +40,7 @@ Taken from the client's brief and reference photos:
 - Trifold clutch: side flaps fold in and tuck inside, front panel folds up and snaps to the side flaps, top flap folds over, 3 cm dark brown strap wraps the case with a decorative 30 mm buckle and keeper and a snap-closed tongue; client logo embossed on the flap; R 1.0 corners; contrast edge stitching.
 - Storage order front to back: front panel, panel 1, panel 2, panel 3, back wall (panel 4). Panels 1–3 are pages sewn into the bottom gusset on three evenly spaced seams and are not removable; panel 4 is the back-wall lining itself.
 - 15 mm elastic threaded in and out of each panel through die-cut slits, one visible loop per pair, size label above each pair.
-- Large snap pocket for the cables on the back wall; two small snap pockets for caps, keys, connectors and the grip patch on panel 2.
+- Large snap pocket for the cables on the back wall (9.7 × 9.0) and two small snap pockets (3.9 × 4.1) for caps, keys, connectors and the grip patch on panel 2, each sized to the maximum that leaves the needle zones intact.
 
 Proposed to fit the full contents list:
 
@@ -48,7 +48,7 @@ Proposed to fit the full contents list:
 - Panel assignment: panel 1 = 10 cm 2.0–5.0, panel 2 = 10 cm 5.5–10, panel 3 = 5 cm 2.0–5.0, panel 4 = 5 cm 5.5–8.
 - Leather grip patch 6.0 × 3.0 cm, veg-tan 1.8–2.0 mm, folded in half in pocket B.
 
-Sheet 3 lists five open questions (gusset depths, top-flap depth, snap type, genuine vs faux leather, real hardware sizes) to confirm before cutting. The logo is embedded as a raster for placement only; vector artwork is needed for the emboss die.
+Sheet 3 lists the open questions (gusset depths, snap type, genuine vs faux leather, real hardware sizes) to confirm before cutting. The logo is embedded as a raster for placement only; vector artwork is needed for the emboss die.
 
 ## Regenerating
 

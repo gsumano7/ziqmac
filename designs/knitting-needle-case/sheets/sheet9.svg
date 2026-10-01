@@ -53,7 +53,7 @@
 <text x="212.000" y="280.200" class="tx" text-anchor="start">SOURCE</text>
 <text x="212.000" y="284.800" class="t" text-anchor="start">Cardboard prototype P1-P5 + client brief, logo and reference photos R1-R6</text>
 <text x="332.000" y="280.200" class="tx" text-anchor="start">DATE / REV</text>
-<text x="332.000" y="284.800" class="t" text-anchor="start">2026-10-01   Rev D</text>
+<text x="332.000" y="284.800" class="t" text-anchor="start">2026-10-01   Rev E</text>
 <text x="372.000" y="280.200" class="tx" text-anchor="start">SHEET</text>
 <text x="372.000" y="284.800" class="tb" text-anchor="start">9 of 9</text>
 <text x="13.000" y="17.000" class="tt" text-anchor="start">SHEET 9  -  CONTENTS CHECKLIST, BILL OF MATERIALS, CONSTRUCTION &amp; CUTTING LIST</text>
@@ -261,12 +261,12 @@
 <text x="151.200" y="35.880" class="ts" text-anchor="start">1</text>
 <text x="159.200" y="35.880" class="ts" text-anchor="start">Outer shell, full-grain leather 1.2-1.4 mm (or PU 1.0-1.2), tan</text>
 <text x="259.200" y="35.880" class="ts" text-anchor="start">1</text>
-<text x="273.200" y="35.880" class="ts" text-anchor="start">48.4 x 43.2 net + allowance (sheet 2)</text>
+<text x="273.200" y="35.880" class="ts" text-anchor="start">48.4 x 48.2 net + allowance (sheet 2)</text>
 <line x1="150.000" y1="37.000" x2="358.000" y2="37.000" class="dim" />
 <text x="151.200" y="39.880" class="ts" text-anchor="start">2</text>
 <text x="159.200" y="39.880" class="ts" text-anchor="start">Lining 0.6 mm, tan (back-wall lining = panel 4, sheet 7)</text>
 <text x="259.200" y="39.880" class="ts" text-anchor="start">1</text>
-<text x="273.200" y="39.880" class="ts" text-anchor="start">48.4 x 43.2 net + allowance</text>
+<text x="273.200" y="39.880" class="ts" text-anchor="start">48.4 x 48.2 net + allowance</text>
 <line x1="150.000" y1="41.000" x2="358.000" y2="41.000" class="dim" />
 <text x="151.200" y="43.880" class="ts" text-anchor="start">3</text>
 <text x="159.200" y="43.880" class="ts" text-anchor="start">Board 1.0 mm: back wall, front panel</text>
@@ -291,7 +291,7 @@
 <text x="151.200" y="59.880" class="ts" text-anchor="start">7</text>
 <text x="159.200" y="59.880" class="ts" text-anchor="start">Strap, leather 1.4 mm, dark brown, 2 ply</text>
 <text x="259.200" y="59.880" class="ts" text-anchor="start">2</text>
-<text x="273.200" y="59.880" class="ts" text-anchor="start">3.0 x 30.5 (sheet 8)</text>
+<text x="273.200" y="59.880" class="ts" text-anchor="start">3.0 x 33.5 (sheet 8)</text>
 <line x1="150.000" y1="61.000" x2="358.000" y2="61.000" class="dim" />
 <text x="151.200" y="63.880" class="ts" text-anchor="start">8</text>
 <text x="159.200" y="63.880" class="ts" text-anchor="start">Buckle piece + keeper, dark brown</text>
@@ -316,12 +316,12 @@
 <text x="151.200" y="79.880" class="ts" text-anchor="start">12</text>
 <text x="159.200" y="79.880" class="ts" text-anchor="start">Cable pocket body + flap, 0.8 mm leather</text>
 <text x="259.200" y="79.880" class="ts" text-anchor="start">1+1</text>
-<text x="273.200" y="79.880" class="ts" text-anchor="start">7.0 x 9.0;  7.0 x 3.8</text>
+<text x="273.200" y="79.880" class="ts" text-anchor="start">9.7 x 9.5;  9.7 x 3.8</text>
 <line x1="150.000" y1="81.000" x2="358.000" y2="81.000" class="dim" />
 <text x="151.200" y="83.880" class="ts" text-anchor="start">13</text>
 <text x="159.200" y="83.880" class="ts" text-anchor="start">Small pocket bodies + flaps, 0.8 mm leather</text>
 <text x="259.200" y="83.880" class="ts" text-anchor="start">2+2</text>
-<text x="273.200" y="83.880" class="ts" text-anchor="start">3.4 x 4.5;  3.4 x 2.4</text>
+<text x="273.200" y="83.880" class="ts" text-anchor="start">3.9 x 4.6;  3.9 x 2.4</text>
 <line x1="150.000" y1="85.000" x2="358.000" y2="85.000" class="dim" />
 <text x="151.200" y="87.880" class="ts" text-anchor="start">14</text>
 <text x="159.200" y="87.880" class="ts" text-anchor="start">Leather grip patch, veg-tan 1.8-2 mm</text>
@@ -360,7 +360,7 @@
 <text x="85.200" y="178.024" class="tb" text-anchor="start">Value used on drawings</text>
 <text x="15.200" y="182.224" class="ts" text-anchor="start">P1</text>
 <text x="31.200" y="182.224" class="ts" text-anchor="start">Cardboard cross pattern</text>
-<text x="85.200" y="182.224" class="ts" text-anchor="start">Top flap 5.0, top gusset 6.5, back 21.0 x 13.0, bottom gusset 6.0, front 12.7; side gusset 5.7, side flap 8.0, snaps</text>
+<text x="85.200" y="182.224" class="ts" text-anchor="start">Top gusset 6.5, back 21.0 x 13.0, bottom gusset 6.0, front 12.7; side gusset 5.7, side flap 8.0, snaps. Top flap 5.0 superseded by 10.0 (client, per R1/R3)</text>
 <line x1="14.000" y1="183.400" x2="248.000" y2="183.400" class="dim" />
 <text x="15.200" y="186.424" class="ts" text-anchor="start">P2-P5</text>
 <text x="31.200" y="186.424" class="ts" text-anchor="start">Cardboard panels</text>
