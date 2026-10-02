@@ -606,18 +606,19 @@ def sheet1():
             ("open-flat.jpg", "V3  Open: pages 1-3 over the back wall", 900, 619),
             ("panel1.jpg", "V4  Panel 1: 10 cm tips 2.0-5.0 mm", 900, 619),
             ("panel2.jpg", "V5  Panel 2: 10 cm 5.5-10 mm + pockets", 900, 619),
-            ("backwall.jpg", "V6  Panel 4, back wall: 5 cm 5.5-8 + cables", 900, 619)]
+            ("panel3.jpg", "V6  Panel 3: 5 cm tips 2.0-5.0 mm", 900, 619),
+            ("backwall.jpg", "V7  Panel 4, back wall: 5 cm 5.5-8 + cables", 900, 619)]
     cw, ch = 60.0, 60.0
     for i, (fn, cap, w, h) in enumerate(refs):
         col, row = i % 3, i // 3
-        cx0, cy0 = gx + col * 64, gy + 4 + row * 56
+        cx0, cy0 = gx + col * 64, gy + 4 + row * 50
         scale = min(cw / w, ch / h)
         iw, ih = w * scale, h * scale
-        ix, iy = cx0 + (cw - iw) / 2, cy0 + (ch - ih) / 2 - 8
+        ix, iy = cx0 + (cw - iw) / 2, cy0 + (ch - ih) / 2 - 10
         sh.add(f'<image x="{ix:.2f}" y="{iy:.2f}" width="{iw:.2f}" height="{ih:.2f}" href="{img_data(fn, "renders")}" preserveAspectRatio="xMidYMid meet"/>')
         sh.rect(ix, iy, iw, ih, "thin")
         sh.text(cx0, iy + ih + 3.5, cap[:62], "tx")
-    sh.lines(gx, gy + 4 + 2 * 56 + 2, [
+    sh.lines(gx + 64, gy + 4 + 2 * 50 + 2, [
         "**HOW THE DRAWINGS RELATE TO THE BRIEF",
         "- Dimensions come from the client's cardboard prototype (21.0 x 13.0 base, 6.0",
         "  gussets, 8.0 side flaps, loop widths 0.6-2.2) - see the record on sheet 9.",

@@ -273,6 +273,15 @@ def panel2():
     return c
 
 
+def panel3():
+    c = Canvas(160, 110)
+    s = 6.4
+    v = G.View((160 - G.PAGE_W * s) / 2, (110 - G.PAGE_H * s) / 2 - 2, s)
+    panel_face(c, v, G.SIZES_SMALL, 5.0, 3.75, 6.25)
+    c.text(80, 105, "PANEL 3  -  5 cm tips 2.0-5.0 mm", "cap")
+    return c
+
+
 def backwall():
     c = Canvas(160, 110)
     s = 6.2
@@ -325,7 +334,7 @@ def open_flat():
 
 def main():
     views = [("closed-front", closed_front), ("closed-iso", closed_iso), ("open-flat", open_flat),
-             ("panel1", panel1), ("panel2", panel2), ("backwall", backwall)]
+             ("panel1", panel1), ("panel2", panel2), ("panel3", panel3), ("backwall", backwall)]
     import cairosvg
     from PIL import Image
     for name, fn in views:

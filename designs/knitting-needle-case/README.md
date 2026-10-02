@@ -13,7 +13,7 @@ reference photos (R1–R6) and logo artwork. Rev E, 2026-10-01.
 | `index.html` | Same nine sheets as a print-ready web page (File → Print, A3 landscape, no margins). |
 | `sheets/sheet1.svg` … `sheet9.svg` | Each sheet as a vector SVG, editable in Inkscape / Illustrator. |
 | `preview/sheet*.png` | Quick-look raster previews. |
-| `renders/*.svg`, `*.png`, `*.jpg` | Design views generated from the drawing geometry (closed front, closed isometric, open, panels 1, 2 and 4). Shown on the cover sheet. |
+| `renders/*.svg`, `*.png`, `*.jpg` | Design views generated from the drawing geometry (closed front, closed isometric, open, and panels 1 to 4). Shown on the cover sheet. |
 | `render_views.py` | Generator for the design views; imports the dimensions from the drawing generator. |
 | `reference/*.jpg`, `reference/logo.png` | Client reference photos (downscaled, kept for the record) and logo artwork. |
 | `generate_drawings.py` | Generator. Every dimension lives in this script; change a value, re-run, and all sheets update. |
